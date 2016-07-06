@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.w3.org/1999/xhtml
+                      http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
+<!-- dimension.xhtml ===================================================
+Dimension page for Comfort and Climate
+Version    : $Id: dimension.xhtml 2328 2012-09-19 09:14:04Z hartwig $
+Application: Comfort and Climate
+Platform   : XHTML 1.1
+Description: The dimension page handles the dimension of a project.
+========================================================================
+Created    : 23.07.2012, Hartwig Thomas, Enter AG, Zurich
+Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
+==================================================================== -->
+  <head>
+    <title>Comfort and Climate: Dimension</title>
+    <!-- Content type and character set -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- Global style sheet -->
+    <link rel="stylesheet" type="text/css" href="../../candc.css" />
+    <!-- Constants declaration script -->
+    <script type="text/javascript">
+      //<![CDATA[
+      var MESSAGES = {
+        length_numeric: "Length must be entered as a number - possibly with a decimal point.",
+        width_numeric: "Width must be entered as a number - possibly with a decimal point.",
+        height_numeric: "Height must be entered as a number - possibly with a decimal point.",
+        floorarea_numeric: "Floor area must be entered as a number - possibly with a decimal point.",
+        length_positive: "Length must be a positive number!",
+        width_positive: "Width must be a positive number!",
+        height_positive: "Height must be a positive number!",
+        area_too_small: "Floor area must at least be length times width!",
+        saved: "Dimension entries saved in the project.",
+        not_saved: "Dimension entries could not be saved in the project!\nPossibly an update collision occurred. Please try again.",
+        system_error: "System error!"
+      };
+      //]]>
+    </script>
+    <!-- Data declaration script (replaced by application) -->
+    <script id="data" type="text/javascript">
+      //<![CDATA[
+      var sMessage = MESSAGES.not_saved;
+      var sUserName = "Test User";
+      var sProjectName = "Test Project";
+      var iProjectGeneration = 2;
+      var bExpired = false;
+      var sFreePages = "climate, dimension, compactness, orientation, construction, windowsfront, windowsleft, windowsback, windowsright";
+      var dLength = 50.0;
+      var dWidth = 20.0;
+      var dHeight = 9.0;
+      var dFloorArea = 3000.0;
+      //]]>
+    </script>
+    <!-- Global initialization script -->
+    <script src="../../scripts/candc.js" type="text/javascript"></script>
+    <!-- Data handling script -->
+    <script src="../../scripts/dimension.js" type="text/javascript"></script>
+  </head>
+  <body onload="onLoad();">
+    <div id="logo">
+      <img src="../../images/logo.png" alt="Comfort and Climate Logo" />
+    </div>
+    <div id="nav">
+      <p>Settings</p>
+      <p class="indent"><a href="climate.xhtml">Climate</a> <img src="../../images/free.png"/></p>
+      <p class="indent selected"><a href="dimension.xhtml">Dimension</a> <img src="../../images/free.png"/></p>
+      <p><a href="compactness.xhtml">Compactness</a> <img src="../../images/free.png"/></p>
+      <p><a href="orientation.xhtml">Orientation</a> <img src="../../images/free.png"/></p>
+      <p><a href="construction.xhtml">Construction</a> <img src="../../images/free.png"/></p>
+      <p>Windows</p>
+      <p class="indent"><a href="windowsfront.xhtml">Front</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="windowsright.xhtml">Right</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="windowsback.xhtml">Back</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="windowsleft.xhtml">Left</a> <img src="../../images/free.png"/></p>
+      <p><a href="glazing.xhtml">Glazing</a> <img src="../../images/free.png"/></p>
+      <p><a href="shading.xhtml">Shading</a> <img src="../../images/free.png"/></p>
+      <p><a href="blinds.xhtml">Blinds</a> <img src="../../images/free.png"/></p>
+      <p>Insulation</p>
+      <p class="indent"><a href="roof.xhtml">Roof</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="walls.xhtml">Walls</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="floor.xhtml">Basement</a> <img src="../../images/free.png"/></p>
+      <p><a href="airtightness.xhtml">Air Tightness</a> <img src="../../images/free.png"/></p>
+      <p><a href="occupancy.xhtml">Occupancy</a> <img src="../../images/free.png"/></p>
+      <p>Results</p>
+      <p class="indent"><a href="summary.xhtml">Summary</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="comparison.xhtml">Comparison</a> <img src="../../images/free.png"/></p>
+    </div>
+    <div id="main">
+      <div id="header">
+        <table width="100%"><tr>
+          <td width="32%"><p>Comfort and Climate - <strong>Dimension</strong> <a href="http://info.comfortandclimate.com/?p=20" onclick="window.open(this.href,'_blank');return false;"><img src="../../images/info.png"/></a></p></td>
+          <td width="33%"><p id="projectname">Project: </p></td>
+          <td width="20%"><p id="username">User: </p></td>
+          <td><p><a href="../preferences.xhtml">Preferences</a></p></td>
+          <td><p><a href="../login.xhtml?logout=true">Log out</a></p></td>
+        </tr></table>
+        <hr/>
+        <p id="message">Message<br/>Message</p>
+      </div>
+      <div id="content">
+        <br/>
+        <form action="dimension.xhtml" method="get" onsubmit="return validate();">
+          <table width="100%">
+            <tr><td align="right"><p>Length [m]</p></td><td><p><input name="length" style="width: 7cm" type="text" value="47.5"/></p></td><td><p>Width of the front façade in meters</p></td></tr>
+            <tr><td align="right"><p>Width [m]</p></td><td><p><input name="width" style="width: 7cm" type="text" value="8.5"/></p></td><td><p>Width of the side façade in meters</p></td></tr>
+            <tr><td align="right"><p>Height [m]</p></td><td><p><input name="height" style="width: 7cm" type="text" value="47.5"/></p></td><td><p>Width of the building in meters</p></td></tr>
+            <tr><td align="right"><p>Area [m<sup>2</sup>]</p></td><td><p><input name="floorarea" style="width: 7cm" type="text" value="8.5"/></p></td><td><p>Gross floor area in square meters</p></td></tr>
+            <tr><td><p><input name="projectgeneration" type="hidden" value="-1"/></p></td><td></td><td></td></tr>
+            <tr><td></td><td><p><br/><input name="save" style="width: 7cm" type="submit" value="Save input values" title="Save your input values for dimension"/></p></td><td><p>Save the dimension values</p></td></tr>
+          </table>
+        </form>
+        <br/>
+      </div>
+      <div id="footer">
+        <table width="100%"><tr>
+          <td width="30%"><p><a href="http://www.baumschlager-eberle.com/" onclick="window.open(this.href,'_blank');return false;">Baumschlager Eberle</a></p></td>
+          <td width="30%"><p><a id="termsandconditions" href="http://info.comfortandclimate.com/?p=54" onclick="window.open(this.href,'_blank');return false;">Terms and Conditions</a></p></td>
+          <td width="30%"><p><a id="contact" href="http://info.comfortandclimate.com/?p=59" onclick="window.open(this.href,'_blank');return false;">Contact</a></p></td>
+          <td><p><a href="../about.xhtml" onclick="window.open(this.href,'_blank');return false;">Credits</a></p></td>
+        </tr></table>
+      </div>
+      <div id="validate">
+        <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" height="31" width="88" /></a>
+      </div>
+    </div>    
+  </body>
+</html>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.w3.org/1999/xhtml
+                      http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
+<!-- preferences.xhtml =================================================
+Preferences page for Comfort and Climate
+Version    : $Id: preferences.xhtml 2231 2012-08-21 07:09:40Z hartwig $
+Application: Comfort and Climate
+Platform   : XHTML 1.1
+Description: The preferences page handles the preferences of a user.
+========================================================================
+Created    : 03.07.2012, Hartwig Thomas, Enter AG, Zurich
+Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
+==================================================================== -->
+  <head>
+    <title>Comfort and Climate: Persönliche Einstellungen</title>
+    <!-- Content type and character set -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- Global style sheet -->
+    <link rel="stylesheet" type="text/css" href="../candc1.css" />
+    <!-- Messages declaration script -->
+    <script type="text/javascript">
+      //<![CDATA[
+      var MESSAGES = {
+        preferences_saved: "Persönliche Einstellungen wurden gespeichert.",
+        password_saved: "Persönliche Einstellungen mit neuem Passwort wurden gespeichert.",
+        preferences_not_saved: "Persönliche Einstellungen wurden nicht gespeichert!\nMöglicherweise ereignete sich eine Änderungskollision. Bitte versuchen Sie es noch einmal.",
+        project_deleted: "Projekt gelöscht.",
+        project_not_deleted: "Project wurde nicht gelöscht!\nMöglicherweise ereignete sich eine Änderungskollision. Bitte versuchen Sie es noch einmal.",
+        project_renamed: "Projekt umbenannt.",
+        project_not_renamed: "Project wurde nicht umbenannt!\nMöglicherweise ereignete sich eine Änderungskollision. Bitte versuchen Sie es noch einmal.",
+        project_copied: "Projekt kopiert.",
+        new_project_created: "Neues Projekt wurde erzeugt.",
+        system_error: "Systemfehler!"
+      };
+      var sSELECT_TITLE = "Dieses Projekt bearbeiten";
+      var sSELECT_TEXT = "wählen";
+      var sDELETE_VALUE = "Projekt löschen ...";
+      var sDELETE_TITLE = "Dieses Projekt löschen";
+      var sRENAME_VALUE = "Projekt umbenennen ...";
+      var sRENAME_TITLE = "Diesem Projekt einen anderen Namen geben";
+      var sCOPY_VALUE = "Kopie anlegen ...";
+      var sCOPY_TITLE = "Ein neues Projekt als Kopie dieses Projekts erzeugen";
+      //]]>
+    </script>
+    <!-- Data declaration script (replaced by application) -->
+    <script id="data" type="text/javascript">
+      //<![CDATA[
+      var sMessage = MESSAGES.preferences_not_saved;
+      var sMailAddress = "test@testmal.ch";
+      var sUserName = "Test User";
+      var sRole = "USER";
+      var iUserGeneration = -1;
+      var sCredit = "20";
+      var Projects = [
+        {id: "12345769708", name: "My Very Very First Project", generation:0 },
+        {id: "56436369708", name: "My second Project", generation:1 }
+      ];
+      //]]>
+    </script>
+    <!-- Global initialization script -->
+    <script src="../scripts/candc1.js" type="text/javascript"></script>
+    <!-- Data handling script -->
+    <script src="../scripts/preferences.js" type="text/javascript"></script>
+  </head>
+  <body onload="onLoad();">
+    <div id="logo">
+      <img src="../images/logo.png" alt="Comfort and Climate Logo" />
+    </div>
+    <div id="nav">
+      <!-- 
+      <p>first</p>
+      <p>second</p>
+      <p>third</p>
+      -->
+    </div>
+    <div id="main">
+      <div id="header">
+        <table width="100%"><tr><td><p>Comfort and Climate - Persönliche Einstellungen</p></td><td><p id="username">Benutzer: </p></td><td><p><a href="login.xhtml?logout=true">Abmelden</a></p></td></tr></table>
+        <hr/>
+        <p id="message"></p>
+      </div>
+      <div id="content">
+        <h1>Comfort and Climate: Persönliche Einstellungen (<a href="#">Info</a>)</h1>
+        <form action="preferences.xhtml" method="get">
+          <h2>Einstellungen<input name="role" type="hidden" value="USER"/><input name="usergeneration" type="hidden" value="-1"/></h2>
+          <table width="100%">
+            <tr><td align="right" width="20%"><p>Ihre Mailadresse</p></td><td><p><input name="mailaddress" style="width: 7cm" type="text"/></p></td><td width="50%"><p>Bei Änderungen wird eine Bestätigung an die neue Adresse gesendet.</p></td></tr>
+            <tr><td align="right"><p>Neues Passwort</p></td><td><p><input name="password" style="width: 7cm" type="password" value=""/></p></td><td><p>Wenn hier nichts eingegeben wird, bleibt das Passwort unverändert.</p></td></tr>
+            <tr><td align="right"><p>Ihr Anzeigename</p></td><td><p><input name="username" style="width: 7cm" type="text"/></p></td><td><p>Dieser Name erscheint auf den Projektseiten und auf Projektberichten.</p></td></tr>
+            <tr><td align="right"><p>Ihr Guthaben</p></td><td><p><input id="credit" style="width: 7cm; background-color: rgb(85%,85%,85%)" type="text" readonly="readonly"/></p></td><td><p><a href="#">Guthaben erhöhen</a></p></td></tr>
+            <tr><td></td><td><p><input name="savepreferences" style="width: 7cm" type="submit" value="Veränderte Einstellungen speichern" title="Wenn sie diese Schaltfläche aktivieren, werden Ihre Änderungen der persönlichen Einstellungen gespeichert."/></p></td><td><p>Speichern Sie Ihre veränderten Einstellungen</p></td></tr>
+          </table>
+          <hr/>
+          <h2>Projekte</h2>
+          <table id="projects" width="100%">
+            <tr><td align="right" width="5%"><p><em>Auswählen</em></p></td><td align="middle"><p><em>Projektname</em></p></td><td width="15%"><p>Projekt löschen</p></td><td width="15%"><p><em>Projekt umbenennen</em></p></td><td width="20%"><p><em>Neues Projekt erzeugen</em></p></td></tr>
+            <tr><td align="right"><p><a href="UUID/climate.xhtml">wählen<input type="hidden" value="123456"/></a></p></td><td><p>My Very First Project</p></td><td><p><input style="width: 5cm" type="button" value="Projekt löschen" title="Dieses Projekt löschen"  onclick="openDeleteDialog(this)"/></p></td><td><p><input style="width: 5cm" type="button" value="Projekt umbenennen" title="Dieses Projekt umbenennen" onclick="openRenameDialog(this)"/></p></td><td><p><input style="width: 5cm" type="button" value="Projekt kopieren" title="Dieses Projekt kopieren" onclick="openCopyDialog(this)"/></p></td></tr>
+            <tr><td align="right"><p></p></td><td><p><input name="projectname" style="width: 10cm" type="text"/></p></td><td><p></p></td><td><p></p></td><td><p><input name="newproject" style="width: 4cm" type="submit" value="Neues Projekt" title="Neues Projekt erzeugen"/></p></td></tr>
+          </table>
+        </form>
+        <hr/>
+        <div id="deletedialog" class="dialog">
+          <div>
+            <h1>Projekt löschen</h1>
+            <form action="preferences.xhtml" method="get" onreset="closeDeleteDialog();">
+              <table>
+                <tr><td align="right"><p>Name des Projekts<input name="projectid" type="hidden" value="UUID"/><input name="projectgeneration" type="hidden" value="0"/></p></td><td><p><em><strong>Name of source project</strong></em></p></td></tr>
+                <tr><td align="right"><p><input type="reset" style="width: 6cm" value="Cancel"/></p></td><td><p><input name="deleteproject" type="submit" style="width: 12cm" value="Projekt löschen" title="Dieses Projekt löschen"/></p></td></tr>
+              </table>
+            </form>
+          </div>
+        </div>
+        <div id="renamedialog" class="dialog">
+          <div>
+            <h1>Umbenennen eines Projekts</h1>
+            <form action="preferences.xhtml" method="get" onreset="closeRenameDialog();">
+              <table>
+                <tr><td align="right"><p>Aktueller Name des Projekts<input name="projectid" type="hidden" value="UUID"/><input name="projectgeneration" type="hidden" value="0"/></p></td><td><p><em><strong>Old name</strong></em></p></td></tr>
+                <tr><td align="right"><p>Neuer Name des Projekts</p></td><td><p><input name="projectname" type="text" style="width: 12cm" /></p></td></tr>
+                <tr><td align="right"><p><input type="reset" style="width: 6cm" value="Cancel" onclick="closeRenameDialog()"/></p></td><td><p><input name="renameproject" type="submit" style="width: 12cm" value="Projekt umbenennen" title="Eingabe als neuen Namen des Projekts speichern"/></p></td></tr>
+              </table>
+            </form>
+          </div>
+        </div>
+        <div id="copydialog" class="dialog">
+          <div>
+            <h1>Kopie eines Projekts anlegen</h1>
+            <form action="preferences.xhtml" method="get" onreset="closeCopyDialog();">
+              <table>
+                <tr><td align="right"><p>Name des zu kopierenden Projekts<input name="projectid" type="hidden" value="UUID"/><input name="projectgeneration" type="hidden" value="0"/></p></td><td><p><em><strong>Name of source project</strong></em></p></td></tr>
+                <tr><td align="right"><p>Name des neu anzulegenden Projekts</p></td><td><p><input name="projectname" type="text" style="width: 12cm" /></p></td></tr>
+                <tr><td align="right"><p><input type="reset" style="width: 6cm" value="Cancel" onclick="closeCopyDialog()"/></p></td><td><p><input name="copyproject" type="submit" style="width: 12cm" value="Kopie des Projekts erzeugen" title="Die Kopie eines Projekts erzeugen"/></p></td></tr>
+              </table>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div id="footer">
+        <table width="100%"><tr><td><p><a href="http://www.baumschlager-eberle.com/">Baumschlager Eberle</a></p></td><td><p><a id="termsandconditions" href="#">Allgemeine Geschäftsbedingungen</a></p></td><td><p><a id="contact" href="#">Kontakt</a></p></td><td><p><a href="about.xhtml">Impressum</a></p></td></tr></table>
+      </div>
+    </div>    
+    <div id="validate">
+      <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" height="31" width="88" /></a>
+    </div>
+    <div id="modal"/>
+  </body>
+</html>

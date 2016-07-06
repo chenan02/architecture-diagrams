@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.w3.org/1999/xhtml
+                      http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
+
+<!-- geometry.xhtml ====================================================
+
+Version     : 
+Application : Comfort and Climate
+Platform    : XHTML 1.1
+Description : The Geometry xhtml page handles user input for dimensions
+
+========================================================================
+
+Created     : Matthew Peretick
+Integrited  : Dean Wang
+
+==================================================================== -->
+
+<head>
+    <title>Comfort and Climate: Geometry</title>
+    <!-- Content type and character set -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- Global style sheet -->
+    <link rel="stylesheet" type="text/css" href="../../candc.css" />
+    <!-- Constants declaration script -->
+    <script type="text/javascript">
+      var MESSAGES = {
+      	volume_numeric: "Volume must be entered as a number - possibly with a decimal point.",
+      	area_numeric: "Area must be entered as a number - possibly with a decimal point.",
+      	num_floors_numeric: "The number of floors must be entered as a number - possibly with a decimal point.",
+      	building_numeric: "Building Height must be entered as a number - possibly with a decimal point.",
+      	roof_numeric: "Roof area must be entered as a number - possibly with a decimal point.",
+      	floor_numeric: "Floor area must be entered as a number - possibly with a decimal point.",
+        volume_non_negative: "Volume must be entered as a nonnegative number - possibly with a decimal point.",
+        area_non_negative: "Area must be entered as a nonnegative number - possibly with a decimal point.",
+        num_floors_non_negative: "The number of floors must be entered as a nonnegative number - possibly with a decimal point.",  
+        building_non_negative: "Building Height must be entered as a nonnegative number - possibly with a decimal point.",
+        roof_non_negative: "Roof area must be entered as a nonnegative number - possibly with a decimal point.",
+        floor_non_negative: "Floor area must be entered as a nonnegative number - possibly with a decimal point.",       
+        north_numeric: "North must be entered as a number - possibly with a decimal point.",
+      	south_numeric: "South must be entered as a number - possibly with a decimal point.",
+      	east_numeric: "East must be entered as a number - possibly with a decimal point.",
+      	west_numeric: "West must be entered as a number - possibly with a decimal point.",
+        north_non_negative: "North must be entered as a nonnegative number - possibly with a decimal point.",
+        south_non_negative: "South must be entered as a nonnegative number - possibly with a decimal point.",
+        east_non_negative: "East must be entered as a nonnegative number - possibly with a decimal point.",
+        west_non_negative: "West must be entered as a nonnegative number - possibly with a decimal point.",      
+        nwtow_bound: "North Window to Wall must be in the interval [0,100]!",
+        swtow_bound: "South Window to Wall must be in the interval [0,100]!",
+        ewtow_bound: "East Window to Wall must be in the interval [0,100]!",
+        wwtow_bound: "West Window to Wall must be in the interval [0,100]!",
+        saved: "Geometry entries saved in the project.",
+        not_saved: "Geometry entries could not be saved in the project!\nPossibly an update collision occurred. Please try again.",
+        system_error: "System error!"
+      };
+    </script>
+    <!-- Data declaration script (replaced by application) -->
+    <script id="data" type="text/javascript">
+      //<![CDATA[
+      var sMessage = MESSAGES.not_saved;
+      var sUserName = "Test User";
+      var sProjectName = "Test Project";
+      var iProjectGeneration = 2;
+      var bExpired = false;
+      var sFreePages = "climate, occupancy, compactness, orientation, construction, windowsfront, windowsleft, windowsback, windowsright";
+      var dVolume = 9000.0;  //PROPERTY_VOLUME
+      var dAreaFloor = 3000.0; //PROPERTY_AREA
+      var dNumFloors = 3.0;  //PROPERTY_NO_FLOORS
+      var dBuildingHeight = 9.0; //PROPERTY_HEIGHT
+      var dRoofArea = 1000.0;  //PROPERTY_ROOF_A
+      var dFloorArea = 1000.0;
+      var dNorth = 450.0; //PROPERTY_WALL_NORTH_A
+      var dSouth = 450.0;
+      var dEast = 180.0;
+      var dWest = 180.0;
+      var dNorthWtoW = 40.0; //PROPERTY_WINDOW_NORTH_P
+      var dSouthWtoW = 40.0;
+      var dEastWtoW = 40.0;
+      var dWestWtoW = 40.0;
+      var dFloorAdjacent = 1;
+      var dRoofAdjacent = 1;
+      //]]>
+    </script>
+    <!-- Global initialization script -->
+    <script src="../../scripts/candc.js" type="text/javascript"></script>
+    <!-- Data handling script -->
+    <script src="../../scripts/geometry.js" type="text/javascript"></script>
+  </head>
+  <body onload="onLoad();">
+    <div id="logo">
+      <img src="../../images/logo.png" alt="Comfort and Climate Logo" />
+    </div>
+    <div id="nav">
+      <p>Settings</p>
+      <p class="indent"><a href="climate.xhtml">Climate</a> <img src="../../images/free.png"/></p>
+      <p class="indent selected"><a href="geometry.xhtml">Geometry</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="physicalproperty.xhtml">Physical Property</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="occupancy.xhtml">Occupancy</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="goal.xhtml">Goal</a> <img src="../../images/free.png"/></p>
+      <p><a href="sensitivitystudy.xhtml">SensitivityStudy</a> <img src="../../images/free.png"/></p>
+      <p><a href="compactness.xhtml">Compactness</a> <img src="../../images/free.png"/></p>
+      <p><a href="orientation.xhtml">Orientation</a> <img src="../../images/free.png"/></p>
+      <p><a href="construction.xhtml">Construction</a> <img src="../../images/free.png"/></p>
+   	  <p>WtoW</p>
+      <p class="indent"><a href="wtown.xhtml">N</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wtows.xhtml">S</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wtowe.xhtml">E</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wtoww.xhtml">W</a> <img src="../../images/free.png"/></p>
+      <p><a href="glazing.xhtml">Glazing</a> <img src="../../images/free.png"/></p>
+      <p>Shading</p>
+      <p class="indent"><a href="shadingn.xhtml">N</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="shadings.xhtml">S</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="shadinge.xhtml">E</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="shadingw.xhtml">W</a> <img src="../../images/free.png"/></p>
+      <p>Insulation</p>
+      <p class="indent"><a href="roof.xhtml">Roof</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wall.xhtml">Wall</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="floor.xhtml">Floor</a> <img src="../../images/free.png"/></p>
+	  <p>Ventilation</p>
+      <p class="indent"><a href="infiltration.xhtml">Infiltration</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="natvent.xhtml">NatVent</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="nightvent.xhtml">NightVent</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="heatrec.xhtml">HeatRec</a> <img src="../../images/free.png"/></p>
+      <p>Active Systems</p>
+      <p class="indent"><a href="airhandling.xhtml">Air Handling</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="energyconversion.xhtml">Energy Conversion</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="energydistribution.xhtml">Energy Distribution</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wwh.xhtml">Warm Water Heating</a> <img src="../../images/free.png"/></p>
+      <p>Summary</p>
+    </div>
+    <div id="main">
+      <div id="header">
+        <table width="100%"><tr>
+          <td width="32%"><p>Comfort and Climate - <strong>Geometry</strong> <a href="http://info.comfortandclimate.com/?p=20" onclick="window.open(this.href,'_blank');return false;"><img src="../../images/info.png"/></a></p></td>
+          <td width="33%"><p id="projectname">Project: </p></td>
+          <td width="20%"><p id="username">User: </p></td>
+          <td><p><a href="../preferences.xhtml">Preferences</a></p></td>
+          <td><p><a href="../login.xhtml?logout=true">Log out</a></p></td>
+        </tr></table>
+        <hr/>
+        <p id="message">Message<br/>Message</p>
+      </div>
+      <div id="content">
+        <br/>
+        <form action="geometry.xhtml" method="get" onsubmit="return validate();">
+          <table width="100%">
+            <tr>
+              <td align="left"><p>Volume [m<sup>3</sup>]</p></td>
+              <td><p><input name="Volume" style="width:85px; text-align: right; float: left; position: relative; right: 110px" type="text"/></p></td>
+            </tr>
+            <tr>
+              <td align="left"><p>Area - Floor [m<sup>2</sup>]</p></td>
+              <td><p><input name="Area_Floor" style="width:85px; text-align: right; float: left; position: relative; right: 110px" type="text"/></p></td>
+            </tr>
+            <tr>
+              <td align="left"><p>Number of Floors</p></td>
+              <td><p><input name="Num_Floors" style="width:85px; text-align: right; float: left; position: relative; right: 110px" type="text"/></p></td>
+            </tr>
+            <tr>
+              <td align="left"><p>Building Height [m]</p></td>
+              <td><p><input name="Building_Height" style="width:85px; text-align: right; float: left; position: relative; right: 110px" type="text"/></p></td>
+            </tr>
+            <tr>
+              <td align="left"><p>North Wall Area [m<sup>2</sup>]</p></td>
+              <td><p><input name="North" style="width:85px; text-align: right; float: left; position: relative; right: 110px" type="text" oninput="calculate_N();"/></p></td>
+              <!-- North Window Percentage -->
+              <td align="left" style="float: left; position: relative; right: 100px"><p>North Window to Wall [%]</p></td>
+              <td><p><input name="NorthWtoW" style="width:50px; text-align: right; float: left; position: relative; right: 100px" type="text" oninput="calculate_N();" /></p></td>
+              <td align="left" style="float: left; position: relative; right: 90px"><p>North Window Area [m<sup>2</sup>] = </p></td>
+              <td id='NWindowArea' style="float: left; position: relative; right: 82px"></td>
+            </tr>
+            <tr>
+              <td align="left"><p>South Wall Area [m<sup>2</sup>]</p></td>
+              <td><p><input name="South" style="width:85px; text-align: right; float: left; position: relative; right: 110px" oninput="calculate_S();"/></p></td>
+              <!-- South Window Percentage -->
+              <td align="left" style="float: left; position: relative; right: 100px"><p>South Window to Wall [%]</p></td>
+              <td><p><input name="SouthWtoW" style="width:50px; text-align: right; float: left; position: relative; right: 100px" type="text" oninput="calculate_S();"/></p></td>
+              <td align="left" style="float: left; position: relative; right: 90px"><p>South Window Area [m<sup>2</sup>] = </p></td>
+              <td id='SWindowArea' style="float: left; position: relative; right: 83px"></td> 
+            </tr>
+            <tr>
+              <td align="left"><p>East Wall Area [m<sup>2</sup>]</p></td>
+              <td><p><input name="East" style="width:85px; text-align: right; float: left; position: relative; right: 110px" type="text" oninput="calculate_E();"/></p></td>
+              <!-- East Window Percentage -->
+              <td align="left" style="float: left; position: relative; right: 100px"><p>East Window to Wall [%]</p></td>
+              <td><p><input name="EastWtoW" style="width:50px; text-align: right; float: left; position: relative; right: 100px" type="text" oninput="calculate_E();"/></p></td>
+              <td align="left" style="float: left; position: relative; right: 90px"><p>East Window Area [m<sup>2</sup>] = </p></td>
+              <td id='EWindowArea' style="float: left; position: relative; right: 67px"></td> 
+            </tr>
+            <tr>
+              <td align="left"><p>West Wall Area [m<sup>2</sup>]</p></td>
+              <td><p><input name="West" style="width: 85px; text-align: right; float: left; position: relative; right: 110px" type="text" oninput="calculate_W();"/></p></td>
+              <!-- West Window Percentage -->
+              <td align="left" style="float: left; position: relative; right: 100px"><p>West Window to Wall [%]</p></td>
+              <td><p><input name="WestWtoW" style="width:50px; text-align: right; float: left; position: relative; right: 100px" type="text" oninput="calculate_W();"/></p></td>
+              <td align="left" style="float: left; position: relative; right: 90px"><p>West Window Area [m<sup>2</sup>] = </p></td>
+              <td id='WWindowArea' style="float: left; position: relative; right: 70px"></td>
+            </tr>
+            <tr>
+              <td align="left"><p>Roof Area [m<sup>2</sup>]</p></td>
+              <td><p><input name="Roof_Area" style="width: 85px; text-align: right; float: left; position: relative; right: 110px" type="text"/></p></td>
+            </tr>
+            <tr>
+              <td align="left"><p>Floor Area [m<sup>2</sup>]</p></td>
+              <td><p><input name="Floor_Area" style="width: 85px; text-align: right; float: left; position: relative; right: 110px" type="text"/></p></td>
+            </tr>
+            <tr>
+            	<td align="left"><p>Floor Adjacent</p></td>
+              <td>
+                <select name="Floor_Adjacent" style="width: 92px; text-align: right; float: left; position: relative; right: 110px">
+				        <option value="1">To groud</option>
+				        <option value="2">To unheated space</option>
+				        <option value="3">To external</option>
+				        </select>
+				      </td>
+			      </tr>
+			      <tr>
+            	<td align="left"><p>Roof Adjacent</p></td>
+              <td>
+                <select name="Roof_Adjacent" style="width: 92px; text-align: right; float: left; position: relative; right: 110px">
+				        <option value="1">To external</option>
+				        <option value="2">To unheated space</option>
+				        </select>
+				      </td>
+			      </tr>
+            <tr>
+              <td><p><input name="projectgeneration" type="hidden" value="-1"/></p></td>
+            </tr>
+            <tr>
+              <!-- <td></td> -->
+              <td align="left"><p><br/><input name="save" style="width: 235px; position: relative; align: left" type="submit" value="Save Input Values" title="Save your input values for Geometry"/></p></td>
+            </tr>
+          </table>
+        </form>
+        <br/>
+      </div>
+      <div id="footer">
+        <table width="100%"><tr>
+          <td width="30%"><p><a href="http://www.baumschlager-eberle.com/" onclick="window.open(this.href,'_blank');return false;">Baumschlager Eberle</a></p></td>
+          <td width="30%"><p><a id="termsandconditions" href="http://info.comfortandclimate.com/?p=54" onclick="window.open(this.href,'_blank');return false;">Terms and Conditions</a></p></td>
+          <td width="30%"><p><a id="contact" href="http://info.comfortandclimate.com/?p=59" onclick="window.open(this.href,'_blank');return false;">Contact</a></p></td>
+          <td><p><a href="../about.xhtml" onclick="window.open(this.href,'_blank');return false;">Credits</a></p></td>
+        </tr></table>
+      </div>
+      <div id="validate">
+        <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" height="31" width="88" /></a>
+      </div>
+    </div>    
+  </body>
+</html>
+
+
+
+
+
+
+
+
+

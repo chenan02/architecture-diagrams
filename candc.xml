@@ -1,0 +1,27 @@
+<Context path="/candc"
+  antiResourceLocking="true" 
+  reloadable="true" 
+  crossContext="true" 
+  useNaming="true">
+  <Resource name="jdbc/candcDataSource" 
+    type="javax.sql.DataSource"
+    auth="Container" 
+    driverClassName="org.hsqldb.jdbcDriver"
+    url="jdbc:hsqldb:hsql://localhost:9001/cacdb"
+    username="CACUSER" password="CACUSER"
+    removeAbandoned="true"
+    removeAbandonedTimeout="300"
+    logAbandoned="true"
+    defaultAutoCommit="false"
+    defaultTransactionIsolation="READ_COMMITTED"
+    initialSize="1"
+    maxActive="8"
+    maxIdle="8" 
+    minIdle="1" 
+    validationQuery="select * from (values(1))"
+    />
+  <Environment name="candcConfig"
+    type="java.lang.String" 
+    value="C:\Program Files\apache-tomcat-6.0.20\webapps\candc\etc" 
+    override="false"/>
+</Context>

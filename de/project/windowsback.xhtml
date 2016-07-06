@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.w3.org/1999/xhtml
+                      http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
+<!-- windowsback.xhtml =================================================
+Back wall windows area page for Comfort and Climate
+Version    : $Id: windowsback.xhtml 2231 2012-08-21 07:09:40Z hartwig $
+Application: Comfort and Climate
+Platform   : XHTML 1.1
+Description: The back wall windows area page handles the windows to wall
+             ratio of the back wall.
+========================================================================
+Created    : 07.08.2012, Hartwig Thomas, Enter AG, Zurich
+Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
+==================================================================== -->
+  <head>
+    <title>Comfort and Climate: Fenster hinten</title>
+    <!-- Content type and character set -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- Global style sheet -->
+    <link rel="stylesheet" type="text/css" href="../../candc1.css" />
+    <!-- Constants declaration script -->
+    <script type="text/javascript">
+      //<![CDATA[
+      var MESSAGES = {
+        percentage_bounds: "Prozentangabe muss in [0,100] liegen!",
+        saved: "Fensteranteil im Projekt gespeichert.",
+        not_saved: "Fensteranteil wurde nicht im Projekt gespeichert!\nMöglicherweise ereignete sich eine Änderungskollision. Bitte versuchen Sie es noch einmal.",
+        system_error: "Systemfehler!"
+      };
+      //]]>
+    </script>
+    <!-- Data declaration script (replaced by application) -->
+    <script id="data" type="text/javascript">
+      //<![CDATA[
+      var sMessage = MESSAGES.not_saved;
+      var sUserName = "Test User";
+      var sProjectName = "Test Project";
+      var iProjectGeneration = 2;
+      var dWindowsBack = 30;
+      var dComfortMinimum = 20.0;
+      var dComfortMaximum = 26.0;
+      /* monthly energy demand per square meter for selected windows ratio */
+      var adMonthHeating = [ 12, 9.5, 11.2, 8, 5, 0, 0, 0, 4, 6, 8, 13];
+      var adMonthCooling = [ 0, 0, 0, 0, 0, 0, 2, 4, 0, 0, 0, 0];
+      /* monthly temperature in centigrades */
+      var adIdlingTemperature = [  2,  1,  6, 11, 15, 22, 27, 25, 17, 16, 10, 3];
+      var adRoomTemperature = [ 20, 20, 20, 20, 20, 22, 26, 25, 20, 20, 20, 20];
+      /* yearly energy demand per square meter for the fixed percentages 10%, 25%, 40%, 50%, 60%, 75%, 90% */
+      var adYearHeating = [125, 96, 75, 83, 94, 175];
+      var adYearCooling = [24, 34, 12, 23, 24, 25];
+      //]]>
+    </script>
+    <!-- Global initialization script -->
+    <script src="../../scripts/candc1.js" type="text/javascript"></script>
+    <!-- Data handling script -->
+    <script src="../../scripts/windowsback.js" type="text/javascript"></script>
+  </head>
+  <body onload="onLoad();">
+    <div id="logo">
+      <img src="../../images/logo.png" alt="Comfort and Climate Logo" />
+    </div>
+    <div id="nav">
+      <p><a href="climate.xhtml">Klima</a></p>
+      <p><a href="dimension.xhtml">Dimension</a></p>
+      <p><a href="compactness.xhtml">Kompaktheit</a></p>
+      <p><a href="orientation.xhtml">Ausrichtung</a></p>
+      <p><a href="construction.xhtml">Bauweise</a></p>
+      <p><a href="windowsfront.xhtml">Fenster vorne</a></p>
+      <p><a href="windowright.xhtml">Fenster rechts</a></p>
+      <p class="selected"><a href="windowback.xhtml">Fenster hinten</a></p>
+      <p><a href="windowleft.xhtml">Fenster links</a></p>
+      <p><a href="glazing.xhtml">Verglasung</a></p>
+      <p><a href="shading.xhtml">Schattenwurf</a></p>
+      <p><a href="blinds.xhtml">Jalousien</a></p>
+      <p><a href="roof.xhtml">Dachisolation</a></p>
+      <p><a href="walls.xhtml">Wandisolation</a></p>
+      <p><a href="floor.xhtml">Bodenisolation</a></p>
+      <p><a href="airtightness.xhtml">Luftaustausch</a></p>
+      <p><a href="occupancy.xhtml">Belegung</a></p>
+    </div>
+    <div id="main">
+      <div id="header">
+        <table width="100%"><tr><td><p>Comfort and Climate - Fenster hinten</p></td><td><p id="projectname">Projekt: </p></td><td><p id="username">User: </p></td><td><p><a href="../preferences.xhtml">Einstellungen</a></p></td><td><p><a href="../login.xhtml?logout=true">Abmelden</a></p></td></tr></table>
+        <hr/>
+        <p id="message"></p>
+      </div>
+      <div id="content">
+        <h1>Comfort and Climate: Fensteranteil der Rückwand (<a href="#">Info</a>)</h1>
+        <form class="tile" action="windowsback.xhtml" method="get">
+          <br/>
+          <p>Festeranteil der Vorderwand [%]<input name="projectgeneration" type="hidden" value="-1"/></p>
+          <br/>
+          <p><input name="windowsback" type="text" value="30"/></p>
+          <p><input name="save" type="submit" value="Enter" title="Fensteranteil der Wand speichern"/></p>
+        </form>
+        <button class="tile" onclick="select(this,10);">
+          <p>Sehr kleiner Fensteranteil</p>
+          <br/>
+          <p><img src="../../images/Windows_10.png"/></p>
+          <p>Anteil = 10 [%]</p>
+        </button>
+        <button class="tile" onclick="select(this,25);">
+          <p>Kleiner Fensteranteil an der Wandfläche</p>
+          <br/>
+          <p><img src="../../images/Windows_25.png"/></p>
+          <p>Anteil = 25 [%]</p>
+        </button>
+        <button class="tile" onclick="select(this,40);">
+          <p>Weniger als die Hälfte</p>
+          <br/>
+          <p><img src="../../images/Windows_40.png"/></p>
+          <p>Anteil = 40 [%]</p>
+        </button>
+        <button class="tile" onclick="select(this,50);">
+          <p>Hälfte der Wandfläche</p>
+          <br/>
+          <p><img src="../../images/Windows_50.png"/></p>
+          <p>Anteil = 50 [%]</p>
+        </button>
+        <button class="tile" onclick="select(this,60);">
+          <p>Mehr als die Hälfte der Wandfläche</p>
+          <br/>
+          <p><img src="../../images/Windows_60.png"/></p>
+          <p>Anteil = 60 [%]</p>
+        </button>
+        <button class="tile" onclick="select(this,75);">
+          <p>Grosser Fensteranteil</p>
+          <br/>
+          <p><img src="../../images/Windows_75.png"/></p>
+          <p>Anteil = 75 [%]</p>
+        </button>
+        <button class="tile" onclick="select(this,90);">
+          <p>Sehr grosser Fensteranteil</p>
+          <br/>
+          <p><img src="../../images/Windows_90.png"/></p>
+          <p>Anteil = 90 [%]</p>
+        </button>
+        <table id="diagrams">
+          <tr>
+            <td>
+              <!-- energy options -->
+              <svg id="options" xmlns="http://www.w3.org/2000/svg" version="1.1"
+                width="544" height="544" preserveAspectRatio="xMidYMid slice" 
+                style="font-size: 10pt;" fill="black">
+                <!-- Title attached to the left. height: 40 -->  
+                <g>
+                  <text class="title" text-anchor="left" dx="0.5cm" dy="0.5cm">Energiebedarf pro Jahr</text>
+                  <text class="subtitle" text-anchor="left" dx="0.5cm" dy="1.0cm">kW&middot;h/m<tspan baseline-shift="super">2</tspan><tspan>&middot;Jahr (Wohnfläche)</tspan></text>
+                </g>
+                <!--  map 54.4 to 0 and 450 to 100  -->
+                <g transform="translate(54.4,450.0) scale(4,-2)" style="stroke: black; stroke-opacity: 1.0;">
+                  <!-- x axis -->
+                  <line x1="-2" y1="0" x2="102" y2="0" style="stroke-width: 1"/>
+                  <g transform="translate(104,0) scale(0.25,-0.5)"><text dy="5" text-anchor="middle">%</text></g>
+                  <!-- vertical grid lines and x-labels -->
+                  <g transform="translate(0,0) scale(0.25,-0.5)"><text dy="16" text-anchor="middle">0</text></g>
+                  <line class="dashed-vert100" x1="10" y1="-3" x2="10" y2="200"/>
+                  <g transform="translate(10,0) scale(0.25,-0.5)"><text dy="16" text-anchor="middle">10</text></g>
+                  <line class="dashed-vert100" x1="20" y1="-3" x2="20" y2="200"/>
+                  <g transform="translate(20,0) scale(0.25,-0.5)"><text dy="16" text-anchor="middle">20</text></g>
+                  <line class="dashed-vert100" x1="30" y1="-3" x2="30" y2="200"/>
+                  <g transform="translate(30,0) scale(0.25,-0.5)"><text dy="16" text-anchor="middle">30</text></g>
+                  <line class="dashed-vert100" x1="40" y1="-3" x2="40" y2="200"/>
+                  <g transform="translate(40,0) scale(0.25,-0.5)"><text dy="16" text-anchor="middle">40</text></g>
+                  <line class="dashed-vert100" x1="50" y1="-3" x2="50" y2="200"/>
+                  <g transform="translate(50,0) scale(0.25,-0.5)"><text dy="16" text-anchor="middle">50</text></g>
+                  <line class="dashed-vert100" x1="60" y1="-3" x2="60" y2="200"/>
+                  <g transform="translate(60,0) scale(0.25,-0.5)"><text dy="16" text-anchor="middle">60</text></g>
+                  <line class="dashed-vert100" x1="70" y1="-3" x2="70" y2="200"/>
+                  <g transform="translate(70,0) scale(0.25,-0.5)"><text dy="16" text-anchor="middle">70</text></g>
+                  <line class="dashed-vert100" x1="80" y1="-3" x2="80" y2="200"/>
+                  <g transform="translate(80,0) scale(0.25,-0.5)"><text dy="16" text-anchor="middle">80</text></g>
+                  <line class="dashed-vert100" x1="90" y1="-3" x2="90" y2="200"/>
+                  <g transform="translate(90,0) scale(0.25,-0.5)"><text dy="16" text-anchor="middle">90</text></g>
+                  <line class="dashed-vert100" x1="100" y1="-3" x2="100" y2="200" />
+                  <g transform="translate(100,0) scale(0.25,-0.5)"><text dy="16" text-anchor="middle">100</text></g>
+                  <!-- selected value -->
+                  <g>
+                    <g style="stroke: green; fill:green; stroke-width: 0.3;">
+                      <path id="selected" d=
+                        "M 30 -9 l -2.5 -6 h 5 l -2.5 6 v 209" 
+                       />
+                    </g>
+                  </g>
+                  <!-- y axis left -->
+                  <line x1="0" y1="-3" x2="0" y2="200" style="stroke-width: 0.3;"/>
+                  <!-- horizontal grid lines and y-labels -->
+                  <g transform="translate(-3, 0) scale(0.25,-0.5)"><text dy="5" text-anchor="end">0</text></g>
+                  <line class="dashed-hor100" x1="-2" y1="20" x2="100" y2="20"/>
+                  <g transform="translate(-3,20) scale(0.25,-0.5)"><text dy="5" text-anchor="end">20</text></g>
+                  <line class="dashed-hor100" x1="-2" y1="40" x2="100" y2="40"/>
+                  <g transform="translate(-3,40) scale(0.25,-0.5)"><text dy="5" text-anchor="end">40</text></g>
+                  <line class="dashed-hor100" x1="-2" y1="60" x2="100" y2="60"/>
+                  <g transform="translate(-3,60) scale(0.25,-0.5)"><text dy="5" text-anchor="end">60</text></g>
+                  <line class="dashed-hor100" x1="-2" y1="80" x2="100" y2="80"/>
+                  <g transform="translate(-3,80) scale(0.25,-0.5)"><text dy="5" text-anchor="end">80</text></g>
+                  <line class="dashed-hor100" x1="-2" y1="100" x2="100" y2="100"/>
+                  <g transform="translate(-3,100) scale(0.25,-0.5)"><text dy="5" text-anchor="end">100</text></g>
+                  <line class="dashed-hor100" x1="-2" y1="120" x2="100" y2="120"/>
+                  <g transform="translate(-3,120) scale(0.25,-0.5)"><text dy="5" text-anchor="end">120</text></g>
+                  <line class="dashed-hor100" x1="-2" y1="140" x2="100" y2="140"/>
+                  <g transform="translate(-3,140) scale(0.25,-0.5)"><text dy="5" text-anchor="end">140</text></g>
+                  <line class="dashed-hor100" x1="-2" y1="160" x2="100" y2="160"/>
+                  <g transform="translate(-3,160) scale(0.25,-0.5)"><text dy="5" text-anchor="end">160</text></g>
+                  <line class="dashed-hor100" x1="-2" y1="180" x2="100" y2="180"/>
+                  <g transform="translate(-3,180) scale(0.25,-0.5)"><text dy="5" text-anchor="end">180</text></g>
+                  <line class="dashed-hor100" x1="-2" y1="200" x2="100" y2="200"/>
+                  <g transform="translate(-3,200) scale(0.25,-0.5)"><text dy="5" text-anchor="end">200</text></g>
+                  <!--  middle portion energy -->
+                  <g style="fill-opacity: 1.0; stroke: none;">
+                    <!-- group around 10%, 25%, 40%, 50%, 60%, 75%, 90% -->
+                    <g style="fill:red">
+                      <path id="yearheating" d=
+                        "M 8.5 0 v 125 h 1 v -125
+                         M 23.5 0 v 110 h 1 v -110
+                         M 38.5 0 v 100 h 1 v -100
+                         M 48.5 0 v  75 h 1 v  -75
+                         M 58.5 0 v 100 h 1 v -100
+                         M 73.5 0 v 90 h 1 v -90
+                         M 88.5 0 v 125 h 1 v -125"
+                       />
+                    </g>
+                    <g style="fill:blue">
+                      <path id="yearcooling" d=
+                        "M 9.5 0 v  45 h 1 v  -45
+                         M 24.5 0 v  55 h 1 v  -55
+                         M 39.5 0 v  65 h 1 v  -65
+                         M 49.5 0 v 125 h 1 v -125
+                         M 59.5 0 v  70 h 1 v  -70
+                         M 74.5 0 v  30 h 1 v  -30
+                         M 89.5 0 v  20 h 1 v  -20"
+                       />
+                    </g>
+                    <g style="fill:black">
+                      <path id="yeartotal" d=
+                        "M 10.5 0 v 170 h 1 v -170
+                         M 25.5 0 v 165 h 1 v -165
+                         M 40.5 0 v 165 h 1 v -165
+                         M 50.5 0 v 200 h 1 v -200
+                         M 60.5 0 v 170 h 1 v -170
+                         M 75.5 0 v 125 h 1 v -125
+                         M 90.5 0 v 145 h 1 v -145"
+                       />
+                    </g>
+                  </g>
+                </g>
+                <!-- Legend attached to the left. height: 40 -->  
+                <g>
+                  <rect x="0.5cm" y="12.8cm" width="2.54cm" height="10" 
+                    style="fill:red; fill-opacity: 1.5; stroke: black; stroke-width: 1;"/>
+                  <text dx="3.54cm" dy="13.0cm">Heizenergie</text>
+                  <rect x="0.5cm" y="13.4cm" width="2.54cm" height="10" 
+                    style="fill:blue; fill-opacity: 1.5; stroke: black; stroke-width: 1;"/>
+                  <text dx="3.54cm" dy="13.6cm">Kühlenergie</text>
+                  <rect x="0.5cm" y="14.0cm" width="2.54cm" height="10" 
+                    style="fill:black; fill-opacity: 1.5; stroke: black; stroke-width: 1;"/>
+                  <text dx="3.54cm" dy="14.2cm">Energietotal</text>
+                </g>
+              </svg>
+            </td>
+            <td>
+              <!-- temperature and energy -->
+              <svg id="year" xmlns="http://www.w3.org/2000/svg" version="1.1"
+                width="14.4cm" height="14.4cm" preserveAspectRatio="xMidYMid slice" 
+                style="font-size: 10pt;" fill="black">
+                <g>
+                  <text class="title" text-anchor="start" dx="0.5cm" dy="0.5cm">Energiebedarf pro Monat</text>
+                  <text class="subtitle" text-anchor="start" dx="0.5cm" dy="1.0cm">kW&middot;h/m<tspan baseline-shift="super">2</tspan><tspan>&middot;Monat (Wohnfläche)</tspan></text>
+                  <text class="title" text-anchor="end" dx="13.9cm" dy="0.5cm">Temperatur</text>
+                  <text class="subtitle" text-anchor="end" dx="13.9cm" dy="1.0cm">&deg;C</text>
+                </g>
+                <!--  map 54.4 to 0 and 450 to 12  -->
+                <g transform="translate(54.4,450.0) scale(37.5,-1)" style="stroke: black; stroke-width: 0.01; stroke-opacity: 1.0;">
+                  <!-- x axis -->
+                  <line x1="-0.2" y1="0" x2="12.2" y2="0" style="stroke-width: 1"/>
+                  <!-- x labels -->
+                  <g transform="translate(0.5,0) scale(0.0267,-1)"><text dy="14" text-anchor="middle">Jan</text></g>
+                  <g transform="translate(1.5,0) scale(0.0267,-1)"><text dy="14" text-anchor="middle">Feb</text></g>
+                  <g transform="translate(2.5,0) scale(0.0267,-1)"><text dy="14" text-anchor="middle">Mar</text></g>
+                  <g transform="translate(3.5,0) scale(0.0267,-1)"><text dy="14" text-anchor="middle">Apr</text></g>
+                  <g transform="translate(4.5,0) scale(0.0267,-1)"><text dy="14" text-anchor="middle">May</text></g>
+                  <g transform="translate(5.5,0) scale(0.0267,-1)"><text dy="14" text-anchor="middle">June</text></g>
+                  <g transform="translate(6.5,0) scale(0.0267,-1)"><text dy="14" text-anchor="middle">July</text></g>
+                  <g transform="translate(7.5,0) scale(0.0267,-1)"><text dy="14" text-anchor="middle">Aug</text></g>
+                  <g transform="translate(8.5,0) scale(0.0267,-1)"><text dy="14" text-anchor="middle">Sept</text></g>
+                  <g transform="translate(9.5,0) scale(0.0267,-1)"><text dy="14" text-anchor="middle">Oct</text></g>
+                  <g transform="translate(10.5,0) scale(0.0267,-1)"><text dy="14" text-anchor="middle">Nov</text></g>
+                  <g transform="translate(11.5,0) scale(0.0267,-1)"><text dy="14" text-anchor="middle">Dec</text></g>
+                  <g transform="scale(1,20)">
+                    <!-- y axis -->
+                    <line x1="0" y1="-0.3" x2="0" y2="20" style="stroke-width: 0.05"/>
+                    <!-- vertical grid lines -->
+                    <line class="dashed-vertical" x1="1" y1="-0.3" x2="1" y2="20"/>
+                    <line class="dashed-vertical" x1="2" y1="-0.3" x2="2" y2="20"/>
+                    <line class="dashed-vertical" x1="3" y1="-0.3" x2="3" y2="20"/>
+                    <line class="dashed-vertical" x1="4" y1="-0.3" x2="4" y2="20"/>
+                    <line class="dashed-vertical" x1="5" y1="-0.3" x2="5" y2="20"/>
+                    <line class="dashed-vertical" x1="6" y1="-0.3" x2="6" y2="20"/>
+                    <line class="dashed-vertical" x1="7" y1="-0.3" x2="7" y2="20"/>
+                    <line class="dashed-vertical" x1="8" y1="-0.3" x2="8" y2="20"/>
+                    <line class="dashed-vertical" x1="9" y1="-0.3" x2="9" y2="20"/>
+                    <line class="dashed-vertical" x1="10" y1="-0.3" x2="10" y2="20"/>
+                    <line class="dashed-vertical" x1="11" y1="-0.3" x2="11" y2="20"/>
+                    <!-- y labels -->
+                    <g transform="translate(-0.3, 0) scale(0.0267,-0.05)"><text dy="5" text-anchor="end">0</text></g>
+                    <g transform="translate(-0.3, 2) scale(0.0267,-0.05)"><text dy="5" text-anchor="end">2</text></g>
+                    <g transform="translate(-0.3, 4) scale(0.0267,-0.05)"><text dy="5" text-anchor="end">4</text></g>
+                    <g transform="translate(-0.3, 6) scale(0.0267,-0.05)"><text dy="5" text-anchor="end">6</text></g>
+                    <g transform="translate(-0.3, 8) scale(0.0267,-0.05)"><text dy="5" text-anchor="end">8</text></g>
+                    <g transform="translate(-0.3,10) scale(0.0267,-0.05)"><text dy="5" text-anchor="end">10</text></g>
+                    <g transform="translate(-0.3,12) scale(0.0267,-0.05)"><text dy="5" text-anchor="end">12</text></g>
+                    <g transform="translate(-0.3,14) scale(0.0267,-0.05)"><text dy="5" text-anchor="end">14</text></g>
+                    <g transform="translate(-0.3,16) scale(0.0267,-0.05)"><text dy="5" text-anchor="end">16</text></g>
+                    <g transform="translate(-0.3,18) scale(0.0267,-0.05)"><text dy="5" text-anchor="end">18</text></g>
+                    <g transform="translate(-0.3,20) scale(0.0267,-0.05)"><text dy="5" text-anchor="end">20</text></g>
+                    <!-- y tick marks -->
+                    <line x1="-0.2" y1="2" x2="0" y2="2"/>
+                    <line x1="-0.2" y1="4" x2="0" y2="4"/>
+                    <line x1="-0.2" y1="6" x2="0" y2="6"/>
+                    <line x1="-0.2" y1="8" x2="0" y2="8"/>
+                    <line x1="-0.2" y1="10" x2="0" y2="10"/>
+                    <line x1="-0.2" y1="12" x2="0" y2="12"/>
+                    <line x1="-0.2" y1="14" x2="0" y2="14"/>
+                    <line x1="-0.2" y1="16" x2="0" y2="16"/>
+                    <line x1="-0.2" y1="18" x2="0" y2="18"/>
+                    <line x1="-0.2" y1="20" x2="0" y2="20"/>
+                    <!--  middle portion energy -->
+                    <g style="fill-opacity: 0.5; stroke: none">
+                      <g style="fill:red">
+                        <path id="monthheating" d=
+                          "M  0.00 0 v 12.5 h 0.33 v -12.5
+                           M  1.00 0 v 11.0 h 0.33 v -11.0
+                           M  2.00 0 v 12.5 h 0.33 v -12.5
+                           M  3.00 0 v  7.5 h 0.33 v  -7.5
+                           M  4.00 0 v  5.0 h 0.33 v  -5.0
+                           M  5.00 0 v  2.5 h 0.33 v  -2.5
+                           M  6.00 0 v    0 h 0.33 v  -0
+                           M  7.00 0 v    0 h 0.33 v  -0
+                           M  8.00 0 v    0 h 0.33 v  -0
+                           M  9.00 0 v  2.5 h 0.33 v  -2.5
+                           M 10.00 0 v  5.0 h 0.33 v  -5.0
+                           M 11.00 0 v 10.0 h 0.33 v -10.0"
+                         />
+                      </g>
+                      <g style="fill:blue;">
+                        <path id="monthcooling" d=
+                          "M  0.33 0 v 0   h 0.33 v -0
+                           M  1.33 0 v 0   h 0.33 v -0
+                           M  2.33 0 v 0   h 0.33 v -0
+                           M  3.33 0 v 0   h 0.33 v -0
+                           M  4.33 0 v 0   h 0.33 v -0
+                           M  5.33 0 v 0   h 0.33 v -0
+                           M  6.33 0 v 2.5 h 0.33 v -2.5
+                           M  7.33 0 v 4.0 h 0.33 v -4.0
+                           M  8.33 0 v 0   h 0.33 v -0
+                           M  9.33 0 v 0   h 0.33 v -0
+                           M 10.33 0 v 0   h 0.33 v -0
+                           M 11.33 0 v 0   h 0.33 v -0"
+                         />
+                      </g>
+                      <g style="fill:black">
+                        <path id="monthtotal" d=
+                          "M  0.66 0 v 12.5 h 0.33 v -12.5
+                           M  1.66 0 v 11.0 h 0.33 v -11.0
+                           M  2.66 0 v 12.5 h 0.33 v -12.5
+                           M  3.66 0 v  7.5 h 0.33 v  -7.5
+                           M  4.66 0 v  5.0 h 0.33 v  -5.0
+                           M  5.66 0 v  2.5 h 0.33 v  -2.5
+                           M  6.66 0 v  2.5 h 0.33 v  -2.5
+                           M  7.66 0 v  4.0 h 0.33 v  -4.0
+                           M  8.66 0 v  0   h 0.33 v  -0
+                           M  9.66 0 v  2.5 h 0.33 v  -2.5
+                           M 10.66 0 v  5.0 h 0.33 v  -5.0
+                           M 11.66 0 v 10.0 h 0.33 v -10.0"
+                         />
+                      </g>
+                    </g>
+                  </g>
+                  <g transform="scale(1,10)" style="fill-opacity: 0.5; stroke: black; stroke-width: 0.04; stroke-opacity: 1.0;">
+                    <!-- secondary y axis -->
+                    <line x1="12" y1="-0.6" x2="12" y2="40" style="stroke-width: 0.05"/>
+                    <!--  secondary y labels -->
+                    <g transform="translate(12.7,0)"><text dy="5" transform="scale(0.0267,-0.1)" text-anchor="end">0</text></g>
+                    <g transform="translate(12.7,5)"><text dy="5" transform="scale(0.0267,-0.1)" text-anchor="end">5</text></g>
+                    <g transform="translate(12.7,10)"><text dy="5" transform="scale(0.0267,-0.1)" text-anchor="end">10</text></g>
+                    <g transform="translate(12.7,15)"><text dy="5" transform="scale(0.0267,-0.1)" text-anchor="end">15</text></g>
+                    <g transform="translate(12.7,20)"><text dy="5" transform="scale(0.0267,-0.1)" text-anchor="end">20</text></g>
+                    <g transform="translate(12.7,25)"><text dy="5" transform="scale(0.0267,-0.1)" text-anchor="end">25</text></g>
+                    <g transform="translate(12.7,30)"><text dy="5" transform="scale(0.0267,-0.1)" text-anchor="end">30</text></g>
+                    <g transform="translate(12.7,35)"><text dy="5" transform="scale(0.0267,-0.1)" text-anchor="end">35</text></g>
+                    <g transform="translate(12.7,40)"><text dy="5" transform="scale(0.0267,-0.1)" text-anchor="end">40</text></g>
+                    <!--  secondary y tick marks -->
+                    <line x1="12.0" y1="5" x2="12.2" y2="5"/>
+                    <line x1="12.0" y1="10" x2="12.2" y2="10"/>
+                    <line x1="12.0" y1="15" x2="12.2" y2="15"/>
+                    <line x1="12.0" y1="20" x2="12.2" y2="20"/>
+                    <line x1="12.0" y1="25" x2="12.2" y2="25"/>
+                    <line x1="12.0" y1="30" x2="12.2" y2="30"/>
+                    <line x1="12.0" y1="35" x2="12.2" y2="35"/>
+                    <line x1="12.0" y1="40" x2="12.2" y2="40"/>
+                    <!--  middle portion comfort band -->
+                    <rect id="comfort" x="0" y="19" width="12" height="5" style="fill:green; stroke: none;"/>
+                    <!--  middle portion temperature -->
+                    <polyline id="idling" points=
+                       "0.5 2, 
+                        1.5 3, 
+                        2.5 5, 
+                        3.5 7.5, 
+                        4.5 12, 
+                        5.5 15, 
+                        6.5 25, 
+                        7.5 28, 
+                        8.5 22, 
+                        9.5 16, 
+                       10.5 12, 
+                       11.5 6" 
+                      style="stroke: blue; fill: none;"/>
+                    <polyline id="room" points=
+                       "0.5 20, 
+                        1.5 20, 
+                        2.5 20, 
+                        3.5 20, 
+                        4.5 20, 
+                        5.5 20, 
+                        6.5 25, 
+                        7.5 25, 
+                        8.5 22, 
+                        9.5 20, 
+                       10.5 20, 
+                       11.5 20" 
+                      style="stroke: red; fill: none;"/>
+                  </g>
+                </g>
+                <!-- Legend attached to the left. height: 40 -->  
+                <g>
+                  <rect x="0.5cm" y="12.8cm" width="2.54cm" height="10" 
+                    style="fill:red; fill-opacity: 0.5; stroke: black; stroke-width: 1;"/>
+                  <text dx="3.54cm" dy="13.0cm">Heizenergie</text>
+                  <rect x="0.5cm" y="13.4cm" width="2.54cm" height="10" 
+                    style="fill:blue; fill-opacity: 0.5; stroke: black; stroke-width: 1;"/>
+                  <text dx="3.54cm" dy="13.6cm">Kühlenergie</text>
+                  <rect x="0.5cm" y="14.0cm" width="2.54cm" height="10" 
+                    style="fill:black; fill-opacity: 0.5; stroke: black; stroke-width: 1;"/>
+                  <text dx="3.54cm" dy="14.2cm">Energietotal</text>
+                  
+                  <line x1="7.2cm" y1="12.9cm" x2="9.74cm" y2="12.9cm" 
+                    style="stroke: red; stroke-width: 2; stroke-opacity: 1.0;"/>
+                  <text dx="10.24cm" dy="13.0cm">Raumtemperatur</text>
+                  <line x1="7.2cm" y1="13.5cm" x2="9.74cm" y2="13.5cm" 
+                    style="stroke: blue; stroke-width: 2; stroke-opacity: 1.0;"/>
+                  <text dx="10.24cm" dy="13.6cm">Leerlauftemperatur</text>
+                  <rect x="7.2cm" y="14.0cm" width="2.54cm" height="10" 
+                    style="fill:green; fill-opacity: 0.5; stroke: black; stroke-width: 1;"/>
+                  <text dx="10.24cm" dy="14.2cm">Komfortbereich</text>
+                </g>
+              </svg>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="footer">
+        <table width="100%"><tr><td><p><a href="http://www.baumschlager-eberle.com/">Baumschlager Eberle</a></p></td><td><p><a id="termsandconditions" href="#">Allgemeine Geschäftsbedingungen</a></p></td><td><p><a id="contact" href="#">Kontakt</a></p></td><td><p><a href="../about.xhtml">Impressum</a></p></td></tr></table>
+      </div>
+    </div>    
+    <div id="validate">
+      <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" height="31" width="88" /></a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.w3.org/1999/xhtml
+                      http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
+<!-- test.xhtml
+ -->
+  <head>
+    <title>Comfort and Climate: Test</title>
+    <!-- Content type and character set -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- Global style sheet -->
+    <link rel="stylesheet" type="text/css" href="../../candc.css" />
+    <!-- Constants declaration script -->
+    <script type="text/javascript">
+      //<![CDATA[
+      var MESSAGES = {
+        latitude_numeric: "Latitude must be entered as a number - possibly with a decimal point.",
+        longitude_numeric: "Longitude must be entered as a number - possibly with a decimal point.",
+        comfortminimum_numeric: "Minimum comfort temperature must be entered as a number - possibly with a decimal point.",
+        comfortmaximum_numeric: "Maximum comfort temperature must be entered as a number - possibly with a decimal point.",
+        latitude_bounds: "Latitude must be in the interval [-90°,90°]!",
+        longitude_bounds: "Longitude must be in the intervale [-180°,180°)!",
+        absolute_zero: "Temperature must be greater than absolute zero!",
+        min_less_than_max: "Minimum must be less than maximum!",
+        saved: "Climate and comfort entries saved in the project.",
+        not_saved: "Climate and comfort entries could not be saved in the project!\nPossibly an update collision occurred. Please try again.",
+        system_error: "System error!"
+      };
+      //]]>
+    </script>
+    <!-- Data declaration script (replaced by application) -->
+    <script id="data" type="text/javascript">
+      var sMessage = MESSAGES.not_saved;
+      var sUserName = "Test User";
+      var sProjectName = "Test Project";
+      var iProjectGeneration = 2;
+      var bExpired = false;
+      var sFreePages = "climate, dimension, compactness, orientation, construction, windowsfront, windowsleft, windowsback, windowsright";
+      var dComfortMinimum = 20.0;
+      var dComfortMaximum = 26.0;
+      var adInternalTemperature = [1,2,3];
+      var adExternalTemperature = [4,5,6];
+      var dComfortMinimum = 20.0;
+      var dComfortMaximum = 26.0;
+      /* monthly energy demand per square meter for the current project */
+      var adMonthHeating = [ 0, 0, 0, 0, 0, 0, 2, 4, 0, 0, 0, 0];
+      var adMonthCooling = [ 0, 0, 0, 0, 0, 0, 2, 4, 0, 0, 0, 0];
+      var dPropertyvolume = 1000;
+      var dCompactness = 1.09;
+      var dYearHeating = 0.0;
+      var dYearCooling = 0.0; 
+      /* var adCompactness = [dCompactness]; */
+      var adCompactness = [1, 2, 3, 4, 5, 6, 7];
+      var adYearHeating = [dYearHeating,  96,  75,  83,  94, 175, 180];
+      var adYearCooling = [dYearCooling,  34,  12,  23,  24,  25,  30];
+    </script>
+    <!-- Global initialization script -->
+    <script src="../../scripts/candc.js" type="text/javascript"></script>
+    <!-- Data handling script -->
+    <script src="../../scripts/test.js" type="text/javascript"></script>
+    <script src="../../scripts/diagrams.js" type="text/javascript"></script>
+    
+  </head>
+  <body onload="onLoad();">
+    <div id="logo">
+      <img src="../../images/logo.png" alt="Comfort and Climate Logo" />
+    </div>
+    <div id="nav">
+      <p>Settings</p>
+      <p class="indent selected"><a href="climate.xhtml">Climate</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="dimension.xhtml">Dimension</a> <img src="../../images/free.png"/></p>
+      <p><a href="compactness.xhtml">Compactness</a> <img src="../../images/free.png"/></p>
+      <p><a href="orientation.xhtml">Orientation</a> <img src="../../images/free.png"/></p>
+      <p><a href="construction.xhtml">Construction</a> <img src="../../images/free.png"/></p>
+      <p>Windows</p>
+      <p class="indent"><a href="windowsfront.xhtml">Front</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="windowsright.xhtml">Right</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="windowsback.xhtml">Back</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="windowsleft.xhtml">Left</a> <img src="../../images/free.png"/></p>
+      <p><a href="glazing.xhtml">Glazing</a> <img src="../../images/free.png"/></p>
+      <p><a href="shading.xhtml">Shading</a> <img src="../../images/free.png"/></p>
+      <p><a href="blinds.xhtml">Blinds</a> <img src="../../images/free.png"/></p>
+      <p>Insulation</p>
+      <p class="indent"><a href="roof.xhtml">Roof</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="walls.xhtml">Walls</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="floor.xhtml">Basement</a> <img src="../../images/free.png"/></p>
+      <p><a href="airtightness.xhtml">Air Tightness</a> <img src="../../images/free.png"/></p>
+      <p><a href="occupancy.xhtml">Occupancy</a> <img src="../../images/free.png"/></p>
+      <p>Results</p>
+      <p class="indent"><a href="summary.xhtml">Summary</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="comparison.xhtml">Comparison</a> <img src="../../images/free.png"/></p>
+    </div>
+    
+    <div id="main">
+      <div id="header">
+        <table width="100%"><tr>
+          <td width="32%"><p>Comfort and Climate - <strong>Climate</strong> <a href="http://info.comfortandclimate.com/?p=4" onclick="window.open(this.href,'_blank');return false;"><img src="../../images/info.png"/></a></p></td>
+          <td width="33%"><p id="projectname">Project: </p></td>
+          <td width="20%"><p id="username">User: </p></td>
+          <td><p><a href="../preferences.xhtml">Preferences</a></p></td>
+          <td><p><a href="../login.xhtml?logout=true">Log out</a></p></td>
+        </tr></table>
+        <hr/>
+        <p id="message">Message<br/>Message</p>
+      </div>
+      <div id="content">
+        <table id="diagrams">
+          <tr>
+            <td>
+              <!-- monthly energy demand and temperature  -->
+              <svg id="permonth" xmlns="http://www.w3.org/2000/svg" version="1.1"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="397" height="397" preserveAspectRatio="xMidYMid slice">
+              </svg>
+            </td>
+            <td>
+              <!-- energy options -->
+              <svg id="peryear" xmlns="http://www.w3.org/2000/svg" version="1.1"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="397" height="397" preserveAspectRatio="xMidYMid slice">
+              </svg>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <form action="test.xhtml" method="get">
+          <br/>
+          <p>
+            Property Volume<input name="projectgeneration" type="hidden" value="-1"/>: 
+            <input name="propertyvolume" type="text" value="0.2"/>
+            <input name="save" type="submit" value="Enter" title="Save Value"/></p>
+          <br/>
+        </form>
+    </div>    
+  </body>
+</html>

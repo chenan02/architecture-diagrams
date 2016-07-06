@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.w3.org/1999/xhtml
+                      http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
+<!-- subscriptions.xhtml ===============================================
+Subscriptions page for Comfort and Climate
+Version    : $Id: subscriptions.xhtml 2325 2012-09-18 15:34:03Z hartwig $
+Application: Comfort and Climate
+Platform   : XHTML 1.1
+Description: The subscriptions page handles the management of user's roles
+             and subscription expiration dates.
+========================================================================
+Created    : 24.08.2012, Hartwig Thomas, Enter AG, Zurich
+Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
+==================================================================== -->
+  <head>
+    <title>Comfort and Climate: Subscriptions</title>
+    <!-- Content type and character set -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- Global style sheet -->
+    <link rel="stylesheet" type="text/css" href="../candc.css" />
+    <!-- Constants declaration script -->
+    <script type="text/javascript">
+      //<![CDATA[
+      var MESSAGES = {
+        invalid_date: "Invalid expiration date!\nEnter date using format 'dd.mm.yyyy'.",
+        user_deleted: "User deleted.",
+        user_not_deleted: "User could not be deleted!\nPossibly an update collision occurred. Please try again.",
+        user_updated: "User updated.",
+        user_not_updated: "User could not be updated!\nPossibly an update collision occurred. Please try again.",
+        cannot_remove: "Session user and default administrator cannot be deleted or downgraded.",
+        system_error: "System error!"
+      };
+      var sDELETE_VALUE = "Delete User ...";
+      var sDELETE_TITLE = "Delete this user";
+      var sEDIT_VALUE = "Edit User ...";
+      var sEDIT_TITLE = "Edit this user's role or expiration date";
+      //]]>
+    </script>
+    <!-- Date enhancement script -->
+    <script src="../scripts/date.js" type="text/javascript"></script>
+    <!-- Data declaration script (replaced by application) -->
+    <script id="data" type="text/javascript">
+      //<![CDATA[
+      var sMessage = MESSAGES.preferences_not_saved;
+      var sUserName = "Test User";
+      var date = Date.parse("25.06.2012","dd.MM.yyyy");
+      var Users = [
+        {id: "12345769708", mailaddress: "test1@enterag.ch", name: "First Test User", admin: false, expiration: Date.parse("25.06.2012","dd.MM.yyyy") , generation: 2},
+        {id: "56436369708", mailaddress: "test2@enterag.ch", name: "Second Test User", admin: true, expiration: Date.parse("26.06.2012","dd.MM.yyyy") , generation: 2},
+      ];
+      var bExpired = false;
+      var sFreePages = "climate, dimension, compactness, orientation, construction, windowsfront, windowsleft, windowsback, windowsright";
+      //]]>
+    </script>
+    <!-- Global initialization script -->
+    <script src="../scripts/candc.js" type="text/javascript"></script>
+    <!-- Data handling script -->
+    <script src="../scripts/subscriptions.js" type="text/javascript"></script>
+  </head>
+  <body onload="onLoad();">
+    <div id="logo">
+      <img src="../images/logo.png" alt="Comfort and Climate Logo" />
+    </div>
+    <div id="nav">
+    </div>
+    <div id="main">
+      <div id="header">
+        <table width="100%"><tr>
+          <td width="32%"><p>Comfort and Climate - <strong>Subscriptions</strong></p></td>
+          <td width="33%"></td>
+          <td width="20%"><p id="username">User: </p></td>
+          <td><p><a href="preferences.xhtml">Preferences</a></p></td>
+          <td><p><a href="login.xhtml?logout=true">Log out</a></p></td>
+        </tr></table>
+        <hr/>
+        <p id="message">Message<br/>Message</p>
+      </div>
+      <div id="content">
+        <br/>
+        <form action="subscriptions.xhtml" method="get">
+          <table id="users" width="100%">
+            <tr>
+              <td><p><em>Mail Address</em></p></td>
+              <td><p><em>User Name</em></p></td>
+              <td><p><em>Expiration</em></p></td>
+              <td><p><em>Admin</em></p></td>
+              <td width="15%"><p><em>Delete</em></p></td>
+              <td width="15%"><p><em>Rename</em></p></td>
+            </tr>
+            <tr>
+              <td><p>test@test.org<input name="id" type="hidden" value="UUID"/><input name="generation" type="hidden" value="3"/></p></td>
+              <td><p>Test User</p></td>
+              <td><p>28.06.2012</p></td>
+              <td><p><input type="checkbox" disabled="true" checked="true" /></p></td>
+              <td><p><input style="width: 5cm" type="button" value="User löschen ..." title="Diesen User löschen"  onclick="openDeleteDialog(this)"/></p></td>
+              <td><p><input style="width: 5cm" type="button" value="User ändern" title="Diesen User ändern" onclick="openEditDialog(this)"/></p></td>
+            </tr>
+          </table>
+        </form>
+        <hr/>
+        <div id="deletedialog" class="dialog">
+          <div>
+            <h1>Delete a User</h1>
+            <form action="subscriptions.xhtml" method="get" onreset="closeDeleteDialog();">
+              <table>
+                <tr>
+                  <td align="right"><p>Mail address of user<input name="id" type="hidden" value="UUID"/><input name="generation" type="hidden" value="0"/></p></td>
+                  <td><p><em><strong>test@test.ch</strong></em></p></td>
+                </tr>
+                <tr>
+                  <td align="right"><p>Name of user</p></td>
+                  <td><p>Test User 1</p></td>
+                </tr>
+                <tr>
+                  <td align="right"><p>Subscription expired on</p></td>
+                  <td><p>28.06.2012</p></td>
+                </tr>
+                <tr>
+                  <td align="right"><p>Has administrator privileges</p></td>
+                  <td><p><input type="checkbox" disabled="true"/></p></td>
+                </tr>
+                <tr>
+                  <td align="right"><p><input type="button" style="width: 6cm" value="Cancel" onclick="closeDeleteDialog()"/></p></td>
+                  <td><p><input name="deleteuser" type="submit" style="width: 12cm" value="Delete User" title="Delete this user"/></p></td>
+                </tr>
+              </table>
+            </form>
+          </div>
+        </div>
+        <div id="editdialog" class="dialog">
+          <div>
+            <h1>Edit a User</h1>
+            <form action="subscriptions.xhtml" method="get" onreset="closeEditDialog();" onsubmit="return validateEditDialog();">
+              <table>
+                <tr>
+                  <td align="right"><p>Mail address of user<input name="id" type="hidden" value="UUID"/><input name="generation" type="hidden" value="0"/></p></td>
+                  <td><p><em><strong>test@test.org</strong></em></p></td>
+                </tr>
+                <tr>
+                  <td align="right"><p>Name of user</p></td>
+                  <td><p>Test User 1</p></td>
+                </tr>
+                <tr>
+                  <td align="right"><p>Subscriptions expires (dd.mm.yyyy)</p></td>
+                  <td><p><input name="expiration" type="text" style="width: 12cm" value="31.08.2012" /></p></td>
+                </tr>
+                <tr>
+                  <td align="right"><p>Has administrator privileges</p></td>
+                  <td><p><input name="admin" type="checkbox" value="true"/></p></td>
+                </tr>
+                <tr>
+                  <td align="right"><p><input type="button" style="width: 6cm" value="Cancel" onclick="closeEditDialog()"/></p></td>
+                  <td><p><input name="edituser" type="submit" style="width: 12cm" value="Edit User" title="Save the new user attributes"/></p></td>
+                </tr>
+              </table>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div id="footer">
+        <table width="100%"><tr>
+          <td width="30%"><p><a href="http://www.baumschlager-eberle.com/" onclick="window.open(this.href,'_blank');return false;">Baumschlager Eberle</a></p></td>
+          <td width="30%"><p><a id="termsandconditions" href="http://info.comfortandclimate.com/?p=54" onclick="window.open(this.href,'_blank');return false;">Terms and Conditions</a></p></td>
+          <td width="30%"><p><a id="contact" href="http://info.comfortandclimate.com/?p=59" onclick="window.open(this.href,'_blank');return false;">Contact</a></p></td>
+          <td><p><a href="about.xhtml" onclick="window.open(this.href,'_blank');return false;">Credits</a></p></td>
+        </tr></table>
+      </div>
+      <div id="validate">
+        <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" height="31" width="88" /></a>
+      </div>
+    </div>    
+    <div id="modal"/>
+  </body>
+</html>

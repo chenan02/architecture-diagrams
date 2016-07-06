@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.w3.org/1999/xhtml
+                      http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
+<!-- textwidth.xhtml ===================================================
+Computes text widths.
+Version    : $Id: textwidth.html 2231 2012-08-21 07:09:40Z hartwig $
+Application: Comfort and Climate
+Platform   : XHTML 1.1
+Description: This test page is not meant for publication.
+             It helps in the design process by computing text widths.
+========================================================================
+Created    : 16.08.2012, Hartwig Thomas, Enter AG, Zurich
+Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
+==================================================================== -->
+  <head>
+    <title>Text Width</title>
+    <!-- Content type and character set -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- Data handling script -->
+    <script type="text/javascript">
+      //<![CDATA[
+      function supportsSvg()
+      {
+        var bSvgSupported = false;
+        var sNsSvg = "http://www.w3.org/2000/svg";
+        if (document.createElementNS) // IE8 already fails here!
+        {
+          var svg = document.createElementNS(sNsSvg,"svg");
+          if (svg)
+            bSvgSupported = true;
+        }
+        else
+          alert("No createElementNS?");
+        return bSvgSupported;
+      }; /* supportsSvg */
+      function onLoad()
+      {
+        if (!supportsSvg())
+          alert("No SVG!");
+          
+        var sText;
+        var pResult = document.getElementById("result");
+        var adiv = document.getElementsByTagName("div");
+        for (var i = 0; i < adiv.length; i++)
+        {
+          var div = adiv[i];
+          if (div.textContent)
+            sText = div.textContent;
+          else
+            sText = div.innerText;
+          var iHeight = 0;
+          var iWidth = 0;
+          if (div.offsetHeight)
+            iHeight = div.offsetHeight;
+          else
+            iHeight = div.clientHeight;
+          if (div.offsetWidth)
+            iWidth = div.offsetWidth;
+          else
+            iWidth = div.clientWidth;
+          pResult.appendChild(document.createTextNode(sText + ":\t"+iWidth+"\t x \t"+iHeight+"\tpx"));
+          pResult.appendChild(document.createElement("br"));
+        }
+        var iBrowserWidth = null;
+        if (self.innerWidth)
+          iBrowserWidth = self.innerWidth;
+        else
+          iBrowserWidth = self.clientWidth;
+      };
+      //]]>
+    </script>
+    <style type="text/css">
+      body
+      {
+        width: 246.6mm;
+        margin: 0;
+        border: 0;
+        padding: 0;
+        font-family: Verdana, Helvetica, sans-serif;
+      }
+      div
+      {
+        display: inline-block;
+        margin: 0;
+        border: 0;
+        padding-left: 2mm;
+        background-color: yellow;
+      }
+      .menu p
+      {
+        margin: 0;
+        border: 0;
+        padding: 0;
+        text-align: left;
+        font-size: 8pt;
+      }
+      .menu p a:link
+      {
+        text-decoration: none;
+      }
+      .menu p a:visited
+      {
+        text-decoration: none;
+      }
+      .tile
+      {
+        width: 3.5cm;
+        height: 3.5cm;
+        background-color: rgb(100%,100%,100%);
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .tile p
+      {
+        margin-left: 0.3cm;
+        font-size: 8pt;
+        line-height: 10pt;
+      }
+    </style>
+  </head>
+  <body onload="onLoad();">
+    <h1>Button</h1>
+    <button class="tile">
+      <p>Very Few</p>
+      <br/>
+      <p><img src="images/Windows_10.png"/></p>
+      <p>Ratio = 10 [%]</p>
+    </button>
+    <h1>Texts</h1>
+    <div class="menu"><p><a href="climate.xhtml">Climate</a> <img src="images/free.png"/></p></div>
+    <div class="menu"><p><a href="dimension.xhtml">Dimension</a> <img src="images/free.png"/></p></div>
+    <div class="menu"><p><a href="compactness.xhtml">Compactness</a> <img src="images/free.png"/></p></div>
+    <div class="menu"><p><a href="orientation.xhtml">Orientation</a> <img src="images/free.png"/></p></div>
+    <div class="menu"><p><a href="construction.xhtml">Construction</a> <img src="images/free.png"/></p></div>
+    <div class="menu"><p><a href="windowsfront.xhtml">Windows Front</a> <img src="images/free.png"/></p></div>
+    <div class="menu"><p><a href="windowsright.xhtml">Windows Right</a> <img src="images/free.png"/></p></div>
+    <div class="menu"><p><a href="windowsback.xhtml">Windows Back</a> <img src="images/free.png"/></p></div>
+    <div class="menu"><p><a href="windowsleft.xhtml">Windows Left</a> <img src="images/free.png"/></p></div>
+    <div class="menu"><p><a href="glazing.xhtml">Glazing</a> <img src="images/free.png"/></p></div>
+    <div class="menu"><p><a href="shading.xhtml">Shading</a> <img src="images/free.png"/></p></div>
+    <div class="menu"><p><a href="blinds.xhtml">Blinds</a> <img src="images/free.png"/></p></div>
+    <div class="menu"><p><a href="roof.xhtml">Roof Insulation</a> <img src="images/free.png"/></p></div>
+    <div class="menu"><p><a href="walls.xhtml">Wall Insulation</a> <img src="images/free.png"/></p></div>
+    <div class="menu"><p><a href="floor.xhtml">Floor Insulation</a> <img src="images/free.png"/></p></div>
+    <div class="menu"><p><a href="airtightness.xhtml">Air Tightness</a> <img src="images/free.png"/></p></div>
+    <div class="menu"><p><a href="occupancy.xhtml">Occupancy</a> <img src="images/free.png"/></p></div>
+    <div class="menu"><p><a href="summary.xhtml">Summary</a> <img src="images/free.png"/></p></div>
+    <div class="menu"><p><a href="comparison.xhtml">Comparison</a> <img src="images/free.png"/></p></div>
+    <h2>Result</h2>
+    <p id="result"></p>
+  </body>
+</html>

@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.w3.org/1999/xhtml
+                      http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
+
+<!-- occupancy.xhtml ====================================================
+
+Version     : 
+Application : Comfort and Climate
+Platform    : XHTML 1.1
+Description : The Occupancy xhtml page handles user input for dimensions
+
+========================================================================
+
+Created & Integrited  : Dean Wang
+
+==================================================================== -->
+
+<head>
+    <title>Comfort and Climate: Occupancy</title>
+    <!-- Content type and character set -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- Global style sheet -->
+    <link rel="stylesheet" type="text/css" href="../../candc.css" />
+    <!-- Constants declaration script -->
+    <script type="text/javascript">
+      //<![CDATA[
+      var MESSAGES = {
+    	no_occupancy_numeric: "No.Occupancy must be entered as a number - possibly with a decimal point.",
+    	heat_gain_numeric: "Heat Gain must be entered as a number - possibly with a decimal point.",
+    	occupants_numeric: "Occupants must be entered as a number - possibly with a decimal point.",
+    	light_numeric: "Light must be entered as a number - possibly with a decimal point.",
+    	device_numeric: "Device must be entered as a number - possibly with a decimal point.",
+    	no_occupancy_non_negative: "No.Occupancy must be entered as a nonnegative number - possibly with a decimal point.",
+    	heat_gain_non_negative: "Heat Gain must be entered as a nonnegative number - possibly with a decimal point.",  
+    	occupants_non_negative: "Occupants must be entered as a nonnegative number - possibly with a decimal point.",
+        light_non_negative: "Light must be entered as a nonnegative number - possibly with a decimal point.",
+        device_non_negative: "Device must be entered as a nonnegative number - possibly with a decimal point.",       
+        saved: "Occupancy entries saved in the project.",
+        not_saved: "Occupancy entries could not be saved in the project!\nPossibly an update collision occurred. Please try again.",
+        system_error: "System error!"
+      };
+      //]]>
+    </script>
+    <!-- Data declaration script (replaced by application) -->
+    <script id="data" type="text/javascript">
+      //<![CDATA[
+      var sMessage = MESSAGES.not_saved;
+      var sUserName = "Test User";
+      var sProjectName = "Test Project";
+      var iProjectGeneration = 2;
+      var bExpired = false;
+      var sFreePages = "climate, occupancy, compactness, orientation, construction, windowsfront, windowsleft, windowsback, windowsright";
+      var dNoOccupancy = 2.0;  //INTERN_OCCUPANCY
+      var dHeatGain = 80.0;  //INTERN_OCCUPANS_HEAT 
+      var dOccupants = 150.0; //INTERN_OCCUPANS 
+      var dLight = 12.0;  //INTERN_LIGHT
+      var dDevice = 5.0; //INTERN_DEVICES_1
+      var adWEEKDAY_UTILIZATION_HOUR = [
+                                       		   0.4,  0.4,  0.4,  0.4,  0.4,  0.5,
+                                               0.8,  0.8,  0.4,  0.4,  0.4,   1,
+                                                 1,  0.4,  0.4,  0.4,  0.4,  0.8,
+                                                 1,  0.8,  0.8,  0.4,  0.4,  0.4];
+      var adWEEKEND_UTILIZATION_HOUR = [
+												0.4,  0.4,  0.4,  0.4,  0.4,  0.5,
+												0.8,  0.8,  0.4,  0.4,  0.4,   1,
+												  1,  0.4,  0.4,  0.4,  0.4,  0.8,
+												  1,  0.8,  0.8,  0.4,  0.4,  0];
+      var adWEEKDAY_OCCUPANCY_HOUR = [
+                                               1,   1,   1,   1,   1,   0.8,
+                                               0.5, 0.2, 0.1, 0.1, 0.1, 0.1,
+                                               0.5, 0.2, 0.2, 0.3, 0.4, 0.6,
+                                               0.6, 0.6, 1,   1,   1,   1];  
+      var adWEEKEND_OCCUPANCY_HOUR = [
+												1,   1,   1,   1,   1,   0.8,
+												0.5, 0.2, 0.1, 0.1, 0.1, 0.1,
+												0.5, 0.2, 0.2, 0.3, 0.4, 0.6,
+												0.6, 0.6, 1,   1,   1,   1]; 
+      var adWEEKDAY_LIGHT_HOUR = [
+                                             0.1, 0.1, 0.1, 0.1, 0.1, 0.1,
+                                             0.5, 0.7, 0.1, 0.1, 0.1, 0.1,
+                                             0.1, 0.1, 0.1, 0.1, 0.5, 0.5,
+                                             1,   1,   0.5, 0.5, 0.1, 0.1];  
+      var adWEEKEND_LIGHT_HOUR = [
+												0.1, 0.1, 0.1, 0.1, 0.1, 0.1,
+												0.5, 0.7, 0.1, 0.1, 0.1, 0.1,
+												0.1, 0.1, 0.1, 0.1, 0.5, 0.5,
+												1,   1,   0.5, 0.5, 0.1, 0.1]; 	  
+      //]]>
+    </script>
+    <!-- Global initialization script -->
+    <script src="../../scripts/candc.js" type="text/javascript"></script>
+    <!-- Data handling script -->
+    <script src="../../scripts/occupancy.js" type="text/javascript"></script>
+  </head>
+  <body onload="onLoad();">
+    <div id="logo">
+      <img src="../../images/logo.png" alt="Comfort and Climate Logo" />
+    </div>
+    <div id="nav">
+      <p>Settings</p>
+      <p class="indent"><a href="climate.xhtml">Climate</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="geometry.xhtml">Geometry</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="physicalproperty.xhtml">Physical Property</a> <img src="../../images/free.png"/></p>
+      <p class="indent selected"><a href="occupancy.xhtml">Occupancy</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="goal.xhtml">Goal</a> <img src="../../images/free.png"/></p>
+      <p><a href="sensitivitystudy.xhtml">SensitivityStudy</a> <img src="../../images/free.png"/></p>
+      <p><a href="compactness.xhtml">Compactness</a> <img src="../../images/free.png"/></p>
+      <p><a href="orientation.xhtml">Orientation</a> <img src="../../images/free.png"/></p>
+      <p><a href="construction.xhtml">Construction</a> <img src="../../images/free.png"/></p>
+   	  <p>WtoW</p>
+      <p class="indent"><a href="wtown.xhtml">N</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wtows.xhtml">S</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wtowe.xhtml">E</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wtoww.xhtml">W</a> <img src="../../images/free.png"/></p>
+      <p><a href="glazing.xhtml">Glazing</a> <img src="../../images/free.png"/></p>
+      <p>Shading</p>
+      <p class="indent"><a href="shadingn.xhtml">N</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="shadings.xhtml">S</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="shadinge.xhtml">E</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="shadingw.xhtml">W</a> <img src="../../images/free.png"/></p>
+      <p>Insulation</p>
+      <p class="indent"><a href="roof.xhtml">Roof</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wall.xhtml">Wall</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="floor.xhtml">Floor</a> <img src="../../images/free.png"/></p>
+	  <p>Ventilation</p>
+      <p class="indent"><a href="infiltration.xhtml">Infiltration</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="natvent.xhtml">NatVent</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="nightvent.xhtml">NightVent</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="heatrec.xhtml">HeatRec</a> <img src="../../images/free.png"/></p>
+      <p>Active Systems</p>
+      <p class="indent"><a href="airhandling.xhtml">Air Handling</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="energyconversion.xhtml">Energy Conversion</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="energydistribution.xhtml">Energy Distribution</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wwh.xhtml">Warm Water Heating</a> <img src="../../images/free.png"/></p>
+      <p>Summary</p>
+    </div>
+    <div id="main">
+      <div id="header">
+        <table width="100%">
+          <tr>
+            <td width="32%"><p>Comfort and Climate - <strong>Occupancy</strong> <a href="http://info.comfortandclimate.com/?p=20" onclick="window.open(this.href,'_blank');return false;"><img src="../../images/info.png"/></a></p></td>
+            <td width="33%"><p id="projectname">Project: </p></td>
+            <td width="20%"><p id="username">User: </p></td>
+            <td><p><a href="../preferences.xhtml">Preferences</a></p></td>
+            <td><p><a href="../login.xhtml?logout=true">Log out</a></p></td>
+          </tr>
+        </table>
+        <hr/>
+        <p id="message">Message<br/>Message</p>
+      </div>
+      <div id="content">
+		    <br/>
+		    <button class="tile" onclick="selectOccupancy(this, 1);">
+          <p><img src="../../images/occupancy/office.png"/></p>
+          <p>Office</p>
+        </button>
+		    <button class="tile" onclick="selectOccupancy(this, 2);">
+          <p><img src="../../images/occupancy/residential.png"/></p>
+          <p>Residential</p>
+        </button>
+        <button class="tile" onclick="selectOccupancy(this, 3);">
+          <p><img src="../../images/occupancy/school.png"/></p>
+          <p>School</p>
+        </button>
+        <button class="tile" onclick="selectOccupancy(this, 4);">
+          <p><img src="../../images/occupancy/hotel.png"/></p>
+          <p>Hotel</p>
+        </button>
+        <button class="tile" onclick="selectOccupancy(this, 5);">
+          <p><img src="../../images/occupancy/hospital.png"/></p>
+          <p>Hospital</p>
+        </button>
+        <button class="tile" onclick="selectOccupancy(this, 6);">
+          <p><img src="../../images/occupancy/industry.png"/></p>
+          <p>Industry</p>
+        </button>
+        <!--<button class="tile" onclick="selectOccupancy(this, 7);">
+          <p><img src="../../images/occupancy/gymnasium.png"/></p>
+          <p>Gymnasium</p>
+        </button>
+        <button class="tile" onclick="selectOccupancy(this, 8);">
+          <p><img src="../../images/occupancy/retail.png"/></p>
+          <p>Retail</p>
+        </button>-->
+        <form action="occupancy.xhtml" method="get" onsubmit="return validate();">
+
+        <table>
+          <tr>
+            <td align="left"><p>No.Occupancy:</p></td>
+            <td><p><input name="NoOccupancy" style="width: 55px; text-align: right" type="text"/></p></td>
+          </tr>
+          <tr>
+            <td align="left"><p>Occupants:</p></td>
+            <td><p><input name="Occupants" style="width: 55px; text-align: right" type="text"/></p></td>
+          </tr>
+          <tr>
+            <td align="left"><p>Heat Gain [W/pers]:</p></td>
+            <td><p><input name="HeatGain" style="width: 55px; text-align: right" type="text"/></p></td>
+          </tr>
+          <tr>
+            <td align="left"><p>Light [W/m<sup>2</sup>]:</p></td>
+            <td><p><input name="Light" style="width: 55px; text-align: right" type="text"/></p></td>
+          </tr>
+          <tr>
+            <td align="left"><p>Device [W/m<sup>2</sup>]:</p></td>
+            <td><p><input name="Device" style="width: 55px; text-align: right" type="text"/></p></td>
+          </tr>
+          <tr>
+            <td><p><input name="projectgeneration" type="hidden" value="-1"/></p></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+
+        <table width="100%" name="typeOccupancy">
+          <tr>
+            <td></td>
+            <td><p><img src="../../images/occupancy/12oclock.png"/></p></td>
+            <td><p><img src="../../images/occupancy/01oclock.png"/></p></td>
+            <td><p><img src="../../images/occupancy/02oclock.png"/></p></td>
+            <td><p><img src="../../images/occupancy/03oclock.png"/></p></td>
+            <td><p><img src="../../images/occupancy/04oclock.png"/></p></td>
+            <td><p><img src="../../images/occupancy/05oclock.png"/></p></td>
+            <td><p><img src="../../images/occupancy/06oclock.png"/></p></td>
+            <td><p><img src="../../images/occupancy/07oclock.png"/></p></td>
+            <td><p><img src="../../images/occupancy/08oclock.png"/></p></td>
+            <td><p><img src="../../images/occupancy/09oclock.png"/></p></td>
+            <td><p><img src="../../images/occupancy/10oclock.png"/></p></td>
+            <td><p><img src="../../images/occupancy/11oclock.png"/></p></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><p align="center" style="float: left; position: relative; left: 11px">12h</p></td>
+            <td><p align="center" style="float: left; position: relative; left: 13px">01h</p></td>
+            <td><p align="center" style="float: left; position: relative; left: 13px">02h</p></td>
+            <td><p align="center" style="float: left; position: relative; left: 13px">03h</p></td>
+            <td><p align="center" style="float: left; position: relative; left: 13px">04h</p></td>
+            <td><p align="center" style="float: left; position: relative; left: 13px">05h</p></td>
+            <td><p align="center" style="float: left; position: relative; left: 13px">06h</p></td>
+            <td><p align="center" style="float: left; position: relative; left: 13px">07h</p></td>
+            <td><p align="center" style="float: left; position: relative; left: 13px">08h</p></td>
+            <td><p align="center" style="float: left; position: relative; left: 13px">09h</p></td>
+            <td><p align="center" style="float: left; position: relative; left: 13px">10h</p></td>
+            <td><p align="center" style="float: left; position: relative; left: 13px">11h</p></td>
+          </tr>
+          <br/>
+          <tr>
+            <td align="left"><p>Weekday Utilization [AM]:</p></td>
+            <td><p><input name="hour_0_00" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_01" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_02" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_03" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_04" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_05" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_06" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_07" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_08" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_09" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_10" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_11" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+          </tr>
+          <tr>
+            <td align="left"><p>Weekday Utilization [PM]:</p></td>
+            <td><p><input name="hour_0_12" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_13" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_14" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_15" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_16" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_17" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_18" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_19" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_20" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_21" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_22" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_0_23" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+			    </tr>
+			    <tr>
+            <td align="left"><p>Weekend Utilization [AM]:</p></td>
+            <td><p><input name="hour_1_00" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_01" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_02" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_03" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_04" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_05" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_06" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_07" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_08" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_09" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_10" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_11" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+          </tr>
+          <tr>
+            <td align="left"><p>Weekend Utilization [PM]:</p></td>
+            <td><p><input name="hour_1_12" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_13" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_14" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_15" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_16" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_17" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_18" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_19" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_20" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_21" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_22" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_1_23" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+			   </tr>
+			   <tr>
+            <td align="left"><p>Weekday Occupancy [AM]:</p></td>
+            <td><p><input name="hour_2_00" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_01" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_02" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_03" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_04" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_05" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_06" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_07" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_08" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_09" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_10" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_11" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+          </tr>
+          <tr>
+            <td align="left"><p>Weekday Occupancy [PM]:</p></td>
+            <td><p><input name="hour_2_12" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_13" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_14" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_15" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_16" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_17" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_18" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_19" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_20" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_21" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_22" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_2_23" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+			    </tr>
+			    <tr>
+            <td align="left"><p>Weekend Occupancy [AM]:</p></td>
+            <td><p><input name="hour_3_00" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_01" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_02" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_03" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_04" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_05" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_06" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_07" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_08" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_09" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_10" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_11" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+          </tr>
+          <tr>
+            <td align="left"><p>Weekend Occupancy [PM]:</p></td>
+            <td><p><input name="hour_3_12" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_13" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_14" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_15" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_16" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_17" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_18" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_19" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_20" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_21" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_22" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_3_23" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+			    </tr>
+			    <tr>
+            <td align="left"><p>Weekday Light [AM]:</p></td>
+            <td><p><input name="hour_4_00" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_01" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_02" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_03" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_04" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_05" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_06" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_07" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_08" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_09" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_10" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_11" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+          </tr>
+          <tr>
+            <td align="left"><p>Weekday Light [PM]:</p></td>
+            <td><p><input name="hour_4_12" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_13" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_14" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_15" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_16" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_17" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_18" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_19" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_20" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_21" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_22" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_4_23" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+			    </tr>
+			    <tr>
+            <td align="left"><p>Weekend Light [AM]:</p></td>
+            <td><p><input name="hour_5_00" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_01" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_02" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_03" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_04" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_05" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_06" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_07" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_08" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_09" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_10" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_11" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+          </tr>
+          <tr>
+            <td align="left"><p>Weekend Light [PM]:</p></td>
+            <td><p><input name="hour_5_12" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_13" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_14" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_15" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_16" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_17" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_18" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_19" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_20" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_21" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_22" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+            <td><p><input name="hour_5_23" style="width: 1.0cm" type="number" min="0" max="1.0" step="0.1"/></p></td>
+			    </tr>
+        </table>
+
+      <!-- Save Button -->
+      <p align="center"><br/><input name="save" style="width: 7cm" type="submit" value="Save input values" title="Save your input values for Occupancy"/></p>
+           
+        </form>
+        <br/>
+      </div>
+      <div id="footer">
+        <table width="100%"><tr>
+          <td width="30%"><p><a href="http://www.baumschlager-eberle.com/" onclick="window.open(this.href,'_blank');return false;">Baumschlager Eberle</a></p></td>
+          <td width="30%"><p><a id="termsandconditions" href="http://info.comfortandclimate.com/?p=54" onclick="window.open(this.href,'_blank');return false;">Terms and Conditions</a></p></td>
+          <td width="30%"><p><a id="contact" href="http://info.comfortandclimate.com/?p=59" onclick="window.open(this.href,'_blank');return false;">Contact</a></p></td>
+          <td><p><a href="../about.xhtml" onclick="window.open(this.href,'_blank');return false;">Credits</a></p></td>
+        </tr></table>
+      </div>
+      <div id="validate">
+        <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" height="31" width="88" /></a>
+      </div>
+    </div>    
+  </body>
+</html>
+
+
+
+
+
+
+
+
+

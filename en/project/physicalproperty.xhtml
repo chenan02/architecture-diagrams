@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.w3.org/1999/xhtml
+                      http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
+
+<!-- occupancy.xhtml ====================================================
+
+Version     : 
+Application : Comfort and Climate
+Platform    : XHTML 1.1
+Description : The Physical Property xhtml page handles user input for dimensions
+
+========================================================================
+
+Created & Integrited  : Dean Wang
+
+==================================================================== -->
+
+<head>
+    <title>Comfort and Climate: Physical Property</title>
+    <!-- Content type and character set -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- Global style sheet -->
+    <link rel="stylesheet" type="text/css" href="../../candc.css" />
+    <!-- Constants declaration script -->
+    <script type="text/javascript">
+      //<![CDATA[
+      var MESSAGES = {
+    	orientation_bound: "Orientation must be within [-180,180] - possibly with a decimal point.",       
+    	walluvalue_numeric: "Wall U-Value must be entered as a number - possibly with a decimal point.",
+    	walluvalue_non_negative: "Wall U-Value must be entered as a nonnegative number - possibly with a decimal point.", 
+    	roofuvalue_numeric: "Roof U-Value must be entered as a number - possibly with a decimal point.",
+    	roofuvalue_non_negative: "Roof U-Value must be entered as a nonnegative number - possibly with a decimal point.",
+    	flooruvalue_numeric: "Floor U-Value must be entered as a number - possibly with a decimal point.",
+    	flooruvalue_non_negative: "Floor U-Value must be entered as a nonnegative number - possibly with a decimal point.", 
+    	glazinguvalue_numeric: "Glazing U-Value must be entered as a number - possibly with a decimal point.",
+    	glazinguvalue_non_negative: "Glazing U-Value must be entered as a nonnegative number - possibly with a decimal point.",
+    	glazingshgc_bound: "Glazing SHGC must be within (0,1) - possibly with a decimal point.",
+    	ventilationinfiltration_numeric: "Ventilation Infiltration must be entered as a number - possibly with a decimal point.",
+    	ventilationinfiltration_non_negative: "Ventilation Infiltration must be entered as a nonnegative number - possibly with a decimal point.",
+        saved: "Physical Property entries saved in the project.",
+        not_saved: "Physical Property entries could not be saved in the project!\nPossibly an update collision occurred. Please try again.",
+        system_error: "System error!"
+      };
+      //]]>
+    </script>
+    <!-- Data declaration script (replaced by application) -->
+    <script id="data" type="text/javascript">
+      //<![CDATA[
+      var sMessage = MESSAGES.not_saved;
+      var sUserName = "Test User";
+      var sProjectName = "Test Project";
+      var iProjectGeneration = 2;
+      var bExpired = false;
+      var sFreePages = "climate, occupancy, compactness, orientation, construction, windowsfront, windowsleft, windowsback, windowsright";
+      var dOrientation = 0.0;  //PROPERTY_ORIENTATION
+      var dConstruction = 1; //PROPERTY_CONSTRUCTION
+      var dWallUValue = 0.2;   //PROPERTY_WALL_UVALUE 
+      var dRoofUValue = 0.1;   //PROPERTY_ROOF_UVALUE  
+      var dFloorUValue = 0.2;  //PROPERTY_FLOOR_UVALUE 
+      var dGlazingUValue = 0.7;//PROPERTY_WINDOW_UVALUE 
+      var dGlazingSHGC = 0.7;  //PROPERTY_WINDOW_SHGC
+      var dNorth = 0;		   //PROPERTY_WINDOW_SHADING_N
+      var dSouth = 0;
+      var dEast = 0;
+      var dWest = 0;
+      var dVentilationInfiltration = 0.1;  //PROPERTY_VENTILATION_INFILTRATION
+      var dNaturalVentilation = 0;       //PROPERTY_VENTILATION_NATVENT_IO
+      var dNightVentilation = 1;		   //PROPERTY_VENTILATION_NIGHTVENT_IO
+      var dHeatRecovery = 0;             //PROPERTY_VENTILATION_HEATREC
+      //]]>
+    </script>
+    <!-- Global initialization script -->
+    <script src="../../scripts/candc.js" type="text/javascript"></script>
+    <!-- Data handling script -->
+    <script src="../../scripts/physicalproperty.js" type="text/javascript"></script>
+  </head>
+  <body onload="onLoad();">
+    <div id="logo">
+      <img src="../../images/logo.png" alt="Comfort and Climate Logo" />
+    </div>
+    <div id="nav">
+      <p>Settings</p>
+      <p class="indent"><a href="climate.xhtml">Climate</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="geometry.xhtml">Geometry</a> <img src="../../images/free.png"/></p>
+      <p class="indent selected"><a href="physicalproperty.xhtml">Physical Property</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="occupancy.xhtml">Occupancy</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="goal.xhtml">Goal</a> <img src="../../images/free.png"/></p>
+      <p><a href="sensitivitystudy.xhtml">SensitivityStudy</a> <img src="../../images/free.png"/></p>
+      <p><a href="compactness.xhtml">Compactness</a> <img src="../../images/free.png"/></p>
+      <p><a href="orientation.xhtml">Orientation</a> <img src="../../images/free.png"/></p>
+      <p><a href="construction.xhtml">Construction</a> <img src="../../images/free.png"/></p>
+   	  <p>WtoW</p>
+      <p class="indent"><a href="wtown.xhtml">N</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wtows.xhtml">S</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wtowe.xhtml">E</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wtoww.xhtml">W</a> <img src="../../images/free.png"/></p>
+      <p><a href="glazing.xhtml">Glazing</a> <img src="../../images/free.png"/></p>
+      <p>Shading</p>
+      <p class="indent"><a href="shadingn.xhtml">N</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="shadings.xhtml">S</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="shadinge.xhtml">E</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="shadingw.xhtml">W</a> <img src="../../images/free.png"/></p>
+      <p>Insulation</p>
+      <p class="indent"><a href="roof.xhtml">Roof</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wall.xhtml">Wall</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="floor.xhtml">Floor</a> <img src="../../images/free.png"/></p>
+	  <p>Ventilation</p>
+      <p class="indent"><a href="infiltration.xhtml">Infiltration</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="natvent.xhtml">NatVent</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="nightvent.xhtml">NightVent</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="heatrec.xhtml">HeatRec</a> <img src="../../images/free.png"/></p>
+      <p>Active Systems</p>
+      <p class="indent"><a href="airhandling.xhtml">Air Handling</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="energyconversion.xhtml">Energy Conversion</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="energydistribution.xhtml">Energy Distribution</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wwh.xhtml">Warm Water Heating</a> <img src="../../images/free.png"/></p>
+      <p>Summary</p>
+    </div>
+    <div id="main">
+      <div id="header">
+        <table width="100%"><tr>
+          <td width="32%"><p>Comfort and Climate - <strong>Physical Prop</strong> <a href="http://info.comfortandclimate.com/?p=20" onclick="window.open(this.href,'_blank');return false;"><img src="../../images/info.png"/></a></p></td>
+          <td width="33%"><p id="projectname">Project: </p></td>
+          <td width="20%"><p id="username">User: </p></td>
+          <td><p><a href="../preferences.xhtml">Preferences</a></p></td>
+          <td><p><a href="../login.xhtml?logout=true">Log out</a></p></td>
+        </tr></table>
+        <hr/>
+        <p id="message">Message<br/>Message</p>
+      </div>
+      <div id="content">
+        <br/>
+        <form action="physicalproperty.xhtml" method="get" onsubmit="return validate();">
+          <table width="100%">
+            <tr>
+                <td align="right"><p>Orientation</p></td>
+                <td><p><input name="Orientation" style="width: 40px; text-align: right" type="text"/></p></td>
+              
+            </tr>
+            <tr>
+            	<td align="right"><p>Construction</p></td>
+                <td>
+                <select name="Construction" style="width: 90px">
+				  <option value="1">Light</option>
+				  <option value="2">Medium</option>
+				  <option value="3">Heavy</option>
+				  <option value="4">Very heavy</option>
+				</select>
+				</td>
+			</tr>
+            <tr>
+                <td align="right"><p>Roof U-value [W/m2K]</p></td>
+                <td><p><input name="RoofUValue" style="width: 40px; text-align: right" type="text"/></p></td>
+               
+            </tr>
+            <tr>
+                <td align="right"><p>Wall U-value [W/m2K]</p></td>
+                <td><p><input name="WallUValue" style="width: 40px; text-align: right" type="text"/></p></td>
+                
+            </tr>
+            <tr>
+                <td align="right"><p>Floor U-value [W/m2K]</p></td>
+                <td><p><input name="FloorUValue" style="width: 40px; text-align: right" type="text"/></p></td>
+            </tr>
+            <tr>
+                <td align="right"><p>Glazing U-value [W/m2K]</p></td>
+                <td><p><input name="GlazingUValue" style="width: 40px; text-align: right" type="text"/></p></td>
+            </tr>   
+            <tr>
+                <td align="right"><p>Glazing SHGC (g-value)</p></td>
+                <td><p><input name="GlazingSHGC" style="width: 40px; text-align: right" type="text"/></p></td>
+            </tr>
+            <br />
+            <tr>
+                <td align="right"><p>Shading</p></td>             
+            </tr>
+            <tr>
+	            <td align="right"><p>North</p></td>
+	            <td>
+	            <select name="North">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+				</select>
+				</td>
+			</tr>
+			<tr>
+		        <td align="right"><p>South</p></td>
+		        <td>
+	            <select name="South">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+				</select>
+				</td>
+			</tr>
+			<tr>
+		        <td align="right"><p>East</p></td>
+		        <td>
+	            <select name="East">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+				</select>
+				</td>
+			</tr>
+			<tr>
+		        <td align="right"><p>West</p></td>
+		        <td>
+	            <select name="West">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+				</select>
+				</td>
+            </tr>
+            <br />
+            <tr>
+                <td align="right"><p>Ventilation Infiltration [ACH 1/h]</p></td>
+                <td><p><input name="VentilationInfiltration" style="width: 40px; text-align: right" type="text"/></p></td>
+            </tr>
+            <tr>
+                <td align="right"><p>Natural Ventilation</p></td>
+                <td>
+	            <select name="NaturalVentilation" style="width: 90px">
+					<option value="0">No natvent</option>
+					<option value="1">ACH 1.5</option>
+					<option value="2">ACH 3.0</option>
+				</select>
+				</td>
+            </tr>
+            <tr>
+                <td align="right"><p>Night Ventilation</p></td>
+                <td>
+	            <select name="NightVentilation" style="width: 90px">
+					<option value="0">No nightvent</option>
+					<option value="1">ACH 1.5</option>
+					<option value="2">ACH 3.0</option>
+				</select>
+				</td>
+            </tr>
+            <tr>
+                <td align="right"><p>Heat Recovery</p></td>
+                <td>
+		            <select name="HeatRecovery" style="width: 90px">
+						<option value="0">No hearec</option>
+						<option value="1">Hearec</option>
+					</select>
+				</td>
+            </tr>
+            <tr>
+                <td><p><input name="projectgeneration" type="hidden" value="-1"/></p></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><p><br/><input name="save" style="width: 7cm" type="submit" value="Save input values" title="Save your input values for Geometry"/></p></td>
+                
+            </tr>
+          </table>
+        </form>
+        <br/>
+      </div>
+      <div id="footer">
+        <table width="100%"><tr>
+          <td width="30%"><p><a href="http://www.baumschlager-eberle.com/" onclick="window.open(this.href,'_blank');return false;">Baumschlager Eberle</a></p></td>
+          <td width="30%"><p><a id="termsandconditions" href="http://info.comfortandclimate.com/?p=54" onclick="window.open(this.href,'_blank');return false;">Terms and Conditions</a></p></td>
+          <td width="30%"><p><a id="contact" href="http://info.comfortandclimate.com/?p=59" onclick="window.open(this.href,'_blank');return false;">Contact</a></p></td>
+          <td><p><a href="../about.xhtml" onclick="window.open(this.href,'_blank');return false;">Credits</a></p></td>
+        </tr></table>
+      </div>
+      <div id="validate">
+        <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" height="31" width="88" /></a>
+      </div>
+    </div>    
+  </body>
+</html>
+
+
+
+
+
+
+
+
+

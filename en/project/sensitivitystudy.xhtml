@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.w3.org/1999/xhtml
+                      http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
+<!-- sensitivitystudy.xhtml ================================================
+Sensitivity Study page for Comfort and Climate
+Version    : $Id: airtightness.xhtml 2337 2012-09-20 15:14:54Z hartwig $
+Application: Comfort and Climate
+Platform   : XHTML 1.1
+Description: The air tightness page shows the effect of air change.
+==================================================================== -->
+  <head>
+    <title>Sensitivity Study</title>
+    <!-- Content type and character set -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- Global style sheet -->
+
+    <!-- <link rel="stylesheet" type="text/css" href="../../candc.css" /> -->
+    <link rel="stylesheet" type="text/css" href="../../sensitivityStudy.css" />
+	
+    <!-- Constants declaration script -->
+    <script type="text/javascript">
+      //<![CDATA[
+      var MESSAGES = {
+        air_change_rate_numeric: "Air change rate must be entered as a number - possibly with a decimal point.",
+        air_change_rate_positive: "Air change rate must be positive!",  
+        saved: "Air change rate saved in the project.",
+        not_saved: "Air change rate could not be saved in the project!\nPossibly an update collision occurred. Please try again.",
+        system_error: "System error!"
+      };
+      //]]>
+    </script>
+      <script id="data" type="text/javascript">
+          //<![CDATA[
+          //set in setMessge in onlod in js file
+          var sMessage = MESSAGES.not_saved;
+          var sUserName = "Test User";
+          var sProjectName = "Test Project";
+          var iProjectGeneration = 2;
+          var bExpired = false;
+          var sFreePages = "climate, dimension, compactness, orientation, construction, windowsfront, windowsleft, windowsback, windowsright";
+          var dataArray = [
+                 		{"name":"Construction","value":12},
+                 		{"name":"Window to Wall","value":-9.5},
+                 		{"name":"Glazing Type","value":-11.2},
+                 		{"name":"Shading","value":8}, 
+                 		{"name":"Roof Insulation","value":-5},
+                 		{"name":"Wall Insulation","value":0}, 
+                 		{"name":"Floor Insulation","value":0},
+                 		{"name":"Air Tightness","value":0},
+                 		{"name":"Natural Ventilation","value":4}, 
+                 		{"name":"Night Ventilation","value":6},
+                 		{"name":"Heat Recovery","value":8}, 
+                   	  ];
+          var squareArray = [1,0,0,0,1,0,1,0,0,1,0]
+          //]]>
+      </script>
+
+  </head>
+  <body onload="setProjectFields()">
+    <div id="logo">
+      <img src="../../images/logo.png" alt="Comfort and Climate Logo" />
+    </div>
+    <div id="nav">
+       <p>Settings</p>
+      <p class="indent"><a href="climate.xhtml">Climate</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="geometry.xhtml">Geometry</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="physicalproperty.xhtml">Physical Property</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="occupancy.xhtml">Occupancy</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="goal.xhtml">Goal</a> <img src="../../images/free.png"/></p>
+      <p class="selected"><a href="sensitivitystudy.xhtml">SensitivityStudy</a> <img src="../../images/free.png"/></p>
+      <p><a href="compactness.xhtml">Compactness</a> <img src="../../images/free.png"/></p>
+      <p><a href="orientation.xhtml">Orientation</a> <img src="../../images/free.png"/></p>
+      <p><a href="construction.xhtml">Construction</a> <img src="../../images/free.png"/></p>
+   	  <p>WtoW</p>
+      <p class="indent"><a href="wtown.xhtml">N</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wtows.xhtml">S</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wtowe.xhtml">E</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wtoww.xhtml">W</a> <img src="../../images/free.png"/></p>
+      <p><a href="glazing.xhtml">Glazing</a> <img src="../../images/free.png"/></p>
+      <p>Shading</p>
+      <p class="indent"><a href="shadingn.xhtml">N</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="shadings.xhtml">S</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="shadinge.xhtml">E</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="shadingw.xhtml">W</a> <img src="../../images/free.png"/></p>
+      <p>Insulation</p>
+      <p class="indent"><a href="roof.xhtml">Roof</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wall.xhtml">Wall</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="floor.xhtml">Floor</a> <img src="../../images/free.png"/></p>
+	  <p>Ventilation</p>
+      <p class="indent"><a href="infiltration.xhtml">Infiltration</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="natvent.xhtml">NatVent</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="nightvent.xhtml">NightVent</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="heatrec.xhtml">HeatRec</a> <img src="../../images/free.png"/></p>
+      <p>Active Systems</p>
+      <p class="indent"><a href="airhandling.xhtml">Air Handling</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="energyconversion.xhtml">Energy Conversion</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="energydistribution.xhtml">Energy Distribution</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wwh.xhtml">Warm Water Heating</a> <img src="../../images/free.png"/></p>
+      <p>Summary</p>
+    </div>
+    <div id="main">
+      <div id="header">
+        <table width="100%"><tr>
+          <td width="32%"><p>Comfort and Climate - <strong>Sensitivity Study</strong> <a href="http://info.comfortandclimate.com/?p=44" onclick="window.open(this.href,'_blank');return false;"><img src="../../images/info.png"/></a></p></td>
+          <td width="33%"><p id="projectname">Project: </p></td>
+          <td width="20%"><p id="username">User: </p></td>
+          <td><p><a href="../preferences.xhtml">Preferences</a></p></td>
+          <td><p><a href="../login.xhtml?logout=true">Log out</a></p></td>
+        </tr></table>
+        <hr/>
+       <!--  <p id="message">Message<br/>Message</p> -->
+      </div>
+      <div id="content">
+        <table id="diagrams">
+          <tr>
+            <td>
+              <!-- monthly energy demand and temperature  -->
+                         <div id="horizontalchart"></div>
+                
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="footer">
+        <table width="100%"><tr>
+          <td width="30%"><p><a href="http://www.baumschlager-eberle.com/" onclick="window.open(this.href,'_blank');return false;">Baumschlager Eberle</a></p></td>
+          <td width="30%"><p><a id="termsandconditions" href="http://info.comfortandclimate.com/?p=54" onclick="window.open(this.href,'_blank');return false;">Terms and Conditions</a></p></td>
+          <td width="30%"><p><a id="contact" href="http://info.comfortandclimate.com/?p=59" onclick="window.open(this.href,'_blank');return false;">Contact</a></p></td>
+          <td><p><a href="../about.xhtml" onclick="window.open(this.href,'_blank');return false;">Credits</a></p></td>
+        </tr></table>
+      </div>
+      <div id="validate">
+        <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" height="31" width="88" /></a>
+      </div>
+    </div>    
+  </body>
+  <!-- Global initialization script -->
+  <script src="../../scripts/candc.js" type="text/javascript"></script>
+  <script src="../../scripts/d3.v3.min.js"></script>
+  <script src="../../scripts/sensitivityStudy.js"></script>
+</html>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.w3.org/1999/xhtml
+                      http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
+<!-- about.xhtml =======================================================
+About page for Comfort and Climate
+Version    : $Id: about.xhtml 2325 2012-09-18 15:34:03Z hartwig $
+Application: Comfort and Climate
+Platform   : XHTML 1.1
+Description: The about page displays credits and system parameters.
+========================================================================
+Created    : 23.07.2012, Hartwig Thomas, Enter AG, Zurich
+Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
+==================================================================== -->
+  <head>
+    <title>Comfort and Climate: About</title>
+    <!-- Content type and character set -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- Global style sheet -->
+    <link rel="stylesheet" type="text/css" href="../candc.css" />
+    <!-- Constants declaration script -->
+    <script type="text/javascript">
+      //<![CDATA[
+      var MESSAGES = {
+        system_error: "System error!"
+      };
+      //]]>
+    </script>
+    <!-- Data declaration script (replaced by application) -->
+    <script id="data" type="text/javascript">
+      //<![CDATA[
+      var sMessage = MESSAGES.system_error;
+      var bLoggedIn = true;
+      var sUserName = "Test User";
+      var sApplication = "Climate and Comfort";
+      var sVersion = "0.2.0001";
+      var sDatabase = "HySQLdb";
+      var sDbVersion = "1.1.1";
+      var sMail = "JavaMail";
+      var sMailVersion = "2.2.2";
+      var sRuntime = "JAVA";
+      var sRtVersion = "3.3.3";
+      var sOs = "Linux";
+      var sOsVersion = "4.4.4";
+      var sYear = 2000;
+      var sCopyright = "B&E Vaduz";
+      var sProjectManagement = "Odilo S.";
+      var sPmCompany = "S. GmbH";
+      var sDevelopment = "Hartwig T.";
+      var sDevCompany = "E. AG";
+      var sTesting = "Martin F.";
+      var sTestCompany = "d. gmbh";
+      //]]>
+    </script>
+    <!-- Global initialization script -->
+    <script src="../scripts/candc.js" type="text/javascript"></script>
+    <!-- Data handling script -->
+    <script src="../scripts/about.js" type="text/javascript"></script>
+  </head>
+  <body onload="onLoad();">
+    <div id="logo">
+      <img src="../images/logo.png" alt="Comfort and Climate Logo" />
+    </div>
+    <div id="nav">
+    </div>
+    <div id="main">
+      <div id="header">
+        <table width="100%"><tr>
+          <td width="32%"><p>Comfort and Climate - <strong>About</strong></p></td>
+          <td width="33%"></td>
+          <td width="20%"><p class="loggedin" id="username">User: </p></td>
+          <td><p class="loggedin"><a href="preferences.xhtml">Preferences</a></p></td>
+          <td><p class="loggedin"><a href="login.xhtml?logout=true">Log out</a></p></td>
+        </tr></table>
+        <hr/>
+        <p id="message">Message<br/>Message</p>
+      </div>
+      <div id="content">
+        <h2>Product</h2>
+        <table width="100%">
+          <tr><td align="right" width="20%"><p>Application</p></td><td><p><strong><em id="application">CandC</em></strong></p></td><td width="50%"><p><strong><em id="version">0.2</em></strong></p></td></tr>
+          <tr><td align="right"><p>Database</p></td><td><p><strong><em id="database">A database</em></strong></p></td><td><p><strong><em id="dbversion">1.23</em></strong></p></td></tr>
+          <tr><td align="right"><p>Mail</p></td><td><p><strong><em id="mail">Mail system</em></strong></p></td><td><p><strong><em id="mailversion">1.23</em></strong></p></td></tr>
+          <tr><td align="right"><p>Runtime Environment</p></td><td><p><strong><em id="runtime">JAVA 1.2</em></strong></p></td><td><p><strong><em id="rtversion">1.23</em></strong></p></td></tr>
+          <tr><td align="right"><p>Operating System</p></td><td><p><strong><em id="os">Ubuntu</em></strong></p></td><td><p><strong><em id="osversion">1.23</em></strong></p></td></tr>
+        </table>
+        <h2>Credits</h2>
+        <table width="100%">
+          <tr><td align="right" width="20%"><p>Copyright</p></td><td><p><strong><em id="year">Year</em></strong></p></td><td width="50%"><p><strong><em id="copyright">Copyright</em></strong></p></td></tr>
+          <tr><td align="right" width="20%"><p>Project Management</p></td><td><p><strong><em id="projectmanagement">Odilo</em></strong></p></td><td width="50%"><p><strong><em id="pmcompany">GmbH</em></strong></p></td></tr>
+          <tr><td align="right" width="20%"><p>Development</p></td><td><p><strong><em id="development">Hartwig</em></strong></p></td><td width="50%"><p><strong><em id="devcompany">AG</em></strong></p></td></tr>
+          <tr><td align="right" width="20%"><p>Testing and Design</p></td><td><p><strong><em id="testing">Martin</em></strong></p></td><td width="50%"><p><strong><em id="testcompany">GmbH</em></strong></p></td></tr>
+        </table>
+      </div>
+      <div id="footer">
+        <table width="100%"><tr>
+          <td width="30%"><p><a href="http://www.baumschlager-eberle.com/" onclick="window.open(this.href,'_blank');return false;">Baumschlager Eberle</a></p></td>
+          <td width="30%"><p><a id="termsandconditions" href="http://info.comfortandclimate.com/?p=54" onclick="window.open(this.href,'_blank');return false;">Terms and Conditions</a></p></td>
+          <td width="30%"><p><a id="contact" href="http://info.comfortandclimate.com/?p=59" onclick="window.open(this.href,'_blank');return false;">Contact</a></p></td>
+          <td><p><a href="about.xhtml" onclick="window.open(this.href,'_blank');return false;">Credits</a></p></td>
+        </tr></table>
+      </div>
+      <div id="validate">
+        <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" height="31" width="88" /></a>
+      </div>
+    </div>    
+  </body>
+</html>
