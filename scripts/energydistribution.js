@@ -1,9 +1,9 @@
 function setInputFields()
 {
   var input = document.getElementsByName("EnergyHeating")[0];
-  input.innerHTML = dEnegyHeat;
+ // input.innerHTML = dEnergyHeat;
   var input = document.getElementsByName("EnergyCooling")[0];
-  input.innerHTML = dEnegyCool;
+ // input.innerHTML = dEnergyCool;
 }; /* setInputFields */
 
 /*----------------------------------------------------------------------

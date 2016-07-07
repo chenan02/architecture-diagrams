@@ -55,32 +55,30 @@ function graph(div, data) {
       .attr("height", function(d) { return height - y(d.value); });
 	
   svg.append("g")
-	  .attr("class", "legend")
+	  .attr("class", "heating-system")
 	  .attr("transform", "translate(0, 190)")
 	  .append("rect")
 	  .attr("width", 66)
 	  .attr("height", 8)
-	  .attr("style", "fill:rgb(0,128,200)");
-	
+
+	svg.append("g")
+      .append("text")
+      .attr("style", "font-size: 12px")
+      .attr("transform", "translate(80, 198)")
+      .text("Energy Conversion Heating");
+
   svg.append("g")
-	  .attr("class", "legend")
-	  .attr("transform", "translate(0, 200)")
+	  .attr("class", "cooling-system")
+	  .attr("transform", "translate(0, 205)")
 	  .append("rect")
 	  .attr("width", 66)
 	  .attr("height", 8)
-	  .attr("style", "fill:rgb(186,32,42)");
 	
   svg.append("g")
   	  .append("text")
   	  .attr("style", "font-size: 12px")
-  	  .attr("transform", "translate(80, 200)")
-  	  .text("Hello");
-	
-  svg.append("g")
-  	  .append("text")
-  	  .attr("style", "font-size: 12px")
-  	  .attr("transform", "translate(80, 210)")
-  	  .text("Hello");
+  	  .attr("transform", "translate(80, 213)")
+  	  .text("Energy Conversion Cooling");
 	
 };
 

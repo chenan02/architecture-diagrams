@@ -22,7 +22,7 @@ var yAxis = d3.svg.axis()
 function graph(div, data) {
 	var svg = d3.select(div).append("svg")
     .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("height", height + margin.top + margin.bottom + 50)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 	type(data);
@@ -53,6 +53,19 @@ function graph(div, data) {
       .attr("width", x.rangeBand())
       .attr("y", function(d) { return y(d.value); })
       .attr("height", function(d) { return height - y(d.value); });
+
+  svg.append("g")
+    .attr("class", "heating-system")
+    .attr("transform", "translate(0, 190)")
+    .append("rect")
+    .attr("width", 66)
+    .attr("height", 8)
+
+  svg.append("g")
+      .append("text")
+      .attr("style", "font-size: 12px")
+      .attr("transform", "translate(80, 198)")
+      .text("Energy Conversion Heating");
 };
 
 
