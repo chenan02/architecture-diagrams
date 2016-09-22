@@ -1,9 +1,17 @@
 function setInputFields()
 {
-  var input = document.getElementsByName("EnergyHeating")[0];
- // input.innerHTML = dEnergyHeat;
-  var input = document.getElementsByName("EnergyCooling")[0];
- // input.innerHTML = dEnergyCool;
+
+  var aButtons = document.getElementsByTagName("button");
+  for (i = 0; i < aButtons.length; i++)
+  {
+    if(adRanks[i]==0){
+    	//document.getElementsByTagName("button")[i].className = "green tile";
+    }else if(adRanks[i]==1){
+    	document.getElementsByTagName("button")[i].className = "green tile";
+    }else if(adRanks[i]==3){
+    	//document.getElementsByTagName("button")[i].className = "red tile";
+    }
+  }
 }; /* setInputFields */
 
 /*----------------------------------------------------------------------

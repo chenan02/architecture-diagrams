@@ -1,0 +1,373 @@
+.bar.positive {
+  fill: steelblue;
+}
+
+.bar.negative {
+  fill: brown;
+}
+
+.axis text {
+  font: 14px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+#graphcontainer {
+    position: absolute;
+    left: 100px;
+    float: right;
+    /*display: inline-block;
+     */
+}
+
+#legend {
+    position: absolute;
+    float: left;
+    /*
+    display: inline-block;
+    position: absolute;
+    */
+}
+
+#horizontalchart {
+    height: 500px;
+}
+
+
+/*-- candc.css $ -------------------------------------------------------
+This stylesheet contains all the graphical design of the site.
+Version    : $Id: candc.css 2337 2012-09-20 15:14:54Z hartwig $
+Application: Comfort and Climate
+Platform   : XHTML1.1
+Description: CSS code for the Comfort and Climate website
+------------------------------------------------------------------------
+Created    : 22.06.2012, Hartwig Thomas, Enter AG, Zurich
+Copyright (c) 2012, Enter AG, Zurich, Switzerland
+----------------------------------------------------------------------*/
+/* for debugging purposes an element with id "validate" is included */
+#validate
+{
+  position: relative;
+	left: 0;
+	top: 0;
+  display: none; /* set to block for showing, none for hiding */
+}
+
+/*======================================================================
+tags
+======================================================================*/
+body
+{
+  margin: 0;
+  border: 0;
+  padding: 0;
+  width: 252.5mm; /* ~955px */
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  background-color: rgb(100%,100%,100%); /* white */
+  /*display: none; /* is overidden by onLoad */
+}
+div
+{
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+img
+{
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+table
+{
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+tr
+{
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+td
+{
+  margin: 0;
+  border: 0;
+  left-padding: 1mm;
+  right-padding: 1mm;
+  font-size: 5pt;
+}
+p
+{
+  margin: 0;
+  border: 0;
+  padding: 0;
+  font-size: 10pt;
+  line-height: 12pt;
+}
+h1
+{
+  margin-top: 5mm;
+  font-size: 12pt;
+  line-height: 14pt;
+  font-weight: bold;
+  text-align: center;
+}
+h2
+{
+  font-size: 10pt;
+  line-height: 12pt;
+  font-weight: bold;
+  font-style: normal;
+  text-align: center;
+}
+span
+{
+  padding-left: 1mm;
+  padding-right: 1mm;
+}
+em
+{
+  font-style: normal;
+}
+.title
+{
+  font-weight: bold;
+  font-style: normal;
+  margin-bottom: 5px;
+}
+.label
+{
+  font-style: normal;
+}
+
+/*======================================================================
+special "global" divs
+======================================================================*/
+/*----------------------------------------------------------------------
+Comfort and Climate logo
+----------------------------------------------------------------------*/
+#logo
+{
+  position: fixed;
+	left: 0;
+	top: 0;
+}
+
+#logo img
+{
+	width: 32.8mm; /* 124 pixels */
+	height: 25.4mm; /* 96 pixels */
+}
+
+/*----------------------------------------------------------------------
+navigation
+----------------------------------------------------------------------*/
+#nav
+{
+  position: fixed;
+	left: 0;
+	top: 25.4mm;
+	width: 30.8mm; /* 32.8-2mm padding */
+  padding-left: 2mm;
+}
+#nav p
+{
+  width: 30.81mm;
+  font-size: 8pt;
+  line-height: 10pt;
+}
+#nav p a
+{
+  text-decoration: none;
+  color: rgb(0%,0%,0%); /* black */
+  font-weight: normal;
+}
+#nav p a:hover
+{
+  color: rgb(50%,50%,50%); /* gray (anthracite did not produce a visible effect) */
+}
+#nav p.selected
+{
+  background-color: rgb(80%,80%,80%);
+}
+#nav p.indent
+{
+  padding-left: 2mm;
+}
+
+#nav img {
+  display: none;
+}
+
+/*----------------------------------------------------------------------
+main area containing header, content, footer
+----------------------------------------------------------------------*/
+#main
+{
+  position: absolute;
+	padding-left: 5mm;
+	padding-top: 5mm;
+	top: 0;
+	left: 32.8mm;
+	width: 214.2mm; /* 219.2 - 5mm padding */
+}
+#main a
+{
+  color: rgb(0%,0%,0%); /* black */
+}
+#main a:hover
+{
+  color: rgb(50%,50%,50%); /* gray (anthracite did not produce a visible effect) */
+}
+
+/*----------------------------------------------------------------------
+header
+----------------------------------------------------------------------*/
+#header
+{
+  position: relative;
+	left: 0;
+	top: 0;
+	height: 20.4mm; /* 25.4 - 5mm padding */
+  color: rgb(50%,50%,50%); /* gray (anthracite did not produce a visible effect) */
+}
+#message
+{
+  color: rgb(100%,0%,0%); /* red */
+}
+
+/*----------------------------------------------------------------------
+content
+----------------------------------------------------------------------*/
+#content
+{
+  position: relative;
+	left: 0;
+	top: 0;
+}
+
+/*----------------------------------------------------------------------
+footer
+----------------------------------------------------------------------*/
+#footer
+{
+  position: relative;
+	left: 0;
+  color: rgb(50%,50%,50%); /* gray (anthracite did not produce a visible effect) */
+}
+
+/*======================================================================
+dialog divs
+======================================================================*/
+div#modal
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  opacity: 0.5;
+  background-color: rgb(30%,30%,30%);
+  z-index: 10;
+}
+
+div.dialog
+{
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  width: 20cm;
+  padding: 1cm;
+  display: none;
+  background-color: rgb(100%,100%,100%);
+  z-index: 20;
+}
+
+/*======================================================================
+administration
+======================================================================*/
+#subscriptions
+{
+  display: none;
+}
+
+/*======================================================================
+tiling
+======================================================================*/
+.tile
+{
+  margin: 0;
+  border: 0;
+  padding: 0;
+  width: 25.4mm;
+  height: 23.02mm;
+  background-color: rgb(100%,100%,100%);
+  background-image: url(images/button.png);  
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.tile:hover
+{
+  background-image: url(images/button_hover.png);  
+}
+
+.tile:active
+{
+  background-image: url(images/button_active.png);
+}
+
+.tile p
+{
+  margin-left: 2mm;
+  font-size: 8pt;
+  line-height: 10pt;
+}
+
+.tile.green {
+  border-style: solid;
+  border-width: 5px;
+  border-color: green;
+}
+
+.tile.yellow {
+  border-style: solid;
+  border-width: 5px;
+  border-color: rgb(255, 180, 0);
+}
+.tile.red {
+  border-style: solid;
+  border-width: 5px;
+  border-color: rgb(186, 32, 42);
+}
+
+/*======================================================================
+diagrams table in content
+======================================================================*/
+svg
+{
+  line-height: 10px;
+}
+#diagrams
+{
+  margin : 0;
+  border: 0;
+  padding: 0;
+	width: 214.2mm;
+}
+ 
+/*======================================================================
+class for non-display elements on about page
+======================================================================*/
+.loggedin
+{
+  display: none;
+}

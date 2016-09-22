@@ -9,7 +9,13 @@ infiltration page for Comfort and Climate
 Application: Comfort and Climate
 Platform   : XHTML 1.1
 ========================================================================
-Created & Integrited  : Dean Wang
+2015-11-24 15:14:54Z DEAN AND MIN $
+Application: Comfort and Climate
+Platform   : XHTML 1.1
+
+========================================================================
+Created    : 09.08.2015, Hartwig Thomas,Dean Wong, MKIM, Enter AG, Zurich
+Copyright  : 2016, Baumschlager Eberle, Vaduz, Liechtenstein
 ==================================================================== -->
   <head>
     <title>Comfort and Climate: Nightvent</title>
@@ -273,25 +279,26 @@ Created & Integrited  : Dean Wang
           <td width="32%"><p>Comfort and Climate - <strong>Nightvent</strong> <a href="http://info.comfortandclimate.com/?p=32" onclick="window.open(this.href,'_blank');return false;"><img src="../../images/info.png"/></a></p></td>
           <td width="33%"><p id="projectname">Project: </p></td>
           <td width="20%"><p id="username">User: </p></td>
+           <td><p><a href="../project/information/night_ventilation_info.xhtml">Information</a></p></td>
           <td><p><a href="../preferences.xhtml">Preferences</a></p></td>
           <td><p><a href="../login.xhtml?logout=true">Log out</a></p></td>
         </tr></table>
         <hr/>
         <p id="message">Message<br/>Message</p>
       </div>
-      <div id="content">
-       <br/>
+           <div id="content">
+  		<br/>
         <button class="tile" onclick="selectNV(this, 0);">
-          <p><img src="../../images/shading/none.png"/></p>
-          <p>No nightvent</p>
+          <p><img src="../../images/nightvent/1_no-vent.png"/></p>
+          <p>(1) No Night Vent</p>
         </button>
         <button class="tile" onclick="selectNV(this, 1);">
-          <p><img src="../../images/shading/25m.png"/></p>
-          <p>ACH 1.5</p>
+          <p><img src="../../images/nightvent/2_ACH15.png"/></p>
+          <p>(2) 1.5 [1/h]</p>
         </button>
         <button class="tile" onclick="selectNV(this, 2);">
-          <p><img src="../../images/shading/20m.png"/></p>
-          <p>ACH 3.0</p>
+          <p><img src="../../images/nightvent/3_ACH3.png"/></p>
+          <p>(3) 3.0 [1/h]</p>
         </button>
        <form action="nightvent.xhtml" method="get">
         <br/>
@@ -346,7 +353,7 @@ Created & Integrited  : Dean Wang
         <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" height="31" width="88" /></a>
       </div>
     </div> 
-    <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script>
 	$(document).ready(function(){
 		$("button").removeAttr("disabled");
@@ -363,6 +370,6 @@ Created & Integrited  : Dean Wang
 	    	$("#spinner").show();
 		});
     });
-    </script>  -->
+    </script>  
   </body>
 </html>

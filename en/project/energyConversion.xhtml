@@ -6,13 +6,12 @@
                       http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
 <!-- energyConversion.xhtml ================================================
 Air tightness page for Comfort and Climate
-Version    : $Id: energyConversion.xhtml 2337 2012-09-20 15:14:54Z hartwig $
+Version    : $Id: energyConversion.xhtml 2337 2015-11-24 15:14:54Z DEAN AND MIN $
 Application: Comfort and Climate
 Platform   : XHTML 1.1
-Description: The air tightness page shows the effect of air change.
 ========================================================================
-Created    : 09.08.2012, Hartwig Thomas, Enter AG, Zurich
-Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
+Created    : 09.08.2015, Hartwig Thomas,Dean Wong, MKIM, Enter AG, Zurich
+Copyright  : 2016, Baumschlager Eberle, Vaduz, Liechtenstein
 ==================================================================== -->
   <head>
     <title>Energy Conversion</title>
@@ -21,7 +20,7 @@ Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
     <!-- Global style sheet -->
 
      <!-- <link rel="stylesheet" type="text/css" href="../../candc.css" /> -->
-      <link rel="stylesheet" type="text/css" href="../../candc.css" />
+      <link rel="stylesheet" type="text/css" href="../../horizontalBarChart.css" />
 
     <!-- Constants declaration script -->
     <script type="text/javascript">
@@ -75,6 +74,36 @@ Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
 		{"name":"11","value":9}, 
 		{"name":"12","value":6}
 	  ];
+		  var dataArray3 = [
+       		{"name":"1","value":3},
+       		{"name":"2","value":13},
+       		{"name":"3","value":6},
+       		{"name":"4","value":12}, 
+       		{"name":"5","value":13},
+       		{"name":"6","value":7}, 
+       		{"name":"7","value":2},
+       		{"name":"8","value":9},
+       		{"name":"","value":""},
+       		{"name":"9","value":13}, 
+       		{"name":"10","value":3},
+       		{"name":"11","value":9}, 
+       		{"name":"12","value":6}
+       	  ];
+		  var dataArray4 = [
+       		{"name":"1","value":3},
+       		{"name":"2","value":13},
+       		{"name":"3","value":6},
+       		{"name":"4","value":12}, 
+       		{"name":"5","value":13},
+       		{"name":"6","value":7}, 
+       		{"name":"7","value":2},
+       		{"name":"8","value":9},
+       		{"name":"","value":""},
+       		{"name":"9","value":13}, 
+       		{"name":"10","value":3},
+       		{"name":"11","value":9}, 
+       		{"name":"12","value":6}
+       	  ];
           //]]>
       </script>
       <!-- Global initialization script -->
@@ -82,7 +111,8 @@ Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
 <style>
     
 body {
-  font: 14px sans-serif;
+  font: 14px;
+  font-family: Arial, Verdana, Helvetica, sans-serif !important;
 }
 .bar {
   fill: steelblue;
@@ -163,6 +193,7 @@ body {
           <td width="32%"><p>Comfort and Climate - <strong>Horizontal Bar Chart</strong> <a href="http://info.comfortandclimate.com/?p=44" onclick="window.open(this.href,'_blank');return false;"><img src="../../images/info.png"/></a></p></td>
           <td width="33%"><p id="projectname">Project: </p></td>
           <td width="20%"><p id="username">User: </p></td>
+          <td><p><a href="../project/information/energy_conversion_info.xhtml">Information</a></p></td>
           <td><p><a href="../preferences.xhtml">Preferences</a></p></td>
           <td><p><a href="../login.xhtml?logout=true">Log out</a></p></td>
         </tr></table>
@@ -172,55 +203,55 @@ body {
       <div id="content">
 		<br/>
         <button class="tile" onclick="selectEC(this,1);">
-          <p><img src="../../images/shading/none.png"/></p>
-          <p>no shading</p>
+          <p><img src="../../images/energyconversion/1_radiator.png"/></p>
+          <p>(1) Furnace</p>
         </button>
         <button class="tile" onclick="selectEC(this,2);">
-          <p><img src="../../images/shading/25m.png"/></p>
-          <p>25 m</p>
+          <p><img src="../../images/energyconversion/1_boiler.png"/></p>
+          <p>(2) Boiler</p>
         </button>
         <button class="tile" onclick="selectEC(this,3);">
-          <p><img src="../../images/shading/20m.png"/></p>
-          <p>20 m</p>
+          <p><img src="../../images/energyconversion/2_condensing-boiler.png"/></p>
+          <p>(3) Condensing Boiler</p>
         </button>
         <button class="tile" onclick="selectEC(this,4);">
-          <p><img src="../../images/shading/15m.png"/></p>
-          <p>15 m</p>
+          <p><img src="../../images/energyconversion/6_biomass-boiler.png"/></p>
+          <p>(4) Biomass Boiler</p>
         </button>
         <button class="tile" onclick="selectEC(this,5);">
-          <p><img src="../../images/shading/10m.png"/></p>
-          <p>10 m</p>
+          <p><img src="../../images/energyconversion/3_HP-air.png"/></p>
+          <p>(5) Heat Pump External Air</p>
         </button>
         <button class="tile" onclick="selectEC(this,6);">
-          <p><img src="../../images/shading/05m.png"/></p>
-          <p>5 m</p>
+          <p><img src="../../images/energyconversion/4_HP-ground-35.png"/></p>
+          <p>(6) Heat Pump Geoth.35°C</p>
         </button>
 		<button class="tile" onclick="selectEC(this,7);">
-          <p><img src="../../images/shading/10m.png"/></p>
-          <p>10 m</p>
+          <p><img src="../../images/energyconversion/5_HP-ground-50.png"/></p>
+          <p>(6) Heat Pump Geoth.50°C</p>
         </button>
         <button class="tile" onclick="selectEC(this,8);">
-          <p><img src="../../images/shading/05m.png"/></p>
-          <p>5 m</p>
+          <p><img src="../../images/energyconversion/return-air.png"/></p>
+          <p>(7) Heat Pump Return Air</p>
         </button>
 		<br/>
 		<br/>
 		<br/>
-        <button class="tile" onclick="selectEC(this,9);">
-          <p><img src="../../images/shading/none.png"/></p>
-          <p>no shading</p>
+        <button class="tile" onclick="selectEC1(this,9);">
+          <p><img src="../../images/energyconversion/1_split-cooling.png"/></p>
+          <p>(9) Split Unit</p>
         </button>
-        <button class="tile" onclick="selectEC(this,10);">
-          <p><img src="../../images/shading/25m.png"/></p>
-          <p>25 m</p>
+        <button class="tile" onclick="selectEC1(this,10);">
+          <p><img src="../../images/energyconversion/2_compressor-chiller.png"/></p>
+          <p>(10) Chiller</p>
         </button>
-        <button class="tile" onclick="selectEC(this,11);">
-          <p><img src="../../images/shading/20m.png"/></p>
-          <p>20 m</p>
+        <button class="tile" onclick="selectEC1(this,11);">
+          <p><img src="../../images/energyconversion/4_direct-cooling.png"/></p>
+          <p>(11) Direct Cooling</p>
         </button>
-        <button class="tile" onclick="selectEC(this,12);">
-          <p><img src="../../images/shading/15m.png"/></p>
-          <p>15 m</p>
+        <button class="tile" onclick="selectEC1(this,12);">
+          <p><img src="../../images/energyconversion/3_free-cooling.png"/></p>
+          <p>(12) Free Cooling</p>
         </button>
 		<br/>
 		<br/>
@@ -240,6 +271,8 @@ body {
               <!-- monthly energy demand and temperature  -->
                 <div id="separatedChart1" style="display: inline; float: left"></div>
 				<div id="separatedChart2" style="display: inline; float: right"></div>
+				<div id="separatedChart3" style="display: inline; float: left"></div>
+				<div id="separatedChart4" style="display: inline; float: right"></div>
 			  </td>
           </tr>
         </table>

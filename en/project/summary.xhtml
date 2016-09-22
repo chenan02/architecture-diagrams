@@ -11,8 +11,8 @@ Application: Comfort and Climate
 Platform   : XHTML 1.1, SVG 1.1
 Description: The summary page gives an overview over the project.
 ========================================================================
-Created    : 17.08.2012, Hartwig Thomas, Enter AG, Zurich
-Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
+Created    : 17.08.2015, Hartwig Thomas, Enter AG, Zurich
+Copyright  : 2015, Baumschlager Eberle, Vaduz, Liechtenstein
 ==================================================================== -->
   <head>
     <title>Comfort and Climate: Summary</title>
@@ -201,48 +201,27 @@ Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
       var sClimate = "Hong Kong";
       var dLatitude = 47.5;
       var dLongitude = 8.6;
-      var dAngle = 30.0;
-      var dLength = 50.0;
-      var dWidth = 20.0;
-      var dHeight = 9.0;
-      var dFloorArea = 3000.0;
-      var dCompactness = 0.2;
       var dThickness = 0.1;
+      var dCompactness = 40;
       var dHeatConductivity = 1.1;
       var dDensity = 1100;
-      var dSpecificHeat = 900;
       var dWindowsFront = 30;
       var dWindowsLeft = 30;
       var dWindowsBack = 30;
       var dWindowsRight = 30;
       var dGlassU = 1.2;
       var dGlassG = 0.4;
-      var bMoveableBlinds = false;
       var dShadingDistanceFront = 0.0;
-      var dShadingHeightFront = 0.0;
       var dShadingDistanceLeft = 0.0;
-      var dShadingHeightLeft = 0.0;
       var dShadingDistanceBack = 0.0;
-      var dShadingHeightBack = 0.0;
       var dShadingDistanceRight = 0.0;
-      var dShadingHeightRight = 0.0;
       var dRoofU = 0.2;
       var dWallsU = 0.2;
       var dFloorU = 0.2;
-      var dAirChangeRate = 0.1;
       var iOccupants = 5;
       var dSingleOccupantPower = 70;
       var dSingleOccupantDevicePower = 10;
-      var dUtilizationWeekend = 0;
-      var dUtilizationWorkingday = 100;
-      var adUtilizationHour = [
-          0,   0,   0,   0,   0,   0,
-          0,  50,  80,  80,  80,  50,
-         80,  80,  80,  80,  50,   0,
-          0,   0,   0,   0,   0,   0];
-      var dTau = 34.0;
-      var dBeta = 0.5;
-      var dGamma = 0.65;
+
       //]]>
     </script>
     <!-- Global initialization script -->
@@ -258,30 +237,43 @@ Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
     <div id="logo">
       <img src="../../images/logo.png" alt="Comfort and Climate Logo" />
     </div>
-    <div id="nav">
+ <div id="nav">
       <p>Settings</p>
       <p class="indent"><a href="climate.xhtml">Climate</a> <img src="../../images/free.png"/></p>
-      <p class="indent"><a href="dimension.xhtml">Dimension</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="geometry.xhtml">Geometry</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="physicalproperty.xhtml">Physical Property</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="occupancy.xhtml">Occupancy</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="goal.xhtml">Goal</a> <img src="../../images/free.png"/></p>
+      <p><a href="sensitivitystudy.xhtml">SensitivityStudy</a> <img src="../../images/free.png"/></p>
       <p><a href="compactness.xhtml">Compactness</a> <img src="../../images/free.png"/></p>
       <p><a href="orientation.xhtml">Orientation</a> <img src="../../images/free.png"/></p>
       <p><a href="construction.xhtml">Construction</a> <img src="../../images/free.png"/></p>
-      <p>Windows</p>
-      <p class="indent"><a href="windowsfront.xhtml">Front</a> <img src="../../images/free.png"/></p>
-      <p class="indent"><a href="windowsleft.xhtml">Left</a> <img src="../../images/free.png"/></p>
-      <p class="indent"><a href="windowsback.xhtml">Back</a> <img src="../../images/free.png"/></p>
-      <p class="indent"><a href="windowsright.xhtml">Right</a> <img src="../../images/free.png"/></p>
+   	  <p>WtoW</p>
+      <p class="indent"><a href="wtown.xhtml">N</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wtows.xhtml">S</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wtowe.xhtml">E</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wtoww.xhtml">W</a> <img src="../../images/free.png"/></p>
       <p><a href="glazing.xhtml">Glazing</a> <img src="../../images/free.png"/></p>
-      <p><a href="shading.xhtml">Shading</a> <img src="../../images/free.png"/></p>
-      <p><a href="blinds.xhtml">Blinds</a> <img src="../../images/free.png"/></p>
+      <p>Shading</p>
+      <p class="indent"><a href="shadingn.xhtml">N</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="shadings.xhtml">S</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="shadinge.xhtml">E</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="shadingw.xhtml">W</a> <img src="../../images/free.png"/></p>
       <p>Insulation</p>
       <p class="indent"><a href="roof.xhtml">Roof</a> <img src="../../images/free.png"/></p>
-      <p class="indent"><a href="walls.xhtml">Walls</a> <img src="../../images/free.png"/></p>
-      <p class="indent"><a href="floor.xhtml">Basement</a> <img src="../../images/free.png"/></p>
-      <p><a href="airtightness.xhtml">Air Tightness</a> <img src="../../images/free.png"/></p>
-      <p><a href="occupancy.xhtml">Occupancy</a> <img src="../../images/free.png"/></p>
-      <p>Results</p>
-      <p class="indent selected"><a href="summary.xhtml">Summary</a> <img src="../../images/free.png"/></p>
-      <p class="indent"><a href="comparison.xhtml">Comparison</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wall.xhtml">Wall</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="floor.xhtml">Floor</a> <img src="../../images/free.png"/></p>
+	  <p>Ventilation</p>
+      <p class="indent"><a href="infiltration.xhtml">Infiltration</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="natvent.xhtml">NatVent</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="nightvent.xhtml">NightVent</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="heatrec.xhtml">HeatRec</a> <img src="../../images/free.png"/></p>
+      <p>Active Systems</p>
+      <p class="indent selected"><a href="airhandling.xhtml">Air Handling</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="energyConversion.xhtml">Energy Conversion</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="energydistribution.xhtml">Energy Distribution</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="wwh.xhtml">Warm Water Heating</a> <img src="../../images/free.png"/></p>
+      <p>Summary</p>
     </div>
     <div id="main">
       <div id="header">
@@ -333,27 +325,24 @@ Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
           <tr><td align="right" width="50%"><p class="label">Climate:</p></td><td><p><span id="climate"></span></p></td></tr>
           <tr><td align="right" width="50%"><p class="label">Latitude:</p></td><td><p><span id="latitude"></span><span>&deg;</span></p></td></tr>
           <tr><td align="right" width="50%"><p class="label">Longitude:</p></td><td><p><span id="longitude"></span><span>&deg;</span></p></td></tr>
-          <tr><td align="right" width="50%"><p class="label">Angle of Front Façade from South Direction:</p></td><td><p><span id="angle"></span><span>&deg;</span></p></td></tr>
         </table>
-        <h2>Comfort</h2>
+      <!--    <h2>Comfort</h2>
         <table width="100%">
           <tr><td align="right" width="50%"><p class="label">Minimum Comfort Temperature:</p></td><td><p><span id="mincomfort"></span><span>&deg;C</span></p></td></tr>
           <tr><td align="right" width="50%"><p class="label">Maximum Comfort Temperature:</p></td><td><p><span id="maxcomfort"></span><span>&deg;C</span></p></td></tr>
         </table>
+       -->
         <h2>Dimension</h2>
         <table width="100%">
-          <tr><td align="right" width="50%"><p class="label">Width of Front Façade:</p></td><td><p><span id="length"></span><span>m</span></p></td></tr>
-          <tr><td align="right" width="50%"><p class="label">Width of Side Façade:</p></td><td><p><span id="width"></span><span>m</span></p></td></tr>
-          <tr><td align="right" width="50%"><p class="label">Height:</p></td><td><p><span id="height"></span><span>m</span></p></td></tr>
-          <tr><td align="right" width="50%"><p class="label">Gross Floor Area:</p></td><td><p><span id="floorarea"></span><span>m&sup2;</span></p></td></tr>
+         
           <tr><td align="right" width="50%"><p class="label">Compactness:</p></td><td><p><span id="compactness"></span><span></span></p></td></tr>
         </table>
+      
         <h2>Construction</h2>
         <table width="100%">
           <tr><td align="right" width="50%"><p class="label">Thickness of Floors and Walls:</p></td><td><p><span id="thickness"></span><span>m</span></p></td></tr>
           <tr><td align="right" width="50%"><p class="label">Heat Conductivity of Floors and Walls:</p></td><td><p><span id="heatconductivity"></span><span>W/m&middot;K</span></p></td></tr>
           <tr><td align="right" width="50%"><p class="label">Density of Floors and Walls:</p></td><td><p><span id="density"></span><span>kg/m&sup3;</span></p></td></tr>
-          <tr><td align="right" width="50%"><p class="label">Specific Heat of Floors and Walls:</p></td><td><p><span id="specificheat"></span><span>J/kg&middot;K</span></p></td></tr>
         </table>
         <h2>Windows Area</h2>
         <table width="100%">
@@ -369,15 +358,10 @@ Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
         </table>
         <h2>Shading</h2>
         <table width="100%">
-          <tr><td align="right" width="50%"><p class="label">Moveable Blinds:</p></td><td><p><span id="moveableblinds"></span><span></span></p></td></tr>
           <tr><td align="right" width="50%"><p class="label">Distance of Nearest Building in Front:</p></td><td><p><span id="shadingdistancefront"></span><span>m</span></p></td></tr>
-          <tr><td align="right" width="50%"><p class="label">Height of Nearest Building in Front:</p></td><td><p><span id="shadingheightfront"></span><span>m</span></p></td></tr>
           <tr><td align="right" width="50%"><p class="label">Distance of Nearest Building to the Left:</p></td><td><p><span id="shadingdistanceleft"></span><span>m</span></p></td></tr>
-          <tr><td align="right" width="50%"><p class="label">Height of Nearest Building to the Left:</p></td><td><p><span id="shadingheightleft"></span><span>m</span></p></td></tr>
           <tr><td align="right" width="50%"><p class="label">Distance of Nearest Building in the Back:</p></td><td><p><span id="shadingdistanceback"></span><span>m</span></p></td></tr>
-          <tr><td align="right" width="50%"><p class="label">Height of Nearest Building in the Back:</p></td><td><p><span id="shadingheightback"></span><span>m</span></p></td></tr>
           <tr><td align="right" width="50%"><p class="label">Distance of Nearest Building to the Right:</p></td><td><p><span id="shadingdistanceright"></span><span>m</span></p></td></tr>
-          <tr><td align="right" width="50%"><p class="label">Height of Nearest Building to the Right:</p></td><td><p><span id="shadingheightright"></span><span>m</span></p></td></tr>
         </table>
         <h2>Insulation</h2>
         <table width="100%">
@@ -385,19 +369,20 @@ Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
           <tr><td align="right" width="50%"><p class="label">Walls Heat Transmission Factor:</p></td><td><p><span id="wallsu"></span><span>W/K&middot;m&sup2;</span></p></td></tr>
           <tr><td align="right" width="50%"><p class="label">Basement Heat Transmission Factor:</p></td><td><p><span id="flooru"></span><span>W/K&middot;m&sup2;</span></p></td></tr>
         </table>
-        <h2>Air Tightness</h2>
+      <!--    <h2>Air Tightness</h2>
         <table width="100%">
           <tr><td align="right" width="50%"><p class="label">Air Change Rate:</p></td><td><p><span id="airchangerate"></span><span>1/h</span></p></td></tr>
-        </table>
+        </table>-->
         <h2>Occupancy</h2>
         <table width="100%">
           <tr><td align="right" width="50%"><p class="label">Number of Occupants:</p></td><td><p><span id="occupants"></span><span></span></p></td></tr>
           <tr><td align="right" width="50%"><p class="label">Heating Power per Occupant:</p></td><td><p><span id="singleoccupantpower"></span><span>W</span></p></td></tr>
-          <tr><td align="right" width="50%"><p class="label">Heating Power of Devices per Occupant:</p></td><td><p><span id="singleoccupantdevicepower"></span><span>W</span></p></td></tr>
+         <!--   <tr><td align="right" width="50%"><p class="label">Heating Power of Devices per Occupant:</p></td><td><p><span id="singleoccupantdevicepower"></span><span>W</span></p></td></tr>
           <tr><td align="right" width="50%"><p class="label">Utilization Workingdays:</p></td><td><p><span id="workingday"></span><span>%</span></p></td></tr>
           <tr><td align="right" width="50%"><p class="label">Utilization Weekend:</p></td><td><p><span id="weekend"></span><span>%</span></p></td></tr>
           <tr><td align="right" width="50%"><p class="label">Utilization During the Day (a.m.):</p></td><td><p><span id="utilizationam"></span><span>%</span></p></td></tr>
           <tr><td align="right" width="50%"><p class="label">Utilization During the Day (p.m.):</p></td><td><p><span id="utilizationpm"></span><span>%</span></p></td></tr>
+        -->
         </table>
         <h2>Energy Demand per Year</h2>
         <table width="100%">
@@ -405,12 +390,13 @@ Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
           <tr><td align="right" width="50%"><p class="label">Energy Demand for Cooling per Year and Floor Area:</p></td><td><p><span id="yearcooling"></span><span>kW&middot;h/m&sup2;</span></p></td></tr>
           <tr><td align="right" width="50%"><p class="label">Total Energy Demand per Year and Floor Area:</p></td><td><p><span id="yearenergy"></span><span>kW&middot;h/m&sup2;</span></p></td></tr>
         </table>
-        <h2>Position on Climate Surface</h2>
+        <!--  <h2>Position on Climate Surface</h2>
         <table width="100%">
           <tr><td align="right" width="50%"><p class="label">Heat Discharge Time Constant &tau;:</p></td><td><p><span id="tau"></span><span>h</span></p></td></tr>
           <tr><td align="right" width="50%"><p class="label">Heat Resistance Ratio (inverse Biot number) &beta;:</p></td><td><p><span id="beta"></span><span></span></p></td></tr>
           <tr><td align="right" width="50%"><p class="label">Solar Gain to Loss Ratio &gamma;:</p></td><td><p><span id="gamma"></span><span></span></p></td></tr>
         </table>
+        -->
         <br/>
       </div>
       <div id="footer">

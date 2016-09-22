@@ -54,8 +54,8 @@ Copyright (c) 2012, Enter AG, Zurich, Switzerland
 #validate
 {
   position: relative;
-  left: 0;
-  top: 0;
+	left: 0;
+	top: 0;
   display: none; /* set to block for showing, none for hiding */
 }
 
@@ -157,14 +157,14 @@ Comfort and Climate logo
 #logo
 {
   position: fixed;
-  left: 0;
-  top: 0;
+	left: 0;
+	top: 0;
 }
 
 #logo img
 {
-  width: 32.8mm; /* 124 pixels */
-  height: 25.4mm; /* 96 pixels */
+	width: 32.8mm; /* 124 pixels */
+	height: 25.4mm; /* 96 pixels */
 }
 
 /*----------------------------------------------------------------------
@@ -173,9 +173,9 @@ navigation
 #nav
 {
   position: fixed;
-  left: 0;
-  top: 25.4mm;
-  width: 30.8mm; /* 32.8-2mm padding */
+	left: 0;
+	top: 25.4mm;
+	width: 30.8mm; /* 32.8-2mm padding */
   padding-left: 2mm;
 }
 #nav p
@@ -213,11 +213,11 @@ main area containing header, content, footer
 #main
 {
   position: absolute;
-  padding-left: 5mm;
-  padding-top: 5mm;
-  top: 0;
-  left: 32.8mm;
-  width: 214.2mm; /* 219.2 - 5mm padding */
+	padding-left: 5mm;
+	padding-top: 5mm;
+	top: 0;
+	left: 32.8mm;
+	width: 214.2mm; /* 219.2 - 5mm padding */
 }
 #main a
 {
@@ -234,9 +234,9 @@ header
 #header
 {
   position: relative;
-  left: 0;
-  top: 0;
-  height: 20.4mm; /* 25.4 - 5mm padding */
+	left: 0;
+	top: 0;
+	height: 20.4mm; /* 25.4 - 5mm padding */
   color: rgb(50%,50%,50%); /* gray (anthracite did not produce a visible effect) */
 }
 #message
@@ -250,8 +250,8 @@ content
 #content
 {
   position: relative;
-  left: 0;
-  top: 0;
+	left: 0;
+	top: 0;
 }
 
 /*----------------------------------------------------------------------
@@ -260,7 +260,7 @@ footer
 #footer
 {
   position: relative;
-  left: 0;
+	left: 0;
   color: rgb(50%,50%,50%); /* gray (anthracite did not produce a visible effect) */
 }
 
@@ -362,7 +362,7 @@ svg
   margin : 0;
   border: 0;
   padding: 0;
-  width: 214.2mm;
+	width: 214.2mm;
 }
  
 /*======================================================================

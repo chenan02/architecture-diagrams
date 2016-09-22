@@ -3,6 +3,7 @@ Version    : 1.0
 Application: Comfort and Climate
 Platform   : JavaScript 5, DOM
 Description: distributes app data into XHTML
+Created & Integrited  : Dean Wang and MIN
 */
 
 /*----------------------------------------------------------------------

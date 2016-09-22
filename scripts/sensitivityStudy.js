@@ -93,7 +93,34 @@ function legend(dataArray, squareArray) {
         tr.appendChild(td2);
         g.appendChild(tr);
     }
+	
+    svg.append("g")
+      .attr("fill", "steelblue")
+      .attr("transform", "translate(150, 380)")
+      .append("rect")
+      .attr("width", 66)
+      .attr("height", 8)
+
+    svg.append("g")
+      .append("text")
+      .attr("style", "font-size: 12px")
+      .attr("transform", "translate(230, 389)")
+      .text("Improvement");
+
+    svg.append("g")
+  	  .attr("fill", "brown")
+	  .attr("transform", "translate(150, 396)")
+	  .append("rect")
+	  .attr("width", 66)
+	  .attr("height", 8)
+	
+    svg.append("g")
+  	  .append("text")
+  	  .attr("style", "font-size: 12px")
+  	  .attr("transform", "translate(230, 405)")
+  	  .text("Reduction");
     document.getElementById("horizontalchart").appendChild(g);
+	
 };
 function type(d) {
   d.value = +d.value;

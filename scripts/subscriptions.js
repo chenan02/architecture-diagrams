@@ -1,12 +1,14 @@
 /*== subscriptions.js ==================================================
 Implements the initialization and the dialogs of subscriptions.xhtml.
-Version    : $Id: subscriptions.js 2328 2012-09-19 09:14:04Z hartwig $
+Version    : $Id: subscriptions.js 2328 2015-11-18 15:34:03Z DEAN AND MIN $
 Application: Comfort and Climate
 Platform   : JavaScript 5, DOM
 Description: distributes app data into XHTML.
 ========================================================================
-Created    : 24.08.2012, Hartwig Thomas, Enter AG, Zurich
-Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
+Created    : 23.07.2012, DEAN WONG, MKIM, Enter AG, Zurich
+Copyright  : 2015, Baumschlager Eberle, Vaduz, Liechtenstein
+Created & Integrited  : Dean Wang and MIN
+
 ======================================================================*/
 
 /*----------------------------------------------------------------------

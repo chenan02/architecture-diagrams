@@ -1,11 +1,13 @@
 /*== shadinge.js ========================================================
 Implements the initialization of glazing.xhtml.
-Version    : $Id: shading.js 2337 2012-09-20 15:14:54Z hartwig $
+Version    : $Id: shading.js 2337 2015-11-18 15:34:03Z DEAN AND MIN $
 Application: Comfort and Climate
 Platform   : JavaScript 5, DOM
 Description: distributes app data into XHTML.
 ========================================================================
-Created    : 08.08.2012, Hartwig Thomas, Enter AG, Zurich
+Created    : 23.07.2012, DEAN WONG, MKIM, Enter AG, Zurich
+Copyright  : 2015, Baumschlager Eberle, Vaduz, Liechtenstein
+Created & Integrited  : Dean Wang and MIN
 ======================================================================*/
 
 /*----------------------------------------------------------------------
@@ -13,7 +15,7 @@ Initializes input fields
 ----------------------------------------------------------------------*/
 function setInputFields()
   {
-	drawPerYear("peryear",1,11,1,null,null,0,adCompactness,adYearHeating,adYearCooling);
+	drawPerYear("peryear",1,9,1,null,null,0,adCompactness,adYearHeating,adYearCooling);
 	drawPerMonth("permonth",adMonthHeating,adMonthCooling,
 		    dComfortMinimum,dComfortMaximum,adExternalTemperature,adInternalTemperature);
 	 var input = document.getElementsByName("shadingE")[0];

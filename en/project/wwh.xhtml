@@ -11,8 +11,8 @@ Application: Comfort and Climate
 Platform   : XHTML 1.1
 Description: The air tightness page shows the effect of air change.
 ========================================================================
-Created    : 09.08.2012, Hartwig Thomas, Enter AG, Zurich
-Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
+Created    : 09.08.2015, Hartwig Thomas, Enter AG, Zurich
+Copyright  : 2016, Baumschlager Eberle, Vaduz, Liechtenstein
 ==================================================================== -->
   <head>
     <title>Warm Waterheating</title>
@@ -21,7 +21,7 @@ Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
     <!-- Global style sheet -->
 
      <!-- <link rel="stylesheet" type="text/css" href="../../candc.css" /> -->
-      <link rel="stylesheet" type="text/css" href="../../candc.css" />
+      <link rel="stylesheet" type="text/css" href="../../horizontalBarChart.css" />
 
     <!-- Constants declaration script -->
     <script type="text/javascript">
@@ -46,23 +46,38 @@ Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
           var bExpired = false;
           var sFreePages = "climate, dimension, compactness, orientation, construction, windowsfront, windowsleft, windowsback, windowsright";
   	      var dWarmwaterheating = 1;
-          		var dataArray1 = [
-		{"name":"1","value":"12"},
-		{"name":"2","value":"9.5"},
-		{"name":"3","value":"11.2"},
-		{"name":"4","value":"8"}, 
-		{"name":"5","value":"5"},
-		{"name":"6","value":"3"}
+          var dataArray1 = [
+			{"name":"1","value":"12"},
+			{"name":"2","value":"9.5"},
+			{"name":"3","value":"11.2"},
+			{"name":"4","value":"8"}, 
+			{"name":"5","value":"5"},
+			{"name":"6","value":"3"}
 		  ];
 		  var dataArray2 = [
-		{"name":"1","value":"3"},
-		{"name":"2","value":"13"},
-		{"name":"3","value":"6"},
-		{"name":"4","value":"12"}, 
-		{"name":"5","value":"13"},
-		{"name":"6","value":"7"}
-
-	  ];
+			{"name":"1","value":"3"},
+			{"name":"2","value":"13"},
+			{"name":"3","value":"6"},
+			{"name":"4","value":"12"}, 
+			{"name":"5","value":"13"},
+			{"name":"6","value":"7"}
+	  	  ];
+		  var dataArray3 = [
+ 			{"name":"1","value":"3"},
+ 			{"name":"2","value":"13"},
+ 			{"name":"3","value":"6"},
+ 			{"name":"4","value":"12"}, 
+ 			{"name":"5","value":"13"},
+ 			{"name":"6","value":"7"}
+ 	  	  ];
+		  var dataArray4 = [
+   			{"name":"1","value":"3"},
+   			{"name":"2","value":"13"},
+   			{"name":"3","value":"6"},
+   			{"name":"4","value":"12"}, 
+   			{"name":"5","value":"13"},
+   			{"name":"6","value":"7"}
+   	  	  ];
           //]]>
       </script>
       <!-- Global initialization script -->
@@ -72,6 +87,7 @@ Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
     
 body {
   font: 14px sans-serif;
+  font-family: Arial, Verdana, Helvetica, sans-serif !important;
 }
 .bar {
   fill: steelblue;
@@ -152,6 +168,7 @@ body {
           <td width="32%"><p>Comfort and Climate - <strong>Horizontal Bar Chart</strong> <a href="http://info.comfortandclimate.com/?p=44" onclick="window.open(this.href,'_blank');return false;"><img src="../../images/info.png"/></a></p></td>
           <td width="33%"><p id="projectname">Project: </p></td>
           <td width="20%"><p id="username">User: </p></td>
+          <td><p><a href="../project/information/domestic_warm_water_heating_info.xhtml">Information</a></p></td>
           <td><p><a href="../preferences.xhtml">Preferences</a></p></td>
           <td><p><a href="../login.xhtml?logout=true">Log out</a></p></td>
         </tr></table>
@@ -161,28 +178,28 @@ body {
       <div id="content">
 		<br/>
         <button class="tile" onclick="selectWW(this,1);">
-          <p><img src="../../images/shading/none.png"/></p>
-          <p>no shading</p>
+          <p><img src="../../images/warmwater/Electricity.png"/></p>
+          <p>(1) Electric</p>
         </button>
         <button class="tile" onclick="selectWW(this,2);">
-          <p><img src="../../images/shading/25m.png"/></p>
-          <p>25 m</p>
+          <p><img src="../../images/warmwater/Boiler.png"/></p>
+          <p>(2) Gas</p>
         </button>
         <button class="tile" onclick="selectWW(this,3);">
-          <p><img src="../../images/shading/20m.png"/></p>
-          <p>20 m</p>
+          <p><img src="../../images/warmwater/Boiler2.png"/></p>
+          <p>(3) Room Heating</p>
         </button>
         <button class="tile" onclick="selectWW(this,4);">
-          <p><img src="../../images/shading/15m.png"/></p>
-          <p>15 m</p>
+          <p><img src="../../images/warmwater/Electricity+pv.png"/></p>
+          <p>(4) Electric + Solar</p>
         </button>
         <button class="tile" onclick="selectWW(this,5);">
-          <p><img src="../../images/shading/10m.png"/></p>
-          <p>10 m</p>
+          <p><img src="../../images/warmwater/Boiler+pv.png"/></p>
+          <p>(5) Gas + Solar</p>
         </button>
         <button class="tile" onclick="selectWW(this,6);">
-          <p><img src="../../images/shading/05m.png"/></p>
-          <p>5 m</p>
+          <p><img src="../../images/warmwater/Boiler2+pv.png"/></p>
+          <p>(6) Room Heating + Solar</p>
         </button>
 
       
@@ -199,6 +216,8 @@ body {
             <td><!-- monthly energy demand and temperature  -->
                 <div id="separatedChart1" style="display: inline; float: left"></div>
 				<div id="separatedChart2" style="display: inline; float: right"></div>
+				<div id="separatedChart3" style="display: inline; float: left"></div>
+				<div id="separatedChart4" style="display: inline; float: right"></div>
 			  </td>
           </tr>
         </table>

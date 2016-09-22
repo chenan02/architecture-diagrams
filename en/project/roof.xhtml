@@ -10,7 +10,13 @@ Application: Comfort and Climate
 Platform   : XHTML 1.1
 Description: The roof insulation page handles the roof insulation of a project.
 ========================================================================
-Created & Integrited  : Dean Wang
+2015-11-24 15:14:54Z DEAN AND MIN $
+Application: Comfort and Climate
+Platform   : XHTML 1.1
+Description: The air tightness page shows the effect of air change.
+========================================================================
+Created    : 09.08.2015, Hartwig Thomas,Dean Wong, MKIM, Enter AG, Zurich
+Copyright  : 2016, Baumschlager Eberle, Vaduz, Liechtenstein
 ==================================================================== -->
   <head>
     <title>Comfort and Climate: Roof</title>
@@ -261,6 +267,7 @@ var dYearHeating = 0.0;
           <td width="32%"><p>Comfort and Climate - <strong>Roof</strong> <a href="http://info.comfortandclimate.com/?p=36" onclick="window.open(this.href,'_blank');return false;"><img src="../../images/info.png"/></a></p></td>
           <td width="33%"><p id="projectname">Project: </p></td>
           <td width="20%"><p id="username">User: </p></td>
+          <td><p><a href="../project/information/roof_insulation_info.xhtml">Information</a></p></td>
           <td><p><a href="../preferences.xhtml">Preferences</a></p></td>
           <td><p><a href="../login.xhtml?logout=true">Log out</a></p></td>
         </tr></table>
@@ -270,36 +277,36 @@ var dYearHeating = 0.0;
       <div id="content">
         <br/>
         <button class="tile" onclick="select(this,0.10);">
-          <p><img src="../../images/insulation/U_Hor_0.10.png"/></p>
-          <p>0.10 W/K&middot;m&sup2;</p>
+          <p><img src="../../images/insulation/1_U01.png"/></p>
+          <p>(1) 0.10 [W/m²K]</p>
         </button>
         <button class="tile" onclick="select(this,0.15);">
-          <p><img src="../../images/insulation/U_Hor_0.15.png"/></p>
-          <p>0.15 W/K&middot;m&sup2;</p>
+          <p><img src="../../images/insulation/2_U015.png"/></p>
+          <p>(2) 0.15 [W/m²K]</p>
         </button>
         <button class="tile" onclick="select(this,0.18);">
-          <p><img src="../../images/insulation/U_Hor_0.20.png"/></p>
-          <p>0.18 W/K&middot;m&sup2;</p>
+          <p><img src="../../images/insulation/3_U018.png"/></p>
+          <p>(3) 0.18 [W/m²K]</p>
         </button>
         <button class="tile" onclick="select(this,0.20);">
-          <p><img src="../../images/insulation/U_Hor_0.20.png"/></p>
-          <p>0.20 W/K&middot;m&sup2;</p>
+          <p><img src="../../images/insulation/4_U02.png"/></p>
+          <p>(4) 0.20 [W/m²K]</p>
         </button>
         <button class="tile" onclick="select(this,0.25);">
-          <p><img src="../../images/insulation/U_Hor_0.25.png"/></p>
-          <p>0.25 W/K&middot;m&sup2;</p>
+          <p><img src="../../images/insulation/5_U025.png"/></p>
+          <p>(5) 0.25 [W/m²K]</p>
         </button>
         <button class="tile" onclick="select(this,0.30);">
-          <p><img src="../../images/insulation/U_Hor_0.30.png"/></p>
-          <p>0.30 W/K&middot;m&sup2;</p>
+          <p><img src="../../images/insulation/6_U03.png"/></p>
+          <p>(6) 0.30 [W/m²K]</p>
         </button>
         <button class="tile" onclick="select(this,0.50);">
-          <p><img src="../../images/insulation/U_Hor_0.30.png"/></p>
-          <p>0.50 W/K&middot;m&sup2;</p>
+          <p><img src="../../images/insulation/7_U05.png"/></p>
+          <p>(7) 0.50 [W/m²K]</p>
         </button>
         <button class="tile" onclick="select(this,0.80);">
-          <p><img src="../../images/insulation/U_Hor_0.80.png"/></p>
-          <p>0.80 W/K&middot;m&sup2;</p>
+          <p><img src="../../images/insulation/8_U08.png"/></p>
+          <p>(8) 0.80 [W/m²K]</p>
         </button>
         <form action="roof.xhtml" method="get" onsubmit="return validate();">
           <br/>

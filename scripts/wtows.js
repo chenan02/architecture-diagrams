@@ -1,11 +1,12 @@
 /*== wtows.js ===================================================
 Implements the initialization of wtown.xhtml.
-Version    : $Id: wtows.js 2337 2012-09-20 15:14:54Z hartwig $
+Version    : $Id: wtows.js 2337 2015-11-18 15:34:03Z DEAN AND MIN $
 Application: Comfort and Climate
 Platform   : JavaScript 5, DOM
 Description: distributes app data into XHTML.
 ========================================================================
-Created    : 25.07.2012, Hartwig Thomas, Enter AG, Zurich
+Created    : 23.07.2012, DEAN WONG, MKIM, Enter AG, Zurich
+Copyright  : 2015, Baumschlager Eberle, Vaduz, Liechtenstein
 ======================================================================*/
 
 /*----------------------------------------------------------------------

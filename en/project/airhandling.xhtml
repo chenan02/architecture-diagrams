@@ -6,13 +6,13 @@
                       http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
 <!-- airtightness.xhtml ================================================
 Air tightness page for Comfort and Climate
-Version    : $Id: airtightness.xhtml 2337 2012-09-20 15:14:54Z hartwig $
+Version    : $Id: airhandling.xhtml 2337 2015-11-24 15:14:54Z DEAN AND MIN $
 Application: Comfort and Climate
 Platform   : XHTML 1.1
-Description: The air tightness page shows the effect of air change.
+Description: The air handling page shows the effect of air change.
 ========================================================================
-Created    : 09.08.2012, Hartwig Thomas, Enter AG, Zurich
-Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
+Created    : 09.08.2015, Hartwig Thomas,Dean Wong, MKIM, Enter AG, Zurich
+Copyright  : 2016, Baumschlager Eberle, Vaduz, Liechtenstein
 ==================================================================== -->
   <head>
     <title>Comfort and Climate: Air Handling</title>
@@ -21,8 +21,7 @@ Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
     <!-- Global style sheet -->
 
      <!-- <link rel="stylesheet" type="text/css" href="../../candc.css" /> -->
-      <link rel="stylesheet" type="text/css" href="../../candc.css" />
-      <link rel="stylesheet" type="text/css" href="../../airHandling.css" />
+      <link rel="stylesheet" type="text/css" href="../../horizontalBarChart.css" />
 
     <!-- Constants declaration script -->
     <script type="text/javascript">
@@ -105,10 +104,10 @@ Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
     <div id="main">
       <div id="header">
         <table width="100%"><tr>
-          <td width="32%"><p>Comfort and Climate - <strong>Horizontal Bar Chart</strong> <a href="http://info.comfortandclimate.com/?p=44" onclick="window.open(this.href,'_blank');return false;"><img src="../../images/info.png"/></a></p></td>
+          <td width="32%"><p>Comfort and Climate - <strong>Air Handling</strong> <a href="http://info.comfortandclimate.com/?p=44" onclick="window.open(this.href,'_blank');return false;"><img src="../../images/info.png"/></a></p></td>
           <td width="33%"><p id="projectname">Project: </p></td>
           <td width="20%"><p id="username">User: </p></td>
-          <td><p><a href="../information.xhtml">Information</a></p></td>
+          <td><p><a href="../project//information/airhandling_info.xhtml">Information</a></p></td>
           <td><p><a href="../preferences.xhtml">Preferences</a></p></td>
           <td><p><a href="../login.xhtml?logout=true">Log out</a></p></td>
         </tr></table>
@@ -118,24 +117,27 @@ Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
       <div id="content">
 		<br/>
         <button class="tile" onclick="selectAH(this,1);">
-          <p><img src="../../images/shading/none.png"/></p>
-          <p>1</p>
+          <p><img src="../../images/airhandling/controlled-nat-vent.png"/></p>
+          <p>(1) Natural Ventilation</p>
         </button>
         <button class="tile" onclick="selectAH(this,2);">
-          <p><img src="../../images/shading/25m.png"/></p>
-          <p>2</p>
+          <p><img src="../../images/airhandling/controlled-nat-vent.png"/></p>
+          <p>(2) Controlled Natural Ventilation</p>
         </button>
         <button class="tile" onclick="selectAH(this,3);">
-          <p><img src="../../images/shading/20m.png"/></p>
-          <p>3</p>
+          <p><img src="../../images/airhandling/1_no-heat-recovery.png"/></p>
+          <p>(3) Mech Vent</p>
+          <p>No Heat Rec</p>
         </button>
         <button class="tile" onclick="selectAH(this,4);">
-          <p><img src="../../images/shading/15m.png"/></p>
-          <p>4</p>
+          <p><img src="../../images/airhandling/2_with-heat-recovery.png"/></p>
+          <p>(4) Mech Vent</p>
+          <p>Heat Recovery</p>
         </button>
           <button class="tile" onclick="selectAH(this,5);">
-          <p><img src="../../images/shading/10m.png"/></p>
-          <p>5</p>
+          <p><img src="../../images/airhandling/1_energy-exchanger.png"/></p>
+          <p>(5) Mech Vent</p>
+          <p>Energy Exch</p>
         </button>
  <!--  <button class="tile" onclick="fill(5);">
           <p><img src="../../images/shading/05m.png"/></p>

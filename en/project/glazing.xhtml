@@ -10,14 +10,19 @@ Application: Comfort and Climate
 Platform   : XHTML 1.1
 Description: The construction page shows the effect of construction parameters.
 ========================================================================
-Created & Integrited  : Dean Wang
+2015-11-24 15:14:54Z DEAN AND MIN $
+Application: Comfort and Climate
+Platform   : XHTML 1.1
+========================================================================
+Created    : 09.08.2015, Hartwig Thomas,Dean Wong, MKIM, Enter AG, Zurich
+Copyright  : 2016, Baumschlager Eberle, Vaduz, Liechtenstein
 ==================================================================== -->
   <head>
     <title>Comfort and Climate: Glazing</title>
     <!-- Content type and character set -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <!-- Global style sheet -->
-    <link rel="stylesheet" type="text/css" href="../../candc.css" />
+    <link rel="stylesheet" type="text/css" href="../../candc_glazing.css" />
     <!-- Constants declaration script -->
     <script type="text/javascript">
       //<![CDATA[
@@ -265,6 +270,7 @@ Created & Integrited  : Dean Wang
           <td width="32%"><p>Comfort and Climate - <strong>Glazing</strong> <a href="http://info.comfortandclimate.com/?p=26" onclick="window.open(this.href,'_blank');return false;"><img src="../../images/info.png"/></a></p></td>
           <td width="33%"><p id="projectname">Project: </p></td>
           <td width="20%"><p id="username">User: </p></td>
+          <td><p><a href="../project/information/glazing_type_info.xhtml">Information</a></p></td>	
           <td><p><a href="../preferences.xhtml">Preferences</a></p></td>
           <td><p><a href="../login.xhtml?logout=true">Log out</a></p></td>
         </tr></table>
@@ -274,37 +280,45 @@ Created & Integrited  : Dean Wang
       <div id="content">
         <br/>
         <button class="tile" onclick="selectGlazing(this,1);">
-          <p><img src="../../images/construction/light.png"/></p>
-          <p>timber, 8cm</p>
+          <p><img src="../../images/glazing/1_single.png"/></p>
+          <p>(1)U-Value 5.2[W/m²K]</p>
+          <p>    SHGC,0.82[-]</p>
         </button>
         <button class="tile" onclick="selectGlazing(this,2);">
-          <p><img src="../../images/construction/medium.png"/></p>
-          <p>brick, 9cm</p>
+          <p><img src="../../images/construction/2_heat-protection.png"/></p>
+          <p>(2)U-Value 2.8[W/m²K]</p>
+          <p>    SHGC,0.78[-]</p>
         </button>
         <button class="tile" onclick="selectGlazing(this,3);">
-          <p><img src="../../images/construction/heavy1.png"/></p>
-          <p>concrete, 10cm</p>
+          <p><img src="../../images/construction/3_sun-protection.png"/></p>
+          <p>(3)U-Value 1.2[W/m²K]</p>
+          <p>    SHGC,0.62[-]</p>
         </button>
         <button class="tile" onclick="selectGlazing(this,4);">
-          <p><img src="../../images/construction/heavy2.png"/></p>
-          <p>concrete, 11cm</p>
+          <p><img src="../../images/construction/5_double.png"/></p>
+          <p>(4)U-Value 2.8[W/m²K]</p>
+          <p>    SHGC,0.3[-]</p>
         </button>
         <button class="tile" onclick="selectGlazing(this,5);">
-          <p><img src="../../images/construction/light.png"/></p>
-          <p>timber, 8cm</p>
+          <p><img src="../../images/construction/5_double.png"/></p>
+          <p>(5)U-Value 1.6[W/m²K]</p>
+          <p>    SHGC,0.34[-]</p>
         </button>
         <button class="tile" onclick="selectGlazing(this,6);">
-          <p><img src="../../images/construction/medium.png"/></p>
-          <p>brick, 9cm</p>
+          <p><img src="../../images/construction/6_double-no-coating.png"/></p>
+          <p>(6)U-Value 1.7[W/m²K]</p>
+          <p>    SHGC,0.72[-]</p>
         </button>
         <button class="tile" onclick="selectGlazing(this,7);">
-          <p><img src="../../images/construction/heavy1.png"/></p>
-          <p>concrete, 10cm</p>
+          <p><img src="../../images/construction/4_triple.png"/></p>
+          <p>(7)U-Value 0.6[W/m²K]</p>
+          <p>    SHGC,0.39[-]</p>
         </button>
         <button class="tile" onclick="selectGlazing(this,8);">
-          <p><img src="../../images/construction/heavy2.png"/></p>
-          <p>concrete, 11cm</p>
-        </button>
+          <p><img src="../../images/construction/4_triple.png"/></p>
+          <p>(8)U-Value 0.6[W/m²K]</p>
+          <p>    SHGC,0.55[-]</p>
+          </button>
         <form action="glazing.xhtml" method="get" onsubmit="return validate();">
          <br/>
 	          <p>

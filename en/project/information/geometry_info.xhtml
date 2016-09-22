@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.w3.org/1999/xhtml
+                      http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
+
+<head>
+	<title>Geometry Info</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+	<style>
+		div.title {
+			font-family: arial;
+			font-size: 140%;
+			border-bottom-style: dotted;
+			border-bottom-color: grey;
+			border-bottom-width: 1px;
+		}
+
+		div.subtitle {
+			font-family: arial;
+			font-size: 105%;
+		}
+
+		div.break-line {
+			border-bottom-style: dotted;
+			border-bottom-color: grey;
+			border-bottom-width: 1px;
+		}
+
+		div.disclaimer {
+			font-family: arial;
+			line-height: 20%;
+		}
+
+		div.heading {
+			font-family: arial;
+			text-decoration: underline;
+		}
+
+		div.heading-content {
+			font-family: arial;
+			padding-left: 20px;
+			margin-top: -10px;
+		}
+
+		div.subheading {
+			font-family: arial;
+			font-size: 110%;
+			padding-left: 20px;
+			line-height: 50%;
+		}
+
+		div.subheading-content {
+			font-family: arial;
+			padding-left: 40px;
+			margin-top: -10px;
+		}
+
+		div.subheading-content p {
+			margin: 5px;
+		}
+
+		div.image img {
+			max-height: 500px;
+			max-width: 577px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="title">
+		<h1>Geometry Information</h1>
+	</div>
+	<div class="heading">
+		<h2>Volume:</h2>
+	</div>
+	<div class="heading-content">
+		<p>Volume of conditioned space in m<sup>3</sup>. The volume includes the construction (walls) of the building</p>
+	</div>
+	<div class="heading">
+		<h2>Area:</h2>
+	</div>
+	<div class="heading-content">
+		<p>Gross floor area of the conditioned space in m<sup>2</sup></p>
+	</div>
+	<div class="heading">
+		<h2>Number of floors:</h2>
+	</div>
+	<div class="heading-content">
+		<p>The total number of floors of the conditioned space</p>
+	</div>
+	<div class="heading">
+		<h2>Building height:</h2>
+	</div>
+	<div class="heading-content">
+		<p>The height of the building (conditioned space only). The number is needed for the estimation of the energy demand for ventilation</p>
+	</div>
+	<div class="heading">
+		<h2>Wall area:</h2>
+	</div>
+	<div class="heading-content">
+		<p>The total area of the external wall faced to the given orientation (in m<sup>2</sup>). Area includes the window area</p>
+	</div>
+	<div class="heading">
+		<h2>Window to wall ratio:</h2>
+	</div>
+	<div class="heading-content">
+		<p>The percentage of the window area in the wall area. 100% means that the wall is completely glazed</p>
+	</div>
+	<div class="heading">
+		<h2>Window area:</h2>
+	</div>
+	<div class="heading-content">
+		<p>Area of the window in the wall faced to a given orientation. The area is calculated automatically by the tool</p>
+	</div>
+	<div class="heading">
+		<h2>Roof area:</h2>
+	</div>
+	<div class="heading-content">
+		<p>Area of the roof in m<sup>2</sup></p>
+	</div>
+	<div class="heading">
+		<h2>Floor area:</h2>
+	</div>
+	<div class="heading-content">
+		<p>Area of the floor in m<sup>2</sup></p>
+	</div>
+	<div class="heading">
+		<h2>Floor adjacent:</h2>
+	</div>
+	<div class="heading-content">
+		<p>User can define the adjacency of the floor</p>
+		<ul>
+			<li><i>“To ground” means that the floor is adjacent to the ground. The tool calculates the ground temperature at a depth of 2 meters</i></li>
+			<li><i>“To Unheated space” means that the floor is adjacent to an unconditioned space like an attic. A reduction factor is taken into account to reduce the temperature difference between the internal and external</i></li>
+			<li><i>”To external” means the floor is exposed to the external</i></li>
+		</ul>
+	</div>
+	<div class="heading">
+		<h2>Roof adjacency:</h2>
+	</div>
+	<div class="heading-content">
+		<p>User can define the adjacency of the roof</p>
+		<ul>
+			<li><i>”To external” means the roof is exposed to the external</i></li>
+			<li><i>“To Unheated space” means that the floor is adjacent to an unconditioned space like an attic. A reduction factor is taken into account to reduce the temperature difference between the internal and external</i></li>
+		</ul>
+	</div>
+	<div class="break-line"></div>
+	<div class="image">
+		<img src="input dimension1.jpg"></img>
+		<img src="input dimension2.jpg"></img>
+	</div>
+	<div class="subtitle">
+		<h4><i>NOTE: The illustration shows that the “external” dimensions should be used for the area definition</i></h4>
+	</div> 
+	<div class="break-line"></div>
+	<div class="image">
+		<img src="input dimension3.jpg"></img>
+	</div>
+	<div class="subtitle">
+		<h4><i>Definition of the window area</i></h4>
+	</div>
+	<div class="break-line"></div>
+	<div class="image">
+		<img src="RecOrientation.jpg"></img>
+	</div>
+	<div class="subtitle">
+		<h4><i>NOTE: The diagram shows how to define the façade area different type of buildings</i></h4>
+	</div>
+	
+</body>
+</html>

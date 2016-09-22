@@ -1,12 +1,12 @@
 /*== diagrams.js =========================================================
 Implements the SVG diagrams.
-Version    : $Id: diagrams.js 2337 2012-09-20 15:14:54Z hartwig $
+Version    : $Id: diagrams.js 2337 2015-11-18 15:34:03Z DEAN AND MIN $
 Application: Comfort and Climate
 Platform   : JavaScript 5, DOM
-Description: implements the SVG diagrams.
+Description: distributes app data into XHTML.
 ========================================================================
-Created    : 21.08.2012, Hartwig Thomas, Enter AG, Zurich
-Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
+Created    : 23.07.2012, DEAN WONG, MKIM, Enter AG, Zurich
+Copyright  : 2015, Baumschlager Eberle, Vaduz, Liechtenstein
 ======================================================================*/
 var g_sNsSvg = "http://www.w3.org/2000/svg";
 var g_sNsXLink = "http://www.w3.org/1999/xlink"

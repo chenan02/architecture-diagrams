@@ -9,8 +9,11 @@ Construction page for Comfort and Climate
 Application: Comfort and Climate
 Platform   : XHTML 1.1
 Description: The construction page shows the effect of construction parameters.
+2015-11-24 15:14:54Z DEAN AND MIN $
+Application: Comfort and Climate
 ========================================================================
-Created & Integrited  : Dean Wang
+Created    : 09.08.2015, Hartwig Thomas,Dean Wong, MKIM, Enter AG, Zurich
+Copyright  : 2016, Baumschlager Eberle, Vaduz, Liechtenstein
 ==================================================================== -->
   <head>
     <title>Comfort and Climate: Construction</title>
@@ -217,6 +220,11 @@ Created & Integrited  : Dean Wang
     <script src="../../scripts/diagrams.js" type="text/javascript"></script>
     <!-- Data handling script -->
     <script src="../../scripts/construction.js" type="text/javascript"></script>
+    <style>
+    	#saveConstruction{
+    		display: none;
+    	}
+    </style>
   </head>
   <body onload="onLoad();">
     <div id="logo">
@@ -266,6 +274,7 @@ Created & Integrited  : Dean Wang
           <td width="32%"><p>Comfort and Climate - <strong>Construction</strong> <a href="http://info.comfortandclimate.com/?p=26" onclick="window.open(this.href,'_blank');return false;"><img src="../../images/info.png"/></a></p></td>
           <td width="33%"><p id="projectname">Project: </p></td>
           <td width="20%"><p id="username">User: </p></td>
+          <td><p><a href="../project//information/construction_info.xhtml">Information</a></p></td>
           <td><p><a href="../preferences.xhtml">Preferences</a></p></td>
           <td><p><a href="../login.xhtml?logout=true">Log out</a></p></td>
         </tr></table>
@@ -275,33 +284,33 @@ Created & Integrited  : Dean Wang
       <div id="content">
         <br/>
         <button class="tile" onclick="selectConstruction(this,1);">
-          <p><img src="../../images/construction/light.png"/></p>
-          <p>timber, 8cm</p>
+          <p><img src="../../images/construction/1_light.png"/></p>
+          <p>(1) Light</p>
         </button>
         <button class="tile" onclick="selectConstruction(this,2);">
-          <p><img src="../../images/construction/medium.png"/></p>
-          <p>brick, 9cm</p>
+          <p><img src="../../images/construction/2_medium.png"/></p>
+          <p>(2) Medium</p>
         </button>
         <button class="tile" onclick="selectConstruction(this,3);">
-          <p><img src="../../images/construction/heavy1.png"/></p>
-          <p>concrete, 10cm</p>
+          <p><img src="../../images/construction/3_heavy.png"/></p>
+          <p>(3) Heavy I</p>
         </button>
         <button class="tile" onclick="selectConstruction(this,4);">
-          <p><img src="../../images/construction/heavy2.png"/></p>
-          <p>concrete, 11cm</p>
+          <p><img src="../../images/construction/4_very-heavy.png"/></p>
+          <p>(3) Heavy II</p>
         </button>
         <form action="construction.xhtml" method="get">
           <p><input name="projectgeneration" type="hidden" value="-1"/><br/></p>
           <table>
-            <tr><td align="right"><p>TS_DENSITY: </p></td><td><p><label name="tsDensity" type="text"/></p></td></tr>
-            <tr><td align="right"><p>TS_C: </p></td><td><p><label name="tsC" type="text"/></p></td></tr>
-            <tr><td align="right"><p>TS_THICKNESS: </p></td><td><p><label name="tsThickness" type="text"/></p></td></tr>
-            <tr><td align="right"><p>TS_K: </p></td><td><p><label name="tsK" type="text"/></p></td></tr>
+            <tr><td align="right"><p>Density: </p></td><td><p><label name="tsDensity" type="text"/></p></td></tr>
+            <tr><td align="right"><p>Heat Capacity: </p></td><td><p><label name="tsC" type="text"/></p></td></tr>
+            <tr><td align="right"><p>Thickness: </p></td><td><p><label name="tsThickness" type="text"/></p></td></tr>
+            <tr><td align="right"><p>Conductivity: </p></td><td><p><label name="tsK" type="text"/></p></td></tr>
             <input name="tsDensity1" type="hidden"/>
             <input name="tsC1" type="hidden"/>
             <input name="tsThickness1" type="hidden"/>
             <input name="tsK1" type="hidden"/>
-            <input name="save" type="submit" value="Enter" title="Save Construction"/>
+            <input id="saveConstruction" name="save" type="submit" value="Enter" title="Save Construction"/>
           </table>
           <br/>
         </form>

@@ -1,12 +1,12 @@
 /*== diagrams.js =========================================================
 Implements the SVG diagrams.
-Version    : $Id: diagrams.js 2337 2012-09-20 15:14:54Z hartwig $
+Version    : $Id: diagrams.js 2337 2015-11-18 15:34:03Z DEAN AND MIN $
 Application: Comfort and Climate
 Platform   : JavaScript 5, DOM
-Description: implements the SVG diagrams.
+Description: distributes app data into XHTML.
 ========================================================================
-Created    : 21.08.2012, Hartwig Thomas, Enter AG, Zurich
-Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
+Created    : 23.07.2015, DEAN WONG, MKIM, Enter AG, Zurich
+Copyright  : 2016, Baumschlager Eberle, Vaduz, Liechtenstein
 ======================================================================*/
 var g_sNsSvg = "http://www.w3.org/2000/svg";
 var g_sNsXLink = "http://www.w3.org/1999/xlink"
@@ -35,7 +35,7 @@ var sCLIP_PATH_ENERGY = "clipenergy";
 var sCLIP_RECT_ENERGY = "cliprectenergy";
 var sCLIP_PATH_TEMPERATURE = "cliptemperature";
 var sCLIP_RECT_TEMPERATURE = "cliprecttemperature";
-var asMONTH_LABEL = ["Jan","Feb","Mar","Apr","May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+var asMONTH_LABEL = ["Jan","Feb","Mar","Apr","May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dez"];
 
 function getPixelsFromPoints(iPoints)
 {
@@ -149,6 +149,7 @@ function getText_XAxis(dX, dY, sText, sClass)
     text.appendChild(document.createTextNode(sText-1));
   return g;
 }; /* getText */
+
 
 /*----------------------------------------------------------------------
 return a graphic element containing a rectangle legend with base line on dY
@@ -361,7 +362,6 @@ function getAxisX(dMinX, dMaxX, dMinY, dMaxY, dLabelDx, asLabel, adLabel)
     var dLineHeight = -getPixelsFromPoints(iLINE_HEIGHT_SMALL)/g_dScaleY;
     var dOffsetY = dTickLength+dLineHeight;
     var iLabel = 0;
-      //////////////////CHANGED HERE///////////////////
     for(var dX = dMinX - dMinX % dLabelDx; dX <= dMaxX; dX += dLabelDx)
     {
       if (dX >= dMinX)
@@ -378,10 +378,7 @@ function getAxisX(dMinX, dMaxX, dMinY, dMaxY, dLabelDx, asLabel, adLabel)
             if (iLabel < asLabel.length)
               g.appendChild(getText(dX+0.5*dLabelDx,dMinY-dOffsetY,asLabel[iLabel],"xlabel"));
           }
-          else
-/////////////////////////////////////////////////////////
-//////////////////////CHANGED HERE///////////////////////      /////////////////////////////////////////////////////////
-
+          else 
             g.appendChild(getText_XAxis(dX,dMinY-dOffsetY,sLabel,"xlabel"));
           
         }
@@ -580,9 +577,10 @@ function drawPerYearDiagram(svg,
   gDiagram.appendChild(getEnergyAxisY(dMinX, dMaxX, dMinY, dMaxY, dLabelDy));
   /* draw selection graph using dSelectedX, unless it is null */
   if (dSelectedX != null)
-    gDiagram.appendChild(getSelectionX(dMinX, dMaxX, dMinY, dMaxY, dSelectedX));
+    //gDiagram.appendChild(getSelectionX(dMinX, dMaxX, dMinY, dMaxY, dSelectedX));
   /* finally draw the values */
-  gDiagram.appendChild(getYearEnergyValues(dMinX, dMaxX, dMinY, dMaxY, adYearX, adYearHeating, adYearCooling));
+    gDiagram.appendChild(getYearEnergyValues(dMinX, dMaxX, dMinY, dMaxY, adYearX, adYearHeating, adYearCooling));
+    gDiagram.appendChild(getYearEnergyValues(dMinX, dMaxX, dMinY, dMaxY, adYearX, adYearHeating, adYearCooling));
 } /* drawPerYearDiagram */
 
 /*----------------------------------------------------------------------
@@ -637,6 +635,7 @@ Draw the diagram for energy demand per year
 function drawPerYear(sId,dMinX, dMaxX, dLabelDx, asYearLabel, adYearLabel, 
     dSelectedX, adYearX, adYearHeating, adYearCooling)
 {
+  dMaxX += 1;
   var svg = document.getElementById(sId);
   var iDiagramWidth = svg.getAttribute("width");
   var iDiagramHeight = svg.getAttribute("height");
@@ -948,7 +947,13 @@ function drawTemperatureDiagram(svg,
   gDiagram.setAttribute("transform",getTransform(dPixelMinX,dPixelMaxX,dPixelMinY,dPixelMaxY,
       dMinX, dMaxX, dMinY, dMaxY));
   /* append clipping rectangle */
-  gDiagram.appendChild(getClipDefs(dMinX, dMaxX, dMinY, dMaxY, sCLIP_PATH_TEMPERATURE, sCLIP_RECT_TEMPERATURE));
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+  //gDiagram.appendChild(getClipDefs(dMinX, dMaxX, dMinY, dMaxY, sCLIP_PATH_TEMPERATURE, sCLIP_RECT_TEMPERATURE));
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
   /* inside the diagram display the clipping rectangle */
   /***
   var use = document.createElementNS(g_sNsSvg,"use");
@@ -956,7 +961,7 @@ function drawTemperatureDiagram(svg,
   gDiagram.appendChild(use);
   ***/
   /* draw the right Y axis and label it */
-  //gDiagram.appendChild(getTemperatureAxisY(dMinX, dMaxX, dMinY, dMaxY, dLabelDy));
+  gDiagram.appendChild(getTemperatureAxisY(dMinX, dMaxX, dMinY, dMaxY, dLabelDy));
   /* draw the comfort band */
   gDiagram.appendChild(getComfortBand(dMinX, dMaxX, dMinComfort, dMaxComfort));
   /* draw the temperature values */
@@ -977,10 +982,10 @@ function drawPerMonthLegend(svg,iDiagramWidth,iDiagramHeight)
   var dMiddle = 0.5*iDiagramWidth;
   var dY = iDiagramHeight - iOffset - 2*iLineHeight;
   //svg.appendChild(getRectLegend(iOffset,dY,"Heating Energy","heating"));
-  svg.appendChild(getLineLegend(dMiddle,dY,"External Temperature", "exttemp"));
+  svg.appendChild(getLineLegend(iOffset,dY,"External Temperature", "exttemp"));
   var dY = iDiagramHeight - iOffset - iLineHeight;
   //svg.appendChild(getRectLegend(iOffset,dY,"Cooling Energy","cooling"));
-  svg.appendChild(getLineLegend(dMiddle,dY,"Internal Temperature", "inttemp"));
+  svg.appendChild(getLineLegend(iOffset,dY,"Internal Temperature", "inttemp"));
   var dY = iDiagramHeight - iOffset;
   svg.appendChild(getRectLegend(iOffset,dY,"Comfort Band","comfort"));
   return iOffset + 3*iLineHeight;
@@ -991,7 +996,11 @@ Add Title and Subtitle to per month diagram.
 @param svg SVG container
 @param iDiagramWidth width of the diagram (in pixels).
 @param iDiagramHeight height of the diagram (in pixels).
- ---------------------------------------------------------------------*/
+ ---------------------------------------------------------------------
+
+/// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+*/
 function drawPerMonthTitle(svg,iDiagramWidth,iDiagramHeight)
 {
   /* line-height in pixels */
@@ -1004,6 +1013,10 @@ function drawPerMonthTitle(svg,iDiagramWidth,iDiagramHeight)
   return iOffset+3*iLineHeight;
 }; /* drawPerMonthTitle */
 
+
+/// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 /*----------------------------------------------------------------------
 Draw the diagram for energy demand and min/max temperature per year
 @param adMonthHeating array of y values representing the yearly energy demand for heating.
@@ -1012,7 +1025,12 @@ Draw the diagram for energy demand and min/max temperature per year
 @param dMaxComfort maximum comfort temperature.
 @param adExternalTemperature array of y values representing the external daily average temperature.
 @param adInternalTemperature array of y values representing the internal daily average (idling) temperature.
- ---------------------------------------------------------------------*/
+ ---------------------------------------------------------------------
+*/
+
+
+///// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 function drawPerMonth(sId,adMonthHeating,adMonthCooling,dMinComfort,dMaxComfort,adExternalTemperature,adInternalTemperature)
 {
   var svg = document.getElementById(sId);
@@ -1045,3 +1063,106 @@ function drawPerMonth(sId,adMonthHeating,adMonthCooling,dMinComfort,dMaxComfort,
       0, 12, dMIN_TEMPERATURE_PER_MONTH, dMAX_TEMPERATURE_PER_MONTH, dLABEL_TEMPERATURE_PER_MONTH, 
       dMinComfort, dMaxComfort, adExternalTemperature, adInternalTemperature);
 }; /* drawPerMonth */
+
+///// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+/*
+function getSensitivityAxisY() {};
+function getSensitivityValues(dMinX, dMaxX, dMinY, dMaxY, adSensitivityData) {
+    var dStrokeWidth = 0.5/Math.abs(g_dScaleY);
+    var g = document.createElementNS(g_sNsSvg,"g");
+    var plMin = document.createElementNS(g_sNsSvg, "polyline");
+    var sPoints = "";
+    for (var iDay = 0; iDay < adSensitivityData.length; iDay++) {
+        var dX = 12*(iDay+0.5)/adSensitivityData.length;
+        var dY = adSensitivityData[iDay];
+        if (iDay > 0)
+            sPoints = sPoints + " ";
+        sPoints = sPoints + dX + ", " + dY;
+    }
+    plMin.setAttribute("class","dataname");
+    plMin.setAttribute("points",sPoints);
+    g.appendChild(plMin);
+    var plMax = document.createElementNS(g_sNsSvg,"polyline");
+    sPoints = "";
+    for(var iDay = 0; iDay < adSensitivityData.length; iDay++) {
+        var dX = 12*(iDay+0.5)/adSensitivityData.length;
+        var dY = adSensitivityData[iDay];
+        if (iDay > 0)
+            sPoints = sPoints + " ";
+        sPoints = sPoints + dX + ", " + dY;
+    }
+    plMax.setAttribute("class","otherdataname");
+    plMax.setAttribute("points",sPoints);
+    plMax.style.strokeWidth = dStrokeWidth;
+    g.style.clipPath = "url(#"+sCLIP_PATH_SENSITIVITY+")";
+    g.appendChild(plMax);
+    return g;
+};
+
+function drawSensitivityTitle(svg, iDiagramWidth, iDiagramHeight) {
+    var iLineHeight = getPixelsFromPoints(iLINE_HEIGHT_NORMAL);
+    var iOffset = getPixelsFromMm(1);
+    svg.appendChild(getText(iOffset, iOffset+iLineHeight,"Sensitivity Data","title"));
+    svg.appendChild(getText(iDiagramWidh0iOffset, iOffset+iLineHeight,"blahblahblah"));
+    return iOffset+3*iLineHeight;
+};
+
+function drawSensitivityLegend(svg, iDiagramWidth, iDiaramHeight) {
+    var iLineHeight = getPixelsFromPoints(iLINE_HEIGHT_NORMAL);
+    var iOffset = getPixelsFromMm(1);
+    var dMiddle = 0.5*iDiagramWidth;
+    var dY = iDiagramHeight - iOffset - 2*iLineHeight;
+    svg.appendChild(getLineLegend(iOffset,dY,"Legend Stuff", "data"));
+    var dY = iDiagramHeight - iOffset - iLineHeight;
+    svg.appendChild(getLineLegend(iOffset,dY,"More legend stuff", "data"));
+    return iOffset + 3*iLineHeight;
+};
+
+function drawSensitivityStudyDiagram(svg, dPixelMinX, dPixelMaxX, dPixelMinY, dPixelMaxY, dMinX, dMaxX, dMinY, dMaxY, dLavelDy, adSensitivity) {
+    var gDiagram = document.createElementNS(g_sNsSvg,"g");
+    svg.appendChild(gDiagram);
+    gDiagram.setAttribute("transform",getTransform(dPixelMinX,dPixelMaxX,dPixelMinY,dPixelMaxY,dMinX,dMaxX,dMinY,dMaxY, adSensitivity));
+    gDiagram.appendChild(getClipDefs(dMinX, dMaxX, dMinY, dMaxY, sCLIP_PATH_SENSITIVITY, sCLIP_RECT_SENSITIVITY));
+    gDiagram.appendChild(getSensitivityAxisY(dMinX, dMaxX, dMinY, dMaxY, dLavelDy));
+    gDiagram.appendChild(getSensitivityValues(dMinX, dMaxX, dMinY, dMaxY, adSensitivity));
+};
+
+function drawSensitivityData(svg, dPixelMinX, dPixelMaxX, dPixelMinY, dPixelMaxY, dMinX, dMaxX, dMinY, dMaxY, dLavelDy, adSensitivityData) {
+    var gDiagram = document.createElementNS(g_sNsSvg, "g");
+    svg.appendChild(gDiagram);
+    gDiagram.setAttribute("transform",getTransform(dPixelMinX,dPixelMaxX,dPixelMinY,dPixelMaxY,dMinX,dMaxX,dMinY, dMaxY));
+    gDiagram.appendChild(getClipDefs(dMinX, dMaxX, dMinY, dMaxY, sCLIP_PATH_SENSITIVITY, sCLIP_RECT_SENSITIVITY));
+    gDiagram.appendChild(getSensitivityAxisY(dMinX, dMaxX, dMinY, dMaxY, dLabelDy));
+    gDiagram.appendChild(getSensitivityValues(dMinX, dMaxX, dMinY, dMaxY, adSensitivityData, ad SensitivityData));
+};
+
+function drawSensitivityStudy(sId,adSensitivityData)
+{
+    var svg = document.getElementById(sId);
+    var iDiagramWidth = svg.getAttribute("width");
+    var iDiagramWidth = svg.getAttribute("height");
+*/
+    /* delete its contents */
+/*
+    while (svg.hasChildNodes())
+        svg.removeChild(svg.lastChild);
+    g_dScaleX = 1.0;
+    g_dScaleY = 1.0;
+    var iDiagramTitleHeight = drawSensitivityTitle(svvg,iDiagramWidth,iDiagramHeight);
+    var iDiagramLegendHeight = drawSensitivityLegend(svg,iDiagramWidth,iDiagramHeight);
+    var dPixelMinX = iDiagramWidth*0.1;
+    var dPixelMaxX = iDiagramWidth*0.9;
+    var dPixelMinY = iDiagramTitleHeight+(iDiagramHeight-iDiagramTitleHeight-iDiagramLegendHeight)*0.9;
+    var dPixelMaxY = iDiagramTitleHeight;
+    g_dScaleX = 1.0;
+    g_dScaleY = 1.0;
+    //axes and dashed lines
+    drawSensitivityStudyDiagram(svg, dPixelMinX, dPixelMaxX, dPixelMinY, dPixelMaxY);
+    g_dScaleX = 1.0;
+    g_dScaleY = 1.0;
+    drawSensitivityData(svg, dPixelMinX, dPixelMaxX, dPixelMinY, dPixelMaxY, adSensitivityData);
+};
+*/

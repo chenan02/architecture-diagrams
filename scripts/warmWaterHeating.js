@@ -76,7 +76,8 @@ function type(d) {
 
 graph("#separatedChart1", dataArray1);
 graph("#separatedChart2", dataArray2);
-
+graph("#separatedChart3", dataArray3);
+graph("#separatedChart4", dataArray4);
 
 
 function setInputFields()

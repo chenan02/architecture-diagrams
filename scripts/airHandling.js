@@ -64,6 +64,12 @@ function graph(data) {
   y.domain([0, d3.max(data, function(d) { 
     return d.total; 
   })]);
+	
+  svg.append("g")
+    .append("text")
+    .attr("style", "font-size: 12px")
+    .attr("transform", "translate(-20, -8)")
+    .text("kWh/m2year");
  
   svg.append("g")
       .attr("class", "x axis")

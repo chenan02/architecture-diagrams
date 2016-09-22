@@ -1,12 +1,12 @@
 /*== climate.js ========================================================
 Implements the initialization of climate.xhtml.
-Version    : $Id: climate.js 2328 2012-09-19 09:14:04Z hartwig $
+Version    : $Id: climate.js 2328 2015-11-18 15:34:03Z DEAN AND MIN $
 Application: Comfort and Climate
 Platform   : JavaScript 5, DOM
 Description: distributes app data into XHTML.
 ========================================================================
-Created    : 19.07.2012, Hartwig Thomas, Enter AG, Zurich
-Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
+Created    : 23.07.2012, DEAN WONG, MKIM, Enter AG, Zurich
+Copyright  : 2015, Baumschlager Eberle, Vaduz, Liechtenstein
 ======================================================================*/
 
 /*----------------------------------------------------------------------
@@ -28,6 +28,25 @@ function setInputFields()
   input.value = dLatitude.toFixed(7);
   input = document.getElementsByName("longitude")[0];
   input.value=dLongitude.toFixed(7);
+  
+  var input = document.getElementsByName("input1")[0];
+  input.value = input1.toFixed(2);
+  var input = document.getElementsByName("input2")[0];
+  input.value = input2.toFixed(2);
+  var input = document.getElementsByName("input3")[0];
+  input.value = input3.toFixed(2);
+  var input = document.getElementsByName("input4")[0];
+  input.value = input4.toFixed(2);
+  var input = document.getElementsByName("input5")[0];
+  input.value = input5.toFixed(2);
+  var input = document.getElementsByName("input6")[0];
+  input.value = input6.toFixed(2);
+  var input = document.getElementsByName("input7")[0];
+  input.value = input7.toFixed(2);
+  var input = document.getElementsByName("input8")[0];
+  input.value = input8.toFixed(2);
+  var input = document.getElementsByName("input9")[0];
+  input.value = input9.toFixed(2);
 }; /* setInputFields */
 
 /*----------------------------------------------------------------------

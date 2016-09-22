@@ -6,23 +6,19 @@
                       http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
 <!-- energyDistribution.xhtml ================================================
 Air tightness page for Comfort and Climate
-Version    : $Id: energyDistribution.xhtml 2337 2012-09-20 15:14:54Z hartwig $
+Version    : $Id: energyDistribution.xhtml 2337 2015-11-24 15:14:54Z DEAN AND MIN $
 Application: Comfort and Climate
 Platform   : XHTML 1.1
-Description: The air tightness page shows the effect of air change.
 ========================================================================
-Created    : 09.08.2012, Hartwig Thomas, Enter AG, Zurich
-Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
+Created    : 09.08.2015, Hartwig Thomas,Dean Wong, MKIM, Enter AG, Zurich
+Copyright  : 2016, Baumschlager Eberle, Vaduz, Liechtenstein
 ==================================================================== -->
   <head>
     <title>Energy Distribution</title>
-    <!-- Content type and character set -->
+<!-- Content type and character set -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <!-- Global style sheet -->
-
-     <!-- <link rel="stylesheet" type="text/css" href="../../candc.css" /> -->
-      <link rel="stylesheet" type="text/css" href="../../candc.css" />
-
+    <link rel="stylesheet" type="text/css" href="../../candc_ED.css" />
     <!-- Constants declaration script -->
     <script type="text/javascript">
       //<![CDATA[
@@ -43,7 +39,7 @@ Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
           var iProjectGeneration = 2;
           var bExpired = false;
           var sFreePages = "climate, dimension, compactness, orientation, construction, windowsfront, windowsleft, windowsback, windowsright";
-
+          var adRanks = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
       
           //]]>
       </script>
@@ -87,8 +83,8 @@ Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
       <p class="indent"><a href="heatrec.xhtml">HeatRec</a> <img src="../../images/free.png"/></p>
       <p>Active Systems</p>
       <p class="indent"><a href="airhandling.xhtml">Air Handling</a> <img src="../../images/free.png"/></p>
-      <p class="indent selected"><a href="energyConversion.xhtml">Energy Conversion</a> <img src="../../images/free.png"/></p>
-      <p class="indent"><a href="energydistribution.xhtml">Energy Distribution</a> <img src="../../images/free.png"/></p>
+      <p class="indent"><a href="energyConversion.xhtml">Energy Conversion</a> <img src="../../images/free.png"/></p>
+      <p class="indent selected"><a href="energydistribution.xhtml">Energy Distribution</a> <img src="../../images/free.png"/></p>
       <p class="indent"><a href="wwh.xhtml">Warm Water Heating</a> <img src="../../images/free.png"/></p>
       <p>Summary</p>
     </div>
@@ -98,6 +94,7 @@ Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
           <td width="32%"><p>Comfort and Climate - <strong>Horizontal Bar Chart</strong> <a href="http://info.comfortandclimate.com/?p=44" onclick="window.open(this.href,'_blank');return false;"><img src="../../images/info.png"/></a></p></td>
           <td width="33%"><p id="projectname">Project: </p></td>
           <td width="20%"><p id="username">User: </p></td>
+          <td><p><a href="../project/information/energy_distribution_info.xhtml">Information</a></p></td>
           <td><p><a href="../preferences.xhtml">Preferences</a></p></td>
           <td><p><a href="../login.xhtml?logout=true">Log out</a></p></td>
         </tr></table>
@@ -107,84 +104,89 @@ Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
       <div id="content">
 		<br/>
         <button class="tile" onclick="selectED(this,1);">
-          <p><img src="../../images/shading/1ddd.png"/></p>
-          <p>0.2m²</p>
+          <p><img src="../../images/energydistribution/1_radiator.png"/></p>
+          <p>Radiator</p>
         </button>
         <button class="tile" onclick="selectED(this,2);">
-          <p><img src="../../images/shading/25m.png"/></p>
-          <p>25 m</p>
-        </button>
-        <button class="tile" onclick="selectED(this,3);">
-          <p><img src="../../images/shading/20m.png"/></p>
-          <p>20 m</p>
-        </button>
-        <button class="tile" onclick="selectED(this,4);">
-          <p><img src="../../images/shading/15m.png"/></p>
-          <p>15 m</p>
-        </button>
-        <button class="tile" onclick="selectED(this,5);">
-          <p><img src="../../images/shading/10m.png"/></p>
-          <p>10 m</p>
-        </button>
-        <button class="tile" onclick="selectED(this,6);">
-          <p><img src="../../images/shading/05m.png"/></p>
-          <p>5 m</p>
-        </button>
-		<button class="tile" onclick="selectED(this,7);">
-          <p><img src="../../images/shading/10m.png"/></p>
-          <p>10 m</p>
-        </button>
-		<br/>
-		<br/>
-		<br/>
-        <button class="tile" onclick="selectED(this,9);">
-          <p><img src="../../images/shading/none.png"/></p>
+          <p><img src="../../images/energydistribution/1_split-cooling.png"/></p>
           <p>Converter</p>
         </button>
-        <button class="tile" onclick="selectED(this,10);">
-          <p><img src="../../images/shading/25m.png"/></p>
-          <p>25 m</p>
+        <button class="tile" onclick="selectED(this,3);">
+          <p><img src="../../images/energydistribution/2_floor-heating.png"/></p>
+          <p>FloorHeating</p>
         </button>
+        <button class="tile" onclick="selectED(this,4);">
+          <p><img src="../../images/energydistribution/3_thermal-acitvesystem.png"/></p>
+          <p>Thermal Active Component</p>
+        </button>
+        <button class="tile" onclick="selectED(this,5);">
+          <p><img src="../../images/energydistribution/4_cooling-ceiling.png"/></p>
+          <p>cooling ceiling</p>
+        </button>
+		<br/>
+		<br/>
+		<br/>
+        <button class="tile" onclick="selectED(this,6);">
+          <p><img src="../../images/energydistribution/TAC-radiator.png"/></p>
+          <p>thermal active component + radiator</p>
+        </button>
+		<button class="tile" onclick="selectED(this,7);">
+          <p><img src="../../images/energydistribution/6_displacement-ventilation.png"/></p>
+          <p>cooling ceiling + radiator</p>
+        </button>
+
+        <button class="tile" onclick="selectED(this,8);">
+          <p><img src="../../images/energydistribution/5_mix-air-ventilation.png"/></p>
+          <p>mix ventilation</p>
+        </button>
+        <button class="tile" onclick="selectED(this,9);">
+          <p><img src="../../images/energydistribution/6_displacement-ventilation.png"/></p>
+          <p>displacement ventilation</p>
+        </button>
+        <button class="tile" onclick="selectED(this,10);">
+          <p><img src="../../images/energydistribution/floor-heating-mix-vent.png"/></p>
+          <p>floor heating + displacement ventilation</p>
+        </button>
+            	<br/>
+		<br/>
+		<br/>
         <button class="tile" onclick="selectED(this,11);">
-          <p><img src="../../images/shading/20m.png"/></p>
-          <p>20 m</p>
+          <p><img src="../../images/energydistribution/radiator-displacement.png"/></p>
+          <p>radiator + displacement ventilation</p>
         </button>
         <button class="tile" onclick="selectED(this,12);">
-          <p><img src="../../images/shading/15m.png"/></p>
-          <p>15 m</p>
+          <p><img src="../../images/energydistribution/radiator-mix-vent.png"/></p>
+          <p>radiator + mix ventilation</p>
         </button>
         <button class="tile" onclick="selectED(this,13);">
-          <p><img src="../../images/shading/15m.png"/></p>
-          <p>15 m</p>
+          <p><img src="../../images/energydistribution/floor-heating-mix-vent.png"/></p>
+          <p>floor heating + mix ventilation</p>
         </button>
         <button class="tile" onclick="selectED(this,14);">
-          <p><img src="../../images/shading/15m.png"/></p>
-          <p>15 m</p>
+          <p><img src="../../images/energydistribution/TAC-mix-vent.png"/></p>
+          <p>thermal active component + mix ventilation</p>
+        </button>
+        <button class="tile" onclick="selectED(this,15);">
+          <p><img src="../../images/energydistribution/Cooling-ceiling-mix-vent.png"/></p>
+          <p>cooling ceiling + mix ventilation</p>
+        </button>
+                    	<br/>
+		<br/>
+		<br/>
+		<button class="tile" onclick="selectED(this,16);">
+          <p><img src="../../images/energydistribution/controlled-nat-vent.png"/></p>
+          <p>c2226</p>
         </button>
 		<br/>
 		<br/>
 		<form action="energydistribution.xhtml" method="get">
           <p><input name="projectgeneration" type="hidden" value="-1"/><br/></p>
           <table>
-            <tr><td align="right"><p>Radiator: </p></td><td><p><label name="EnergyHeating" type="text"/></p></td></tr>
-            <tr><td align="right"><p>Converter: </p></td><td><p><label name="EnergyCooling" type="text"/></p></td></tr>
-            <tr><td align="right"><p>FloorHeating: </p></td><td><p><label name="EnergyCooling" type="text"/></p></td></tr>
-            <tr><td align="right"><p>Thermal Active Control: </p></td><td><p><label name="EnergyCooling" type="text"/></p></td></tr>
-            <tr><td align="right"><p>cooling ceiling: </p></td><td><p><label name="EnergyCooling" type="text"/></p></td></tr>
-            <tr><td align="right"><p>mix ventilation: </p></td><td><p><label name="EnergyCooling" type="text"/></p></td></tr>
-            <tr><td align="right"><p>displacement ventilation: </p></td><td><p><label name="EnergyCooling" type="text"/></p></td></tr>
-            <tr><td align="right"><p>radiator displacement ventilation: </p></td><td><p><label name="EnergyCooling" type="text"/></p></td></tr>
-            <tr><td align="right"><p>floor heating displacement ventilation: </p></td><td><p><label name="EnergyCooling" type="text"/></p></td></tr>
-            <tr><td align="right"><p>radiator mix ventilation: </p></td><td><p><label name="EnergyCooling" type="text"/></p></td></tr>
-            <tr><td align="right"><p>floor heating mix ventilation: </p></td><td><p><label name="EnergyCooling" type="text"/></p></td></tr>
-            <tr><td align="right"><p>thermal active compoent mix ventilation: </p></td><td><p><label name="EnergyCooling" type="text"/></p></td></tr>
-            <tr><td align="right"><p>cooling ceiling mix ventilation: </p></td><td><p><label name="EnergyCooling" type="text"/></p></td></tr>
-            <tr><td align="right"><p>2226_41: </p></td><td><p><label name="EnergyCooling" type="text"/></p></td></tr>
-            
-      		      
-            <input name="EnergyHeating1" type="hidden"/>
+       
+          <!--    <input name="EnergyHeating1" type="hidden"/>
             <input name="EnergyCooling1" type="hidden"/>
             <input name="save" type="submit" value="Enter" title="Save air change rate"/>
+             -->
             </table>
         </form>
     <table id="diagrams">

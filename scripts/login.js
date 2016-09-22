@@ -1,12 +1,13 @@
 /*== login.js ==========================================================
 Implements the initialization of login.xhtml.
-Version    : $Id: login.js 2238 2012-08-23 07:04:53Z hartwig $
+Version    : $Id: login.js 2238 2015-11-18 15:34:03Z DEAN AND MIN $
 Application: Comfort and Climate
 Platform   : JavaScript 5, DOM
 Description: distributes app data into XHTML.
 ========================================================================
-Created    : 04.07.2012, Hartwig Thomas, Enter AG, Zurich
-Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
+Created    : 23.07.2012, DEAN WONG, MKIM, Enter AG, Zurich
+Copyright  : 2015, Baumschlager Eberle, Vaduz, Liechtenstein
+Created & Integrited  : Dean Wang and MIN
 ======================================================================*/
 
 /*----------------------------------------------------------------------

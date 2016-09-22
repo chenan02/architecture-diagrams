@@ -1,12 +1,12 @@
 /*== date.js ===========================================================
 Date module for enhancing Date functionality.
-Version     : $Id: date.js 2265 2012-08-27 09:35:20Z hartwig $
-Application : Utilities
-Platform    : ECMAScript
-Description : JScript module for enhancing Date functionality.
-------------------------------------------------------------------------
-Created    : 04.08.2008, Hartwig Thomas, Enter AG, Zurich
-Copyright (c) 2009, Enter AG, Zurich, Switzerland, 2009
+Version     : $Id: date.js 2265 2015-11-18 15:34:03Z DEAN AND MIN $
+Application: Comfort and Climate
+Platform   : JavaScript 5, DOM
+Description: distributes app data into XHTML.
+========================================================================
+Created    : 23.07.2012, DEAN WONG, MKIM, Enter AG, Zurich
+Copyright  : 2015, Baumschlager Eberle, Vaduz, Liechtenstein
 ======================================================================*/
 
 /*======================================================================

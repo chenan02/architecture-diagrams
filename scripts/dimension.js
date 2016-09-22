@@ -1,12 +1,12 @@
 /*== dimension.js ======================================================
 Implements the initialization of dimension.xhtml.
-Version    : $Id: dimension.js 2329 2012-09-19 09:27:39Z hartwig $
+Version    : $Id: dimension.js 2329 2015-11-18 15:34:03Z DEAN AND MIN $
 Application: Comfort and Climate
 Platform   : JavaScript 5, DOM
 Description: distributes app data into XHTML.
 ========================================================================
-Created    : 23.07.2012, Hartwig Thomas, Enter AG, Zurich
-Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
+Created    : 23.07.2012, DEAN WONG, MKIM, Enter AG, Zurich
+Copyright  : 2015, Baumschlager Eberle, Vaduz, Liechtenstein
 ======================================================================*/
 
 /*----------------------------------------------------------------------

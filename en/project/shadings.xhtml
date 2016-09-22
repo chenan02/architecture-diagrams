@@ -200,10 +200,10 @@ Created & Integrited  : Dean Wang
       	var dYearHeating = 0.0;
       	var dYearCooling = 0.0; 
       /* var adCompactness = [dCompactness]; */
-      	var adCompactness = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      	var adCompactness = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12];
       	var adYearHeating = [dYearHeating,  96,  75,  83,  94, 175, 180 ,200, 210, 220];
-     	var adYearCooling = [dYearCooling,  34,  12,  23,  24,  25,  30, 35, 40, 50];
-      	var adRanks = [1,2,3,4,5,6,7,8,9,10,11];
+     	var adYearCooling = [dYearCooling,  34,  12,  23,  24,  25,  30, 35, 40, 50]; 		
+      	var adRanks = [1,2,3,4,5,6,7,8,9,10];
       //]]>
     </script>
     <!-- Global initialization script -->
@@ -261,57 +261,64 @@ Created & Integrited  : Dean Wang
           <td width="32%"><p>Comfort and Climate - <strong>ShadingS</strong> <a href="http://info.comfortandclimate.com/?p=32" onclick="window.open(this.href,'_blank');return false;"><img src="../../images/info.png"/></a></p></td>
           <td width="33%"><p id="projectname">Project: </p></td>
           <td width="20%"><p id="username">User: </p></td>
+          <td><p><a href="../project/information/shading_info.xhtml">Information</a></p></td>
           <td><p><a href="../preferences.xhtml">Preferences</a></p></td>
           <td><p><a href="../login.xhtml?logout=true">Log out</a></p></td>
         </tr></table>
         <hr/>
         <p id="message">Message<br/>Message</p>
       </div>
-      <div id="content">
+        <div id="content">
         <br/>
-        <button class="tile" onclick="select(this, 0);">
-          <p><img src="../../images/shading/none.png"/></p>
-          <p>0</p>
-        </button>
         <button class="tile" onclick="select(this, 1);">
-          <p><img src="../../images/shading/25m.png"/></p>
-          <p>1</p>
+          <p><img src="../../images/shading/none.png"/></p>
+          <p>(C) No Shading</p>
+          <p></p>
         </button>
         <button class="tile" onclick="select(this, 2);">
-          <p><img src="../../images/shading/20m.png"/></p>
-          <p>2</p>
+          <p><img src="../../images/shading/Overhang30.png"/></p>
+          <p>(1) Overhang</p>
+          <p></p>
         </button>
         <button class="tile" onclick="select(this, 3);">
-          <p><img src="../../images/shading/15m.png"/></p>
-          <p>3</p>
+          <p><img src="../../images/shading/overhang-wingwall.png"/></p>
+          <p>(2) Overhang +</p>
+          <p>Wingwall</p>
         </button>
         <button class="tile" onclick="select(this, 4);">
-          <p><img src="../../images/shading/10m.png"/></p>
-          <p>4</p>
+          <p><img src="../../images/shading/vertical-brise-soleil.png"/></p>
+          <p>(3) Brise</p>
+          <p>soleil</p>
         </button>
         <button class="tile" onclick="select(this, 5);">
-          <p><img src="../../images/shading/05m.png"/></p>
-          <p>5</p>
+          <p><img src="../../images/shading/horizontal_lammela.png"/></p>
+          <p>(4) Horizontal</p>
+          <p>Lamella</p>
         </button>
         <button class="tile" onclick="select(this, 6);">
-          <p><img src="../../images/shading/05m.png"/></p>
-          <p>6</p>
+          <p><img src="../../images/shading/movable-shading.png"/></p>
+          <p>(5) Controlled</p>
+          <p> blind</p>
         </button>
         <button class="tile" onclick="select(this, 7);">
-          <p><img src="../../images/shading/05m.png"/></p>
-          <p>7</p>
+          <p><img src="../../images/shading/none.png"/></p>
+             <p>(6) Horizontal</p>
+          <p> Shade</p>
         </button>
         <button class="tile" onclick="select(this, 8);">
-          <p><img src="../../images/shading/05m.png"/></p>
-          <p>8</p>
+          <p><img src="../../images/shading/none.png"/></p>
+              <p>(8) SC Fixed</p>
+          <p> SC 0.8</p>
         </button>
         <button class="tile" onclick="select(this, 9);">
-          <p><img src="../../images/shading/05m.png"/></p>
-          <p>9</p>
+          <p><img src="../../images/shading/none.png"/></p>
+              <p>(9) SC Fixed</p>
+          <p> SC 0.5</p>
         </button>
         <button class="tile" onclick="select(this, 10);">
-          <p><img src="../../images/shading/05m.png"/></p>
-          <p>10</p>
+          <p><img src="../../images/shading/none.png"/></p>
+              <p>(10) SC Fixed</p>
+          <p> SC 0.3</p>
         </button>
           <form action="shadings.xhtml" method="get" onsubmit="return validate();">
            <br/>

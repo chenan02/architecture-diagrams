@@ -19,7 +19,7 @@ var yAxis = d3.svg.axis()
 
 
 
-function graph(div, data) {
+function graph(div, data, title) {
 	var svg = d3.select(div).append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom + 50)
@@ -28,6 +28,13 @@ function graph(div, data) {
 	type(data);
   x.domain(data.map(function(d) { return d.name; }));
   y.domain([0, d3.max(data, function(d) { return d.value; })]);
+  svg.append("g")
+  	  .append("text")
+  	  .attr("style", "font-size: 15px")
+  	  .attr("transform", "translate(0, -8)")
+  	  .attr("font-weight", "bold")
+  	  .attr("font-style", "italic")
+  	  .text(title);
 
   svg.append("g")
       .attr("class", "x axis")
@@ -42,7 +49,6 @@ function graph(div, data) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Value");
 //var k = 0;
   svg.selectAll(".bar")
       .data(data)
@@ -88,8 +94,10 @@ function type(d) {
   return d;
 };
 
-graph("#separatedChart1", dataArray1);
-graph("#separatedChart2", dataArray2);
+graph("#separatedChart1", dataArray1, "Site Energy [kWh/m2year]");
+graph("#separatedChart2", dataArray2, "Primary Energy [kWh/m2year]");
+graph("#separatedChart3", dataArray3, "Cost [currency/m2year]");
+graph("#separatedChart4", dataArray4, "CO2 emission [t CO2/m2year]");
 
 
 
@@ -145,12 +153,12 @@ function selectEC(button,index)
 function selectEC1(button,index)
 {
 //  var parent = button.parentNode;
-  var aInput = document.getElementsByTagName("label")[0];
-  document.getElementsByName("EnergyCooling")[0].value = index;
+  var aInput = document.getElementsByTagName("label")[1];
+  document.getElementsByName("EnergyCooling1")[0].value = index;
   aInput.innerHTML = index;
-  //var aInput = parent.getElementsByTagName("label")[1];
-  //document.getElementsByName("EnergyCooling")[1].value = index;
-  //aInput.innerHTML = index;
+  var aInput = document.getElementsByTagName("label")[0];
+  document.getElementsByName("EnergyHeating1")[0].value = dEnegyHeat;
+  aInput.innerHTML = dEnegyHeat;
   var form = document.getElementsByTagName("form")[0];
   var ainput = form.getElementsByTagName("input");
   var inputSubmit = null;

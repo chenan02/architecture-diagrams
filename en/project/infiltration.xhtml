@@ -9,7 +9,12 @@ infiltration page for Comfort and Climate
 Application: Comfort and Climate
 Platform   : XHTML 1.1
 ========================================================================
-Created & Integrited  : Dean Wang
+2015-11-24 15:14:54Z DEAN AND MIN $
+Application: Comfort and Climate
+Platform   : XHTML 1.1
+========================================================================
+Created    : 09.08.2015, Hartwig Thomas,Dean Wong, MKIM, Enter AG, Zurich
+Copyright  : 2016, Baumschlager Eberle, Vaduz, Liechtenstein
 ==================================================================== -->
   <head>
     <title>Comfort and Climate: Infiltration</title>
@@ -259,6 +264,7 @@ Created & Integrited  : Dean Wang
           <td width="32%"><p>Comfort and Climate - <strong>Infiltration</strong> <a href="http://info.comfortandclimate.com/?p=32" onclick="window.open(this.href,'_blank');return false;"><img src="../../images/info.png"/></a></p></td>
           <td width="33%"><p id="projectname">Project: </p></td>
           <td width="20%"><p id="username">User: </p></td>
+          <td><p><a href="../project/information/infiltration_info.xhtml">Information</a></p></td>
           <td><p><a href="../preferences.xhtml">Preferences</a></p></td>
           <td><p><a href="../login.xhtml?logout=true">Log out</a></p></td>
         </tr></table>
@@ -268,41 +274,41 @@ Created & Integrited  : Dean Wang
       <div id="content">
         <br/>
         <button class="tile" onclick="select(this, 0.08);">
-          <p><img src="../../images/shading/none.png"/></p>
-          <p>0.08</p>
-        </button>
+          <p><img src="../../images/infiltration/1_008.png"/></p>
+          <p>(1) 0.08 [1/h]</p>
+          </button>
         <button class="tile" onclick="select(this, 0.1);">
-          <p><img src="../../images/shading/25m.png"/></p>
-          <p>0.1</p>
+          <p><img src="../../images/infiltration/2_01.png"/></p>
+          <p>(2) 0.1 [1/h]</p>
         </button>
         <button class="tile" onclick="select(this, 0.15);">
-          <p><img src="../../images/shading/20m.png"/></p>
-          <p>0.15</p>
+          <p><img src="../../images/infiltration/3_015.png"/></p>
+          <p>(3) 0.15 [1/h]</p>
         </button>
         <button class="tile" onclick="select(this, 0.2);">
-          <p><img src="../../images/shading/15m.png"/></p>
-          <p>0.2</p>
+          <p><img src="../../images/infiltration/4_02.png"/></p>
+          <p>(4) 0.2 [1/h]</p>
         </button>
         <button class="tile" onclick="select(this, 0.25);">
-          <p><img src="../../images/shading/10m.png"/></p>
-          <p>0.25</p>
+          <p><img src="../../images/infiltration/5_025.png"/></p>
+          <p>(5) 0.25 [1/h]</p>
         </button>
         <button class="tile" onclick="select(this, 0.3);">
-          <p><img src="../../images/shading/05m.png"/></p>
-          <p>0.3</p>
+          <p><img src="../../images/infiltration/6_03.png"/></p>
+          <p>(6) 0.3 [1/h]</p>
         </button>
         <button class="tile" onclick="select(this, 0.5);">
-          <p><img src="../../images/shading/05m.png"/></p>
-          <p>0.5</p>
+          <p><img src="../../images/infiltration/7_05.png"/></p>
+          <p>(7) 0.5 [1/h]</p>
         </button>
         <button class="tile" onclick="select(this, 0.8);">
-          <p><img src="../../images/shading/05m.png"/></p>
-          <p>0.8</p>
+          <p><img src="../../images/infiltration/8_08.png"/></p>
+          <p>(8) 0.8 [1/h]</p>
         </button>
           <form action="infiltration.xhtml" method="get" onsubmit="return validate();">
            <br/>
 	          <p>
-	            Infiltration<input name="projectgeneration" type="hidden" value="-1"/>
+	            Infiltration [1/h] <input name="projectgeneration" type="hidden" value="-1"/>
 	            <input name="infiltration" type="text"/>
 	            <input name="save" type="submit" value="Enter" title="Save Infiltration"/>
 	          </p>

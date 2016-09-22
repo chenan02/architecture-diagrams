@@ -1,12 +1,12 @@
 /*== candc.js ==========================================================
 Implements the initialization of all UI elements.
-Version    : $Id: candc.js 2330 2012-09-19 14:42:12Z hartwig $
+Version    : $Id: candc.js 2330 2015-11-18 15:34:03Z DEAN AND MIN $
 Application: Comfort and Climate
 Platform   : JavaScript 5, DOM
-Description: distributes common data into XHTML.
+Description: distributes app data into XHTML.
 ========================================================================
-Created    : 09.07.2012, Hartwig Thomas, Enter AG, Zurich
-Copyright  : 2012, Baumschlager Eberle, Vaduz, Liechtenstein
+Created    : 23.07.2012, DEAN WONG, MKIM, Enter AG, Zurich
+Copyright  : 2015, Baumschlager Eberle, Vaduz, Liechtenstein
 ======================================================================*/
 
 /*----------------------------------------------------------------------

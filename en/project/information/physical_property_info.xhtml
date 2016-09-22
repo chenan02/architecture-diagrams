@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.w3.org/1999/xhtml
+                      http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
+
+<head>
+	<title>Physical Property Info</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+	<style>
+		div.title {
+			font-family: arial;
+			font-size: 140%;
+			border-bottom-style: dotted;
+			border-bottom-color: grey;
+			border-bottom-width: 1px;
+		}
+
+		div.subtitle {
+			font-family: arial;
+			font-size: 105%;
+		}
+
+		div.break-line {
+			border-bottom-style: dotted;
+			border-bottom-color: grey;
+			border-bottom-width: 1px;
+		}
+
+		div.disclaimer {
+			font-family: arial;
+			line-height: 20%;
+		}
+
+		div.heading {
+			font-family: arial;
+			text-decoration: underline;
+		}
+
+		div.heading-content {
+			font-family: arial;
+			padding-left: 20px;
+			margin-top: -10px;
+		}
+
+		div.subheading {
+			font-family: arial;
+			font-size: 110%;
+			padding-left: 20px;
+			line-height: 50%;
+		}
+
+		div.subheading-content {
+			font-family: arial;
+			padding-left: 40px;
+			margin-top: -10px;
+		}
+
+		div.subheading-content p {
+			margin: 5px;
+		}
+
+		div.image img {
+			max-height: 500px;
+			max-width: 577px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="title">
+		<h1>Physical Property Information</h1>
+	</div>
+	<div class="heading">
+		<h3><i>Orientation: </i></h3>
+	</div>
+	<div class="heading-content">
+		<p>The angle describes the shift from the south orientation. -45 means that the building is oriented to the South West orientation with the façade described as “south”</p>
+	</div> 
+	<div class="heading">
+		<h3><i>Construction: </i></h3>
+	</div>
+	<div class="heading-content">
+		<p>The building construction is classified in four parameter settings. The thermal capacity of the construction is defined for the ceiling and refers to the ceiling area</p>
+	</div> 
+	<div class="heading">
+		<h3><i>Construction Types: </i></h3>
+	</div>
+	<div class="heading-content">
+		<ul>
+			<li><b>Light:</b> &nbsp; Light building construction without internal thermal mass. Typical example of a timber construction</li>
+			<li><b>Medium:</b> &nbsp; Building with a medium internal thermal mass. Typical example of a building with uncovered concrete ceiling and light dividing walls</li>
+			<li><b>Heavy I:</b> &nbsp; Building with a heavy construction and a lot of internal thermal mass. Typical example of a building with uncovered concrete ceiling and heavy dividing walls</li>
+			<li><b>Heavy II:</b> &nbsp; Building with a very heavy construction and a large amount of internal thermal mass. Typical example of a building with uncovered concrete ceiling and heavy dividing walls and uncovered heavy floor</li>
+		</ul>
+	</div> 
+	<div class="break-line"></div>
+	<div class="heading">
+		<h3><i>Roof U-Value:</i></h3>
+	</div>
+	<div class="heading-content">
+		<p>The U-Value of the roof in W/m<sup>2</sup>K</p>
+	</div> 
+	<div class="heading">
+		<h3><i>Wall U-Value:</i></h3>
+	</div>
+	<div class="heading-content">
+		<p>The U-Value of the wall in W/m<sup>2</sup>K</p>
+	</div>
+	<div class="heading">
+		<h3><i>Floor U-Value:</i></h3>
+	</div>
+	<div class="heading-content">
+		<p>The U-Value of the floor in W/m<sup>2</sup>K</p>
+	</div>
+	<div class="heading">
+		<h3><i>Glazing U-Value:</i></h3>
+	</div>
+	<div class="heading-content">
+		<p>The U-Value of the glazing in W/m<sup>2</sup>K</p>
+	</div>
+	<div class="heading">
+		<h3><i>Glazing SHGC:</i></h3>
+	</div>
+	<div class="heading-content">
+		<p>The solar heat gain coefficient of the glazing. The value is between 0-1. Per example, 0.45 describes a solar transmission of 45%</p>
+	</div>
+	<div class="heading">
+		<h3><i>Shading:</i></h3>
+	</div>
+	<div class="heading-content">
+		<p>A pre-defined shading system can be chosen for each orientation</p>
+	</div>
+	<div class="heading">
+		<h3><i>Infiltration:</i></h3>
+	</div>
+	<div class="heading-content">
+		<p>The infiltration rate of the building envelope needs to be defined. Number is given in air changed volume per hour. The unit describes how much external air is infiltrated through the envelope compared to the building volume and is given in 1/h. Ventilation due to operable windows are not included here</p>
+	</div>
+	<div class="heading">
+		<h3><i>Natural Ventilation:</i></h3>
+	</div>
+	<div class="heading-content">
+		<p>Two types of natural ventilation can be chosen: ACH = 1.5 and ACH 3. ACH = Air change rate [1/h]</p>
+	</div>
+	<div class="heading">
+		<h3><i>Night Ventilation:</i></h3>
+	</div>
+	<div class="heading-content">
+		<p>User can add a night ventilation. The room will be ventilated if the internal temperature is in the given temperature comfort range and if the external temperature is lower than the room temperature. Two types of night ventilation can be chosen: ACH = 1.5 and ACH 3</p>
+	</div>
+	<div class="heading">
+		<h3><i>Heat Recovery:</i></h3>
+	</div>
+	<div class="heading-content">
+		<p>A heat recovery device can be added to evaluate energy demand reductions. The heat recovery will only be used for the hygienic minimal air volume flow. No recovery of the humidity is evaluated here. The heat recovery rate is 65%</p>
+	</div>
+	<div class="break-line"></div>
+	<div class="image">
+		<img src="RecWallRoofFloorInsulation.jpg"></img>
+	</div>
+	<div class="subtitle">
+		<h4><i>The diagram shows the relationship between the U-value, the heat conductivity of the material and the thickness of the insulation material</i></h4>
+	</div> 
+</body>
+</html>

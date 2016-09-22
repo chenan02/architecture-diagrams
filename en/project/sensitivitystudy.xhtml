@@ -18,7 +18,7 @@ Description: The air tightness page shows the effect of air change.
     <!-- Global style sheet -->
 
     <!-- <link rel="stylesheet" type="text/css" href="../../candc.css" /> -->
-    <link rel="stylesheet" type="text/css" href="../../sensitivityStudy.css" />
+    <link rel="stylesheet" type="text/css" href="../../horizontalBarChart.css" />
 	
     <!-- Constants declaration script -->
     <script type="text/javascript">
@@ -42,17 +42,17 @@ Description: The air tightness page shows the effect of air change.
           var bExpired = false;
           var sFreePages = "climate, dimension, compactness, orientation, construction, windowsfront, windowsleft, windowsback, windowsright";
           var dataArray = [
-                 		{"name":"Construction","value":12},
-                 		{"name":"Window to Wall","value":-9.5},
-                 		{"name":"Glazing Type","value":-11.2},
-                 		{"name":"Shading","value":8}, 
-                 		{"name":"Roof Insulation","value":-5},
-                 		{"name":"Wall Insulation","value":0}, 
-                 		{"name":"Floor Insulation","value":0},
-                 		{"name":"Air Tightness","value":0},
-                 		{"name":"Natural Ventilation","value":4}, 
-                 		{"name":"Night Ventilation","value":6},
-                 		{"name":"Heat Recovery","value":8}, 
+                 		{"name":"construction","value":12},
+                 		{"name":"window to wall","value":-9.5},
+                 		{"name":"glazing type","value":-11.2},
+                 		{"name":"shading","value":8}, 
+                 		{"name":"roof insulation","value":-5},
+                 		{"name":"wall insulation","value":0}, 
+                 		{"name":"floor insulation","value":0},
+                 		{"name":"air tightness","value":0},
+                 		{"name":"natural ventilation","value":4}, 
+                 		{"name":"night ventilation","value":6},
+                 		{"name":"heat recovery","value":8}, 
                    	  ];
           var squareArray = [1,0,0,0,1,0,1,0,0,1,0]
           //]]>
@@ -107,6 +107,7 @@ Description: The air tightness page shows the effect of air change.
           <td width="32%"><p>Comfort and Climate - <strong>Sensitivity Study</strong> <a href="http://info.comfortandclimate.com/?p=44" onclick="window.open(this.href,'_blank');return false;"><img src="../../images/info.png"/></a></p></td>
           <td width="33%"><p id="projectname">Project: </p></td>
           <td width="20%"><p id="username">User: </p></td>
+          <td><p><a href="../project//information/sensitivity_study_info.xhtml">Information</a></p></td>
           <td><p><a href="../preferences.xhtml">Preferences</a></p></td>
           <td><p><a href="../login.xhtml?logout=true">Log out</a></p></td>
         </tr></table>
